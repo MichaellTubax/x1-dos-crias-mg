@@ -114,6 +114,22 @@
         }
 
         .copyright-box b { color: var(--verde-mangueira); }
+
+        /* --- AJUSTES PERFEITOS PARA O MENU NO CELULAR --- */
+        @media (max-width: 600px) {
+            .navbar {
+                flex-direction: column; /* Empilha tudo na vertical */
+                gap: 12px;
+                width: 100%;
+            }
+            .nav-link {
+                width: 90%; /* Deixa os botões largos parecendo um App */
+                max-width: 250px;
+                text-align: center;
+                box-sizing: border-box;
+                padding: 12px; /* Aumenta a área de clique para o dedo */
+            }
+        }
     </style>
 </head>
 <body>

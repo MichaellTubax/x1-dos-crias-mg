@@ -220,12 +220,22 @@
         .copyright-box b { color: var(--verde-mangueira); }
 
         /* AJUSTES PARA CELULAR */
+       /* --- AJUSTES PERFEITOS PARA O MENU NO CELULAR --- */
         @media (max-width: 600px) {
-            .container-carta-ut { width: 90%; max-width: 300px; }
-            .lista-ranking-ut { gap: 40px; }
-            .navbar { flex-direction: column; gap: 12px; }
-            .titulo-secao { font-size: 1.6rem; }
+            .navbar {
+                flex-direction: column; /* Empilha tudo na vertical */
+                gap: 12px;
+                width: 100%;
+            }
+            .nav-link {
+                width: 90%; /* Deixa os botões largos parecendo um App */
+                max-width: 250px;
+                text-align: center;
+                box-sizing: border-box;
+                padding: 12px; /* Aumenta a área de clique para o dedo */
+            }
         }
+
     </style>
 </head>
 <body>
