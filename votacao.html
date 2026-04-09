@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Votação - X1 dos Crias MG</title>
+    <style>
+        :root { 
+            --verde-mangueira: #1b7b43; 
+            --magenta-crias: #db0061; 
+            --dourado-mg: #c8b419; 
+        }
+
+        @keyframes gradientMove { 
+            0% { background-position: 0% 50%; } 
+            50% { background-position: 100% 50%; } 
+            100% { background-position: 0% 50%; } 
+        }
+
+        body { 
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; 
+            background: #f4f6f8; 
+            margin: 0; 
+            padding: 0; 
+            color: #222;
+        }
+
+        /* HEADER PADRÃO DO SITE */
+        header {
+            background: linear-gradient(-45deg, var(--verde-mangueira), var(--magenta-crias), var(--dourado-mg), var(--verde-mangueira));
+            background-size: 400% 400%;
+            animation: gradientMove 12s ease infinite;
+            padding: 15px 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            position: relative;
+            z-index: 10;
+        }
+
+        .navbar { 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 20px; 
+            flex-wrap: wrap; 
+        }
+        
+        .logo-navbar { 
+            max-height: 80px; 
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3)); 
+        }
+        
+        .nav-link { 
+            text-decoration: none; 
+            color: white; 
+            font-weight: bold; 
+            font-size: 0.85rem; 
+            text-transform: uppercase; 
+            letter-spacing: 1px;
+            padding: 8px 12px; 
+            border-radius: 5px; 
+            background: rgba(0,0,0,0.15); 
+            transition: 0.3s; 
+        }
+        
+        .nav-link:hover { 
+            background: white; 
+            color: var(--verde-mangueira); 
+        }
+
+        /* CONTAINER DA VOTAÇÃO */
+        .container-votacao {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 15px;
+            text-align: center;
+        }
+
+        .titulo-votacao {
+            color: var(--verde-mangueira);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 1.8rem;
+        }
+
+        .formulario-google {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-top: 8px solid var(--magenta-crias);
+        }
+
+        iframe {
+            width: 100%;
+            border: none;
+            border-radius: 10px;
+        }
+
+        /* RODAPÉ PADRONIZADO */
+        footer {
+            background: #111;
+            color: white;
+            padding: 50px 20px;
+            text-align: center;
+            border-top: 6px solid var(--magenta-crias);
+            margin-top: 50px;
+        }
+
+        .copyright-box {
+            padding-top: 10px;
+            font-size: 0.9rem;
+            color: #777;
+        }
+
+        .copyright-box b { color: var(--verde-mangueira); }
+
+        /* --- AJUSTES PERFEITOS PARA O MENU NO CELULAR --- */
+        @media (max-width: 600px) {
+            .navbar {
+                flex-direction: column; /* Empilha tudo na vertical */
+                gap: 12px;
+                width: 100%;
+            }
+            .nav-link {
+                width: 90%; /* Deixa os botões largos parecendo um App */
+                max-width: 250px;
+                text-align: center;
+                box-sizing: border-box;
+                padding: 12px; /* Aumenta a área de clique para o dedo */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <img src="x1doscria.png" alt="Logo X1" class="logo-navbar">
+            <a href="index.html" class="nav-link">Inicio</a>
+            <a href="atletas.html" class="nav-link">Atletas</a>
+            <a href="votacao.html" class="nav-link">Votação</a>
+        </nav>
+    </header>
+
+    <div class="container-votacao">
+        <h2 class="titulo-votacao">🔥 Vote nos Melhores da Semana</h2>
+        
+        <div class="formulario-google">
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfjG1JIjp2oVfHAlQS6nFhv2BpIvg-2-wZXPf_U4Xv8YtpmIQ/viewform?embedded=true" width="100%" height="1000" frameborder="0" marginheight="0" marginwidth="0">Carregando…</iframe>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="copyright-box">
+                &copy; 2026 <b>Michael Sacramento</b>. Todos os direitos reservados.<br>
+                <span style="font-size: 0.7rem;">Plataforma oficial desenvolvida para o X1 dos Crias da MG.</span>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

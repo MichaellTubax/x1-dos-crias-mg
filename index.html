@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>X1 dos Crias MG - Oficial</title>
+    
+    <style>
+        :root {
+            --verde-mangueira: #1b7b43;
+            --magenta-crias: #db0061;
+            --dourado-mg: #c8b419;
+            --cinza-sombrio: #333;
+        }
+
+        /* ANIMAÇÃO DE CORES */
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: #f4f6f8;
+            margin: 0;
+            padding: 0;
+            color: #222;
+            overflow-x: hidden;
+        }
+
+        /* HEADER ANIMADO */
+        header {
+            background: linear-gradient(-45deg, var(--verde-mangueira), var(--magenta-crias), var(--dourado-mg), var(--verde-mangueira));
+            background-size: 400% 400%;
+            animation: gradientMove 12s ease infinite;
+            padding: 15px 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            position: relative;
+            z-index: 10;
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .logo-navbar {
+            max-height: 80px;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 8px 12px;
+            border-radius: 5px;
+            background: rgba(0,0,0,0.15);
+            transition: 0.3s;
+        }
+
+        .nav-link:hover { background: white; color: var(--verde-mangueira); }
+
+        /* BANNER DE VÍDEO (APRESENTAÇÃO) */
+        .hero-video {
+            position: relative;
+            width: 100%;
+            height: 90vh; /* Aumentei um pouco pra caber os botões novos no celular */
+            overflow: hidden;
+            background: #000;
+        }
+
+        .video-bg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: 1;
+            object-fit: cover;
+            opacity: 0.6;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.7));
+            z-index: 2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            color: white;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px; /* Espaçamento automático entre os botões */
+        }
+
+        .hero-content h2 {
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 15px rgba(0,0,0,0.9);
+            margin: 0;
+            letter-spacing: 2px;
+        }
+
+        .hero-content p {
+            max-width: 600px;
+            margin: 10px auto;
+            font-size: 1.2rem;
+            line-height: 1.6;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+        }
+
+        /* BOTÃO PRINCIPAL VERDE */
+        .btn-principal {
+            display: inline-block;
+            background: var(--verde-mangueira);
+            color: white;
+            text-decoration: none;
+            padding: 15px 35px;
+            border-radius: 50px;
+            font-weight: bold;
+            text-transform: uppercase;
+            box-shadow: 0 5px 15px rgba(27,123,67,0.4);
+            transition: 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .btn-principal:hover {
+            background: transparent;
+            border-color: white;
+            transform: scale(1.05);
+        }
+
+        /* --- ESTILOS DOS MODAIS (POP-UPS) --- */
+        .modal-crias {
+            display: none; /* Começa escondido */
+            position: fixed;
+            z-index: 9999; /* Fica por cima de tudo */
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(8px);
+            animation: fadeInModal 0.4s ease;
+        }
+
+        @keyframes fadeInModal {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .conteudo-modal {
+            position: relative;
+            width: 90%;
+            max-width: 400px;
+            border-radius: 20px;
+            background: #000;
+            border: 2px solid white; /* Borda padrão, mudamos via JS */
+            box-shadow: 0 0 30px rgba(255,255,255,0.2); /* Sombra padrão */
+        }
+
+        .fechar-modal {
+            position: absolute;
+            top: -15px; right: -15px;
+            background: var(--magenta-crias);
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: 2px solid white;
+            z-index: 10000;
+            transition: 0.3s;
+        }
+
+        .fechar-modal:hover { transform: scale(1.1); background: red; }
+
+        .video-modal {
+            width: 100%;
+            border-radius: 18px;
+            display: block;
+        }
+        
+        /* BOTÃO REVELAÇÃO CRAQUE (DOURADO) */
+        .btn-revelacao-craque {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--dourado-mg), #ffdf00, var(--dourado-mg));
+            background-size: 200% 200%;
+            color: #111;
+            padding: 15px 35px;
+            font-size: 1rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(200, 180, 25, 0.4);
+            transition: 0.3s;
+            animation: pulsarDourado 2s infinite alternate, gradientMove 3s ease infinite;
+        }
+
+        .btn-revelacao-craque:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(200, 180, 25, 0.7);
+        }
+
+        @keyframes pulsarDourado {
+            0% { box-shadow: 0 0 10px rgba(200, 180, 25, 0.4); }
+            100% { box-shadow: 0 0 30px rgba(200, 180, 25, 0.8); }
+        }
+
+        /* BOTÃO REVELAÇÃO BOLA MURCHA (CINZA/SOMBRIO) */
+        .btn-revelacao-bola {
+            display: inline-block;
+            background: linear-gradient(45deg, #222, #555, #222);
+            background-size: 200% 200%;
+            color: #ccc;
+            padding: 15px 35px;
+            font-size: 1rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            border: 1px solid #444;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6);
+            transition: 0.3s;
+            animation: pulsarCinza 2s infinite alternate, gradientMove 3s ease infinite;
+        }
+
+        .btn-revelacao-bola:hover {
+            transform: scale(1.05);
+            color: #fff;
+            box-shadow: 0 15px 30px rgba(50, 50, 50, 0.8);
+        }
+
+        @keyframes pulsarCinza {
+            0% { box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); }
+            100% { box-shadow: 0 0 25px rgba(80, 80, 80, 0.8); }
+        }
+
+        /* RODAPÉ PROFISSIONAL */
+        footer {
+            background: #111;
+            color: white;
+            padding: 50px 20px;
+            text-align: center;
+            border-top: 6px solid var(--magenta-crias);
+        }
+
+        .copyright-box {
+            padding-top: 10px;
+            font-size: 0.9rem;
+            color: #777;
+        }
+
+        .copyright-box b { color: var(--verde-mangueira); }
+
+        /* --- AJUSTES PARA O MENU NO CELULAR --- */
+        @media (max-width: 600px) {
+            .navbar {
+                flex-direction: column;
+                gap: 12px;
+                width: 100%;
+            }
+            .nav-link {
+                width: 90%;
+                max-width: 250px;
+                text-align: center;
+                box-sizing: border-box;
+                padding: 12px;
+            }
+            .hero-content h2 { font-size: 1.8rem; }
+            .hero-content p { font-size: 1rem; }
+            .hero-video { height: 100vh; } /* Tela cheia no celular pra caber tudo */
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <img src="x1doscria.png" alt="Logo X1" class="logo-navbar">
+            <a href="index.html" class="nav-link">Inicio</a>
+            <a href="atletas.html" class="nav-link">Atletas</a>
+            <a href="votacao.html" class="nav-link">Votação</a>
+        </nav>
+    </header>
+
+    <div class="hero-video">
+        <video autoplay muted loop playsinline class="video-bg">
+            <source src="x1.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h2>BEM-VINDO AO X1 DOS CRIAS</h2>
+            <p>Esporte, comunidade e entretenimento no coração da Mangueira. Toda segunda-feira.</p>
+            
+            <a href="atletas.html" class="btn-principal">Conhecer os Atletas</a>
+            
+            <button id="btnCraque" class="btn-revelacao-craque">🏆 Revelação Craque</button>
+            <button id="btnBolaMurcha" class="btn-revelacao-bola">🌩️ Revelação Bola Murcha</button>
+        </div>
+    </div>
+
+    <div id="modalMestre" class="modal-crias">
+        <div id="caixaConteudo" class="conteudo-modal">
+            <span class="fechar-modal" id="fecharModal">&times;</span>
+            <video id="videoPlayer" class="video-modal" controls playsinline>
+                <source id="videoSource" src="" type="video/mp4">
+                Seu navegador não suporta vídeos.
+            </video>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="copyright-box">
+                &copy; 2026 <b>Michael Sacramento</b>. Todos os direitos reservados.<br>
+                <span style="font-size: 0.7rem;">Plataforma oficial desenvolvida para o X1 dos Crias da MG.</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Pegando os elementos da tela
+        var modal = document.getElementById("modalMestre");
+        var caixa = document.getElementById("caixaConteudo");
+        var video = document.getElementById("videoPlayer");
+        var source = document.getElementById("videoSource");
+        var spanFechar = document.getElementById("fecharModal");
+
+        // Botões
+        var btnCraque = document.getElementById("btnCraque");
+        var btnBola = document.getElementById("btnBolaMurcha");
+
+        // Função Genérica para abrir o Modal
+        function abrirModal(arquivoVideo, corBorda, corSombra) {
+            // 1. Define o vídeo novo
+            source.src = arquivoVideo;
+            video.load(); // Carrega o vídeo novo
+            
+            // 2. Aplica o estilo (Dourado ou Cinza)
+            caixa.style.borderColor = corBorda;
+            caixa.style.boxShadow = "0 0 50px " + corSombra;
+
+            // 3. Mostra o modal e dá play
+            modal.style.display = "flex";
+            video.play();
+        }
+
+        // Função para fechar
+        function fecharModal() {
+            modal.style.display = "none";
+            video.pause();
+            video.currentTime = 0; // Volta pro começo
+        }
+
+        // --- EVENTOS DE CLIQUE ---
+
+        // Clicou no botão Craque
+        btnCraque.onclick = function() {
+            abrirModal("Craquedase.mp4", "#c8b419", "rgba(200, 180, 25, 0.6)");
+        }
+
+        // Clicou no botão Bola Murcha
+        btnBola.onclick = function() {
+            abrirModal("Bola.mp4", "#555", "rgba(50, 50, 50, 0.8)");
+        }
+
+        // Clicou no X ou fora da caixa pra fechar
+        spanFechar.onclick = fecharModal;
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                fecharModal();
+            }
+        }
+    </script>
+
+</body>
+</html>

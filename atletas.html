@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atletas - X1 dos Crias MG</title>
+    <style>
+        /* CONFIGURAÇÕES GERAIS E CORES */
+        :root {
+            --verde-mangueira: #1b7b43;
+            --magenta-crias: #db0061;
+            --dourado-mg: #c8b419;
+            --fundo-dark: #0a0a0a; 
+            --fundo-card: #141414;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: radial-gradient(circle at top center, #1f1f1f 0%, var(--fundo-dark) 100%);
+            margin: 0;
+            padding: 0;
+            color: #ffffff; 
+            min-height: 100vh;
+        }
+
+        /* HEADER ANIMADO */
+        header {
+            background: linear-gradient(-45deg, var(--verde-mangueira), var(--magenta-crias), var(--dourado-mg), var(--verde-mangueira));
+            background-size: 400% 400%;
+            animation: gradientMove 12s ease infinite;
+            padding: 15px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            position: relative;
+            z-index: 10;
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .logo-navbar {
+            max-height: 80px;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 8px 15px;
+            border-radius: 8px;
+            background: rgba(0,0,0,0.25);
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .nav-link:hover { 
+            background: rgba(255,255,255,0.1); 
+            border: 1px solid var(--dourado-mg);
+            color: var(--dourado-mg);
+            box-shadow: 0 0 10px rgba(200, 180, 25, 0.3);
+        }
+
+        /* --- TÍTULOS --- */
+        .titulo-secao {
+            text-align: center; 
+            color: var(--dourado-mg); 
+            margin-top: 50px; 
+            text-transform: uppercase; 
+            letter-spacing: 4px;
+            font-size: 2rem;
+            text-shadow: 0 0 15px rgba(200, 180, 25, 0.3);
+        }
+
+        .subtitulo-secao {
+            text-align: center; 
+            color: #aaaaaa; 
+            font-size: 1.1rem; 
+            margin-top: -15px; 
+            margin-bottom: 50px;
+            font-weight: 300;
+        }
+
+        /* --- ESTILO ULTIMATE TEAM PREMIUM --- */
+        .lista-ranking-ut {
+            max-width: 1200px; 
+            margin: 0 auto;
+            padding: 0 20px 60px 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 50px; 
+            justify-items: center;
+        }
+
+        .container-carta-ut {
+            position: relative;
+            width: 100%; 
+            max-width: 280px; 
+            perspective: 1000px;
+            cursor: pointer;
+            opacity: 0;
+            animation: surgir 0.8s ease-out forwards;
+        }
+
+        .container-carta-ut:nth-child(1) { animation-delay: 0.1s; }
+        .container-carta-ut:nth-child(2) { animation-delay: 0.2s; }
+        .container-carta-ut:nth-child(3) { animation-delay: 0.3s; }
+        .container-carta-ut:nth-child(4) { animation-delay: 0.4s; }
+        .container-carta-ut:nth-child(5) { animation-delay: 0.5s; }
+        .container-carta-ut:nth-child(6) { animation-delay: 0.6s; }
+        .container-carta-ut:nth-child(7) { animation-delay: 0.7s; }
+        .container-carta-ut:nth-child(8) { animation-delay: 0.8s; }
+        .container-carta-ut:nth-child(9) { animation-delay: 0.9s; }
+        .container-carta-ut:nth-child(10) { animation-delay: 1.0s; }
+
+        @keyframes surgir {
+            0% { opacity: 0; transform: translateY(40px) scale(0.9); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .carta-ut {
+            width: 100%;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+            background: transparent;
+            animation: flutuar 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes flutuar {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-10px); }
+        }
+
+      .imagem-carta {
+            width: 100%;
+            height: 400px; 
+            object-fit: contain; 
+            display: block;
+            transition: filter 0.4s ease-out;
+            animation: auraDourada 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes auraDourada {
+            0% { filter: drop-shadow(0 5px 15px rgba(188, 160, 76, 0.15)) brightness(0.95); }
+            100% { filter: drop-shadow(0 15px 35px rgba(188, 160, 76, 0.5)) brightness(1.1); }
+        }
+
+        .container-carta-ut:hover .carta-ut {
+            transform: rotateY(15deg) rotateX(10deg) scale(1.1) translateY(-15px);
+            animation-play-state: paused; 
+            z-index: 10; 
+        }
+
+        .container-carta-ut:hover .imagem-carta {
+            filter: drop-shadow(0 30px 60px rgba(188, 160, 76, 0.8)) brightness(1.2) contrast(1.15) !important;
+            animation-play-state: paused; 
+        }
+
+        /* --- BOTÃO DE VOTAÇÃO NEON --- */
+        .area-botao-votacao {
+            text-align: center;
+            margin: 30px 0 50px 0;
+            position: relative;
+            z-index: 5;
+        }
+
+        .btn-votacao-neon {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--magenta-crias), #ff007f);
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 15px 40px;
+            border-radius: 50px;
+            box-shadow: 0 10px 20px rgba(219, 0, 97, 0.4);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            animation: pulsarBotao 2s infinite alternate;
+        }
+
+        .btn-votacao-neon:hover {
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 15px 30px rgba(219, 0, 97, 0.7);
+            border: 2px solid white;
+        }
+
+        @keyframes pulsarBotao {
+            0% { box-shadow: 0 0 10px rgba(219, 0, 97, 0.4); }
+            100% { box-shadow: 0 0 25px rgba(219, 0, 97, 0.8), 0 0 40px rgba(219, 0, 97, 0.4); }
+        }
+
+        /* RODAPÉ */
+        footer {
+            background: #050505;
+            color: white;
+            padding: 50px 20px;
+            text-align: center;
+            border-top: 2px solid #222;
+            margin-top: 40px;
+        }
+
+        .copyright-box { padding-top: 10px; font-size: 0.9rem; color: #555; }
+        .copyright-box b { color: var(--verde-mangueira); }
+
+        /* AJUSTES PARA CELULAR */
+       /* --- AJUSTES PERFEITOS PARA O MENU NO CELULAR --- */
+        @media (max-width: 600px) {
+            .navbar {
+                flex-direction: column; /* Empilha tudo na vertical */
+                gap: 12px;
+                width: 100%;
+            }
+            .nav-link {
+                width: 90%; /* Deixa os botões largos parecendo um App */
+                max-width: 250px;
+                text-align: center;
+                box-sizing: border-box;
+                padding: 12px; /* Aumenta a área de clique para o dedo */
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <img src="x1doscria.png" class="logo-navbar" alt="Logo X1">
+            <a href="index.html" class="nav-link">Inicio</a>
+            <a href="atletas.html" class="nav-link">Atletas</a>
+            <a href="votacao.html" class="nav-link">Votação</a>
+        </nav>
+    </header>
+
+    <h2 class="titulo-secao">🔥 Cartas da Semana</h2>
+    <p class="subtitulo-secao">Os destaques da última resenha. Quem jogou mais?</p>
+
+    <div class="area-botao-votacao">
+        <a href="votacao.html" class="btn-votacao-neon">Ir para a Votação Oficial 🏆</a>
+    </div>
+
+    <section class="lista-ranking-ut">
+        
+        <div class="container-carta-ut">
+            <div class="carta-ut">
+                <img src="fael.jpeg" alt="Carta Fael" class="imagem-carta" onerror="this.style.display='none'">
+            </div>
+        </div>
+
+        <div class="container-carta-ut">
+            <div class="carta-ut">
+                <img src="cleisinho.jpeg" alt="Carta Cleisinho" class="imagem-carta" onerror="this.style.display='none'">
+            </div>
+        </div>
+
+        <div class="container-carta-ut">
+            <div class="carta-ut">
+                <img src="jucabala.png" alt="Carta Jucabala" class="imagem-carta" onerror="this.style.display='none'">
+            </div>
+        </div>
+
+        <div class="container-carta-ut">
+            <div class="carta-ut">
+                <img src="70.jpeg" alt="Carta 70" class="imagem-carta" onerror="this.style.display='none'">
+            </div>
+        </div>
+
+        <div class="container-carta-ut">
+            <div class="carta-ut">
+                <img src="espiga.jpeg" alt="Carta Espiga" class="imagem-carta" onerror="this.style.display='none'">
+            </div>
+        </div>
+
+        <div class="container-carta-ut">
+            <div class="carta-ut">
+                <img src="Paulo.jpeg" alt="Carta Paulo" class="imagem-carta" onerror="this.style.display='none'">
+            </div>
+        </div>
+
+        <div class="container-carta-ut">
+            <div class="carta-ut">
+                <img src="franbinho.jpeg" alt="Carta Franbinho" class="imagem-carta" onerror="this.style.display='none'">
+            </div>
+        </div>
+
+        <div class="container-carta-ut">
+            <div class="carta-ut">
+                <img src="Rikelme.jpeg" alt="Carta Rikelme" class="imagem-carta" onerror="this.style.display='none'">
+            </div>
+        </div>
+
+        <div class="container-carta-ut">
+            <div class="carta-ut">
+                <img src="ronan.jpeg" alt="Carta Ronan" class="imagem-carta" onerror="this.style.display='none'">
+            </div>
+        </div>
+
+        <div class="container-carta-ut">
+            <div class="carta-ut">
+                <img src="manjhoy.png" alt="Carta Manjhoy" class="imagem-carta" onerror="this.style.display='none'">
+            </div>
+        </div>
+
+    </section>
+
+    <div class="area-botao-votacao" style="margin-top: -10px; margin-bottom: 60px;">
+        <a href="votacao.html" class="btn-votacao-neon">Já escolheu? Vote Agora! ⚽</a>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="copyright-box">
+                &copy; 2026 <b>Michael Sacramento</b>. Todos os direitos reservados.<br>
+                <span style="font-size: 0.7rem;">Plataforma oficial desenvolvida para o X1 dos Crias da MG.</span>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
