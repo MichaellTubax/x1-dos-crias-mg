@@ -1,337 +1,437 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Atletas - X1 dos Crias MG</title>
-    <style>
-        /* CONFIGURAÇÕES GERAIS E CORES */
-        :root {
-            --verde-mangueira: #1b7b43;
-            --magenta-crias: #db0061;
-            --dourado-mg: #c8b419;
-            --fundo-dark: #0a0a0a; 
-            --fundo-card: #141414;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atletas — X1 dos Crias MG</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,700;0,900;1,700&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        @keyframes gradientMove {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
+:root {
+  --verde: #1b7b43; --verde-neon: #22ff7a;
+  --magenta: #db0061; --magenta-neon: #ff1a7a;
+  --ouro: #c8a800; --ouro-claro: #f2d060;
+  --preto: #050505; --preto-2: #0d0d0d; --preto-3: #141414;
+  --cinza-txt: #888;
+}
 
-        body {
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            background: radial-gradient(circle at top center, #1f1f1f 0%, var(--fundo-dark) 100%);
-            margin: 0;
-            padding: 0;
-            color: #ffffff; 
-            min-height: 100vh;
-        }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Barlow', sans-serif;
+  background: var(--preto); color: #fff;
+  min-height: 100vh; overflow-x: hidden;
+}
 
-        /* HEADER ANIMADO */
-        header {
-            background: linear-gradient(-45deg, var(--verde-mangueira), var(--magenta-crias), var(--dourado-mg), var(--verde-mangueira));
-            background-size: 400% 400%;
-            animation: gradientMove 12s ease infinite;
-            padding: 15px 20px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-            position: relative;
-            z-index: 10;
-        }
+/* ── KEYFRAMES ── */
+@keyframes gradientFlow { 0%,100%{background-position:0% 50%} 50%{background-position:100% 50%} }
+@keyframes glowMagenta  { 0%,100%{box-shadow:0 0 15px rgba(219,0,97,.3)} 50%{box-shadow:0 0 35px rgba(219,0,97,.7),0 0 60px rgba(219,0,97,.2)} }
+@keyframes glowOuro     { 0%,100%{filter:drop-shadow(0 0 30px rgba(200,168,0,.2)) brightness(1)} 50%{filter:drop-shadow(0 0 70px rgba(200,168,0,.5)) brightness(1.1)} }
+@keyframes spinY        { from{transform:rotateY(0deg)} to{transform:rotateY(360deg)} }
+@keyframes floatUp      { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+@keyframes cardIn       { from{opacity:0;transform:translateY(40px) scale(.93)} to{opacity:1;transform:translateY(0) scale(1)} }
+@keyframes shimmer      { 0%{background-position:-200% center} 100%{background-position:200% center} }
+@keyframes fadeUp       { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+@keyframes blink        { 0%,100%{opacity:1} 50%{opacity:.4} }
 
-        .navbar {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
+/* ═══ HEADER ═══ */
+.site-header {
+  position: sticky; top: 0; z-index: 1000;
+  background: rgba(5,5,5,.9); backdrop-filter: blur(24px);
+  border-bottom: 1px solid rgba(255,255,255,.05);
+}
+.site-header::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--verde), var(--magenta), var(--ouro), var(--verde));
+  background-size: 300% 100%; animation: gradientFlow 8s linear infinite;
+}
 
-        .logo-navbar {
-            max-height: 80px;
-            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
-        }
+.navbar { max-width: 1200px; margin: 0 auto; padding: 0 32px; height: 68px; display: flex; align-items: center; gap: 8px; }
+.nav-logo { display:flex;align-items:center;gap:12px;margin-right:auto;text-decoration:none; }
+.nav-logo-img { height: 75px; width: auto; object-fit: contain; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5)); }
+.nav-brand-main { font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:3px;color:#fff;display:block;line-height:1; margin-top: 5px;}
+.nav-brand-sub  { font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:4px;color:rgba(255,255,255,.5);text-transform:uppercase;display:block;margin-top:2px; }
 
-        .nav-link {
-            text-decoration: none;
-            color: white;
-            font-weight: bold;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            padding: 8px 15px;
-            border-radius: 8px;
-            background: rgba(0,0,0,0.25);
-            backdrop-filter: blur(5px);
-            transition: all 0.3s ease;
-            border: 1px solid transparent;
-        }
+.nav-link {
+  text-decoration:none;font-family:'Barlow Condensed',sans-serif;font-weight:600;
+  font-size:12px;letter-spacing:2px;text-transform:uppercase;
+  color:rgba(255,255,255,.55);padding:8px 14px;border-radius:3px;
+  transition:all .2s;border:1px solid transparent;
+}
+.nav-link:hover { color:#fff;background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.08); }
+.nav-link.active { color:var(--ouro-claro);border-color:rgba(200,168,0,.2);background:rgba(200,168,0,.05); }
 
-        .nav-link:hover { 
-            background: rgba(255,255,255,0.1); 
-            border: 1px solid var(--dourado-mg);
-            color: var(--dourado-mg);
-            box-shadow: 0 0 10px rgba(200, 180, 25, 0.3);
-        }
+.nav-cta {
+  text-decoration:none;font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  font-size:12px;letter-spacing:2px;text-transform:uppercase;
+  color:#fff;padding:10px 22px;border-radius:3px;
+  background:var(--magenta);transition:all .2s;margin-left:8px;
+  animation:glowMagenta 2.5s ease-in-out infinite;
+}
+.nav-cta:hover { background:var(--magenta-neon);transform:translateY(-1px); }
 
-        /* --- TÍTULOS --- */
-        .titulo-secao {
-            text-align: center; 
-            color: var(--dourado-mg); 
-            margin-top: 50px; 
-            text-transform: uppercase; 
-            letter-spacing: 4px;
-            font-size: 2rem;
-            text-shadow: 0 0 15px rgba(200, 180, 25, 0.3);
-        }
+/* ═══ PAGE HERO ═══ */
+.page-hero {
+  position: relative; overflow: hidden; background: var(--preto-2);
+  border-bottom: 1px solid rgba(255,255,255,.05); padding: 80px 32px 72px; text-align: center;
+}
+.page-hero::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 50% 100%, rgba(200,168,0,.08) 0%, transparent 65%); pointer-events: none;
+}
+.page-hero::after {
+  content: ''; position: absolute; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(200,168,0,.25), transparent); top: auto; bottom: 0;
+}
+.page-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 5px; text-transform: uppercase;
+  color: var(--verde-neon); margin-bottom: 16px; animation: fadeUp .5s ease-out both;
+}
+.page-eyebrow::before, .page-eyebrow::after { content: ''; width: 20px; height: 1.5px; background: var(--verde-neon); display: inline-block; }
+.page-title {
+  font-family: 'Bebas Neue', sans-serif; font-size: clamp(3.5rem, 8vw, 7rem);
+  letter-spacing: 4px; color: #fff; line-height: .9; animation: fadeUp .6s .1s ease-out both;
+}
+.page-title em { font-style: normal; color: var(--ouro-claro); }
+.page-sub {
+  font-family: 'Barlow', sans-serif; font-weight: 300; font-size: 1rem; color: rgba(255,255,255,.4);
+  letter-spacing: 1px; margin-top: 16px; animation: fadeUp .7s .2s ease-out both;
+}
 
-        .subtitulo-secao {
-            text-align: center; 
-            color: #aaaaaa; 
-            font-size: 1.1rem; 
-            margin-top: -15px; 
-            margin-bottom: 50px;
-            font-weight: 300;
-        }
+/* ═══ SEÇÃO CAMPEÃO ═══ */
+.champion-section {
+  max-width: 1200px; margin: 0 auto; padding: 100px 32px 60px;
+  display: grid; grid-template-columns: 1fr 420px; gap: 80px; align-items: center;
+}
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 8px; font-family: 'Barlow Condensed', sans-serif; font-size: 11px;
+  font-weight: 600; letter-spacing: 5px; text-transform: uppercase; color: var(--ouro); margin-bottom: 20px;
+}
+.eyebrow::before { content: ''; width: 20px; height: 1.5px; background: var(--ouro); display: inline-block; }
+.champion-name { font-family: 'Bebas Neue', sans-serif; font-size: clamp(5rem, 10vw, 10rem); line-height: .85; letter-spacing: 2px; color: #fff; }
+.champion-name em {
+  font-style: normal; display: block; background: linear-gradient(135deg, var(--ouro), var(--ouro-claro), var(--ouro));
+  background-size: 200% 100%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmer 4s linear infinite;
+}
+.champion-desc { font-family: 'Barlow', sans-serif; font-weight: 300; font-size: 1rem; color: rgba(255,255,255,.45); line-height: 1.8; margin: 24px 0 36px; max-width: 400px; }
+.champion-badge {
+  display: inline-flex; align-items: center; gap: 10px; font-family: 'Barlow Condensed', sans-serif; font-size: 13px;
+  font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--ouro); padding: 12px 28px; border-radius: 2px;
+  border: 1px solid rgba(200,168,0,.35); background: rgba(200,168,0,.06);
+}
+.champion-right { position: relative; display: flex; flex-direction: column; align-items: center; perspective: 1500px; }
+.cinturao-img { width: 150px; object-fit: contain; filter: drop-shadow(0 0 25px rgba(200,168,0,.6)); animation: spinY 5s linear infinite; margin-bottom: 28px; z-index: 10;}
 
-        /* --- ESTILO ULTIMATE TEAM PREMIUM --- */
-        .lista-ranking-ut {
-            max-width: 1200px; 
-            margin: 0 auto;
-            padding: 0 20px 60px 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 50px; 
-            justify-items: center;
-        }
+/* ═══ MECÂNICA DOS PACOTES (PACK OPENING) ═══ */
+.card-atleta {
+  width: 100%; max-width: 230px; height: 350px;
+  opacity: 0; animation: cardIn .7s ease-out forwards;
+  cursor: pointer; perspective: 1500px;
+}
+.champion-pack { max-width: 340px; height: 460px; } 
 
-        .container-carta-ut {
-            position: relative;
-            width: 100%; 
-            max-width: 280px; 
-            perspective: 1000px;
-            cursor: pointer;
-            opacity: 0;
-            animation: surgir 0.8s ease-out forwards;
-        }
+/* stagger delays */
+.card-atleta:nth-child(1){animation-delay:.04s} .card-atleta:nth-child(2){animation-delay:.08s}
+.card-atleta:nth-child(3){animation-delay:.12s} .card-atleta:nth-child(4){animation-delay:.16s}
+.card-atleta:nth-child(5){animation-delay:.20s} .card-atleta:nth-child(6){animation-delay:.24s}
+.card-atleta:nth-child(7){animation-delay:.28s} .card-atleta:nth-child(8){animation-delay:.32s}
+.card-atleta:nth-child(9){animation-delay:.36s} .card-atleta:nth-child(10){animation-delay:.40s}
+.card-atleta:nth-child(11){animation-delay:.44s} .card-atleta:nth-child(12){animation-delay:.48s}
+.card-atleta:nth-child(13){animation-delay:.52s} .card-atleta:nth-child(14){animation-delay:.56s}
+.card-atleta:nth-child(15){animation-delay:.60s}
 
-        .container-carta-ut:nth-child(1) { animation-delay: 0.1s; }
-        .container-carta-ut:nth-child(2) { animation-delay: 0.2s; }
-        .container-carta-ut:nth-child(3) { animation-delay: 0.3s; }
-        .container-carta-ut:nth-child(4) { animation-delay: 0.4s; }
-        .container-carta-ut:nth-child(5) { animation-delay: 0.5s; }
-        .container-carta-ut:nth-child(6) { animation-delay: 0.6s; }
-        .container-carta-ut:nth-child(7) { animation-delay: 0.7s; }
-        .container-carta-ut:nth-child(8) { animation-delay: 0.8s; }
-        .container-carta-ut:nth-child(9) { animation-delay: 0.9s; }
-        .container-carta-ut:nth-child(10) { animation-delay: 1.0s; }
+.card-inner {
+  width: 100%; height: 100%; position: relative;
+  transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform-style: preserve-3d; animation: floatUp 4s ease-in-out infinite;
+}
 
-        @keyframes surgir {
-            0% { opacity: 0; transform: translateY(40px) scale(0.9); }
-            100% { opacity: 1; transform: translateY(0) scale(1); }
-        }
+/* O SEGREDO DO CLIQUE: O !important obriga o CSS a virar a carta ignorando a inclinação do JS */
+.card-atleta.aberta .card-inner {
+  transform: rotateY(180deg) scale(1.05) translateY(-5px) !important; 
+  animation-play-state: paused;
+}
 
-        .carta-ut {
-            width: 100%;
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            transform-style: preserve-3d;
-            background: transparent;
-            animation: flutuar 4s ease-in-out infinite alternate;
-        }
+.pack-frente, .pack-verso {
+  position: absolute; width: 100%; height: 100%;
+  backface-visibility: hidden; border-radius: 8px;
+}
 
-        @keyframes flutuar {
-            0% { transform: translateY(0px); }
-            100% { transform: translateY(-10px); }
-        }
+/* Arte do Pacote */
+.pack-frente {
+  background: rgba(20, 20, 25, 0.85); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden;
+}
+.pack-frente::before {
+  content: ''; position: absolute; bottom: 0; right: 0; width: 0; height: 0;
+  border-bottom: 120px solid rgba(34, 255, 122, 0.1); border-left: 120px solid transparent;
+}
+.pack-frente::after {
+  content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
+  background: linear-gradient(to right, transparent, rgba(255,255,255,0.2), transparent);
+  transform: skewX(-30deg); animation: shimmer 3s infinite;
+}
+.pack-texto { font-family: 'Bebas Neue', sans-serif; color: #fff; font-size: 1.8rem; letter-spacing: 2px; text-align: center; line-height: 1.1; }
+.pack-texto span { color: var(--verde-neon); }
+.pack-interrogacao { font-family: 'Bebas Neue', sans-serif; font-size: 4rem; color: #fff; text-shadow: 0 0 15px rgba(255,255,255,0.5); margin: 20px 0; }
+.pack-instrucao { font-family: 'Barlow Condensed', sans-serif; font-size: 0.9rem; color: var(--verde-neon); text-transform: uppercase; font-weight: 700; letter-spacing: 2px; animation: blink 1.5s infinite alternate; }
 
-      .imagem-carta {
-            width: 100%;
-            height: 400px; 
-            object-fit: contain; 
-            display: block;
-            transition: filter 0.4s ease-out;
-            animation: auraDourada 3s ease-in-out infinite alternate;
-        }
+/* Pacote Campeão Premium */
+.pack-frente.campeao { border-color: var(--ouro); background: rgba(20, 15, 5, 0.9); }
+.pack-frente.campeao::before { border-bottom-color: rgba(200,168,0,0.15); }
+.pack-frente.campeao .pack-texto span { color: var(--ouro); }
+.pack-frente.campeao .pack-interrogacao { color: var(--ouro); text-shadow: 0 0 25px var(--ouro); font-size: 5rem;}
+.pack-frente.campeao .pack-instrucao { color: var(--ouro); }
 
-        @keyframes auraDourada {
-            0% { filter: drop-shadow(0 5px 15px rgba(188, 160, 76, 0.15)) brightness(0.95); }
-            100% { filter: drop-shadow(0 15px 35px rgba(188, 160, 76, 0.5)) brightness(1.1); }
-        }
+/* Imagem Revelada */
+.pack-verso { transform: rotateY(180deg); display: flex; align-items: center; justify-content: center; }
+.card-img {
+  width: 100%; height: 100%; object-fit: contain; display: block;
+  filter: drop-shadow(0 8px 20px rgba(0,0,0,.8)) drop-shadow(0 0 8px rgba(200,168,0,.06)); transition: filter .35s;
+}
+.card-atleta.aberta .card-img, .card-atleta:hover .card-img {
+  filter: drop-shadow(0 20px 50px rgba(200,168,0,.5)) drop-shadow(0 0 30px rgba(200,168,0,.2)) brightness(1.15);
+}
 
-        .container-carta-ut:hover .carta-ut {
-            transform: rotateY(15deg) rotateX(10deg) scale(1.1) translateY(-15px);
-            animation-play-state: paused; 
-            z-index: 10; 
-        }
+/* ═══ DIVISOR E TOOLBAR ═══ */
+.section-divider { max-width: 1200px; margin: 20px auto; padding: 0 32px; display: flex; align-items: center; gap: 20px; }
+.div-line { flex: 1; height: 1px; background: rgba(255,255,255,.06); }
+.div-text { font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; letter-spacing: 6px; color: #2a2a2a; white-space: nowrap; text-transform: uppercase; }
+.toolbar { max-width: 1200px; margin: 0 auto 48px; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+.toolbar-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2rem, 4vw, 3rem); letter-spacing: 3px; color: #fff; line-height: 1; }
+.toolbar-sub { font-family: 'Barlow Condensed', sans-serif; font-size: 12px; letter-spacing: 3px; color: var(--cinza-txt); text-transform: uppercase; margin-top: 4px; }
+.toolbar-right { display: flex; align-items: center; gap: 12px; }
+.btn-vote { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: #fff; padding: 13px 30px; border-radius: 3px; background: var(--magenta); transition: all .2s; animation: glowMagenta 2.5s ease-in-out infinite; position: relative; overflow: hidden; }
+.btn-vote::before { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgba(255,255,255,.1), transparent); background-size: 200% 100%; animation: shimmer 3s linear infinite; }
+.btn-vote:hover { background: var(--magenta-neon); transform: translateY(-2px); }
 
-        .container-carta-ut:hover .imagem-carta {
-            filter: drop-shadow(0 30px 60px rgba(188, 160, 76, 0.8)) brightness(1.2) contrast(1.15) !important;
-            animation-play-state: paused; 
-        }
+/* ═══ GRID ATLETAS ═══ */
+.atletas-grid-section { max-width: 1200px; margin: 0 auto; padding: 0 32px 100px; }
+.cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 36px; justify-items: center; }
 
-        /* --- BOTÃO DE VOTAÇÃO NEON --- */
-        .area-botao-votacao {
-            text-align: center;
-            margin: 30px 0 50px 0;
-            position: relative;
-            z-index: 5;
-        }
+/* ═══ CTA E FOOTER ═══ */
+.cta-bottom { position: relative; overflow: hidden; background: var(--preto-2); border-top: 1px solid rgba(255,255,255,.05); border-bottom: 1px solid rgba(255,255,255,.05); text-align: center; padding: 80px 32px; }
+.cta-bottom::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 50%, rgba(219,0,97,.07) 0%, transparent 65%); pointer-events: none; }
+.cta-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.5rem, 5vw, 5rem); letter-spacing: 3px; color: #fff; margin-bottom: 10px; position: relative; }
+.cta-sub { font-family: 'Barlow Condensed', sans-serif; font-weight: 300; font-size: 1rem; letter-spacing: 3px; color: rgba(255,255,255,.35); text-transform: uppercase; margin-bottom: 36px; position: relative; }
+.site-footer { background: var(--preto-2); border-top: 1px solid rgba(255,255,255,.05); padding: 56px 24px 40px; text-align: center; }
+.footer-logo-row { display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:20px; }
+.footer-divider { width:40px;height:1px;background:#1a1a1a; }
+.footer-brand { font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:5px;color:#1e1e1e; }
+.footer-copy { font-size:12px;color:#2a2a2a;letter-spacing:.5px;line-height:1.8; }
+.footer-copy strong { color:var(--verde);font-weight:500; }
 
-        .btn-votacao-neon {
-            display: inline-block;
-            background: linear-gradient(45deg, var(--magenta-crias), #ff007f);
-            color: white;
-            text-decoration: none;
-            font-size: 1.2rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            padding: 15px 40px;
-            border-radius: 50px;
-            box-shadow: 0 10px 20px rgba(219, 0, 97, 0.4);
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-            animation: pulsarBotao 2s infinite alternate;
-        }
-
-        .btn-votacao-neon:hover {
-            transform: scale(1.1) translateY(-5px);
-            box-shadow: 0 15px 30px rgba(219, 0, 97, 0.7);
-            border: 2px solid white;
-        }
-
-        @keyframes pulsarBotao {
-            0% { box-shadow: 0 0 10px rgba(219, 0, 97, 0.4); }
-            100% { box-shadow: 0 0 25px rgba(219, 0, 97, 0.8), 0 0 40px rgba(219, 0, 97, 0.4); }
-        }
-
-        /* RODAPÉ */
-        footer {
-            background: #050505;
-            color: white;
-            padding: 50px 20px;
-            text-align: center;
-            border-top: 2px solid #222;
-            margin-top: 40px;
-        }
-
-        .copyright-box { padding-top: 10px; font-size: 0.9rem; color: #555; }
-        .copyright-box b { color: var(--verde-mangueira); }
-
-        /* AJUSTES PARA CELULAR */
-       /* --- AJUSTES PERFEITOS PARA O MENU NO CELULAR --- */
-        @media (max-width: 600px) {
-            .navbar {
-                flex-direction: column; /* Empilha tudo na vertical */
-                gap: 12px;
-                width: 100%;
-            }
-            .nav-link {
-                width: 90%; /* Deixa os botões largos parecendo um App */
-                max-width: 250px;
-                text-align: center;
-                box-sizing: border-box;
-                padding: 12px; /* Aumenta a área de clique para o dedo */
-            }
-        }
-
-    </style>
+@media (max-width: 900px) { .champion-section { grid-template-columns: 1fr; gap: 40px; padding: 60px 24px 40px; } .champion-right { order: -1; } .champion-name { font-size: clamp(4rem, 12vw, 7rem); } }
+@media (max-width: 640px) { .navbar { padding: 0 16px; flex-wrap: wrap; height: auto; padding: 12px 16px; gap: 8px; } .nav-logo { margin-right: 0; } .cards-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 20px; } .card-atleta { height: 280px; } .toolbar { padding: 0 16px; } .atletas-grid-section { padding: 0 16px 60px; } .section-divider { padding: 0 16px; } }
+</style>
 </head>
 <body>
 
-    <header>
-        <nav class="navbar">
-            <img src="x1doscria.png" class="logo-navbar" alt="Logo X1">
-            <a href="index.html" class="nav-link">Inicio</a>
-            <a href="atletas.html" class="nav-link">Atletas</a>
-            <a href="votacao.html" class="nav-link">Votação</a>
-        </nav>
-    </header>
+<header class="site-header">
+  <nav class="navbar">
+    <a href="index.html" class="nav-logo">
+      <img src="x1doscria.png" alt="X1" class="nav-logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div style="display:none;height:44px;width:44px;border-radius:50%;border:1.5px solid rgba(200,168,0,.3);background:rgba(200,168,0,.08);align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:16px;color:var(--ouro-claro);">X1</div>
+      <div>
+        <span class="nav-brand-main">X1 dos Crias</span>
+        <span class="nav-brand-sub">Mangueira</span>
+      </div>
+    </a>
+    <a href="index.html" class="nav-link">Início</a>
+    <a href="atletas.html" class="nav-link active">Atletas</a>
+    <a href="votacao.html" class="nav-cta">Votar Agora</a>
+  </nav>
+</header>
 
-    <h2 class="titulo-secao">🔥 Cartas da Semana</h2>
-    <p class="subtitulo-secao">Os destaques da última resenha. Quem jogou mais?</p>
+<section class="page-hero">
+  <div class="page-eyebrow">Temporada 2026</div>
+  <h1 class="page-title"><em>Atletas</em> do X1</h1>
+  <p class="page-sub">Abra os pacotes para revelar o Ultimate Team</p>
+</section>
 
-    <div class="area-botao-votacao">
-        <a href="votacao.html" class="btn-votacao-neon">Ir para a Votação Oficial 🏆</a>
+<section class="champion-section">
+  <div class="champion-left">
+    <div class="eyebrow">👑 Dono do Cinturão</div>
+    <h2 class="champion-name"><em>H9</em>Atual<br>Campeão</h2>
+    <p class="champion-desc">Semana após semana, H9 prova que é o melhor. Ele carrega o cinturão com raça, habilidade e vontade de vencer. Quem vai tirar?</p>
+    <div class="champion-badge">★ Campeão em Exercício — 2026 ★</div>
+  </div>
+  
+  <div class="champion-right">
+    <img src="cinturao.png" alt="Cinturão" class="cinturao-img" onerror="this.style.display='none'">
+    <div class="card-atleta champion-pack" onclick="this.classList.toggle('aberta')">
+      <div class="card-inner">
+        <div class="pack-frente campeao">
+          <div class="pack-texto">CHAMPION<br><span>PACK</span></div>
+          <div class="pack-interrogacao">👑</div>
+          <div class="pack-instrucao">TOQUE PARA REVELAR</div>
+        </div>
+        <div class="pack-verso">
+          <img src="H9.jpeg" alt="H9 Campeão" class="card-img" onerror="this.style.display='none'">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"><div class="div-line"></div><span class="div-text">Elenco Completo</span><div class="div-line"></div></div>
+
+<div class="toolbar">
+  <div>
+    <div class="toolbar-title">Packs da Semana</div>
+    <div class="toolbar-sub">Os destaques da última resenha · Quem jogou mais?</div>
+  </div>
+  <div class="toolbar-right">
+    <a href="votacao.html" class="btn-vote">🏆 Ir para a Votação</a>
+  </div>
+</div>
+
+<section class="atletas-grid-section">
+  <div class="cards-grid">
+
+    <div class="card-atleta" onclick="this.classList.toggle('aberta')">
+      <div class="card-inner">
+        <div class="pack-frente"><div class="pack-texto">X1 DOS<br><span>CRIAS</span></div><div class="pack-interrogacao">?</div><div class="pack-instrucao">TOQUE PARA ABRIR</div></div>
+        <div class="pack-verso"><img src="ANTONY.jpeg" alt="Antony" class="card-img" onerror="this.style.display='none'"></div>
+      </div>
     </div>
 
-    <section class="lista-ranking-ut">
-        
-        <div class="container-carta-ut">
-            <div class="carta-ut">
-                <img src="fael.jpeg" alt="Carta Fael" class="imagem-carta" onerror="this.style.display='none'">
-            </div>
-        </div>
-
-        <div class="container-carta-ut">
-            <div class="carta-ut">
-                <img src="cleisinho.jpeg" alt="Carta Cleisinho" class="imagem-carta" onerror="this.style.display='none'">
-            </div>
-        </div>
-
-        <div class="container-carta-ut">
-            <div class="carta-ut">
-                <img src="jucabala.png" alt="Carta Jucabala" class="imagem-carta" onerror="this.style.display='none'">
-            </div>
-        </div>
-
-        <div class="container-carta-ut">
-            <div class="carta-ut">
-                <img src="70.jpeg" alt="Carta 70" class="imagem-carta" onerror="this.style.display='none'">
-            </div>
-        </div>
-
-        <div class="container-carta-ut">
-            <div class="carta-ut">
-                <img src="espiga.jpeg" alt="Carta Espiga" class="imagem-carta" onerror="this.style.display='none'">
-            </div>
-        </div>
-
-        <div class="container-carta-ut">
-            <div class="carta-ut">
-                <img src="Paulo.jpeg" alt="Carta Paulo" class="imagem-carta" onerror="this.style.display='none'">
-            </div>
-        </div>
-
-        <div class="container-carta-ut">
-            <div class="carta-ut">
-                <img src="franbinho.jpeg" alt="Carta Franbinho" class="imagem-carta" onerror="this.style.display='none'">
-            </div>
-        </div>
-
-        <div class="container-carta-ut">
-            <div class="carta-ut">
-                <img src="Rikelme.jpeg" alt="Carta Rikelme" class="imagem-carta" onerror="this.style.display='none'">
-            </div>
-        </div>
-
-        <div class="container-carta-ut">
-            <div class="carta-ut">
-                <img src="ronan.jpeg" alt="Carta Ronan" class="imagem-carta" onerror="this.style.display='none'">
-            </div>
-        </div>
-
-        <div class="container-carta-ut">
-            <div class="carta-ut">
-                <img src="manjhoy.png" alt="Carta Manjhoy" class="imagem-carta" onerror="this.style.display='none'">
-            </div>
-        </div>
-
-    </section>
-
-    <div class="area-botao-votacao" style="margin-top: -10px; margin-bottom: 60px;">
-        <a href="votacao.html" class="btn-votacao-neon">Já escolheu? Vote Agora! ⚽</a>
+    <div class="card-atleta" onclick="this.classList.toggle('aberta')">
+      <div class="card-inner">
+        <div class="pack-frente"><div class="pack-texto">X1 DOS<br><span>CRIAS</span></div><div class="pack-interrogacao">?</div><div class="pack-instrucao">TOQUE PARA ABRIR</div></div>
+        <div class="pack-verso"><img src="BAMBAM.jpeg" alt="Bambam" class="card-img" onerror="this.style.display='none'"></div>
+      </div>
     </div>
 
-    <footer>
-        <div class="footer-content">
-            <div class="copyright-box">
-                &copy; 2026 <b>Michael Sacramento</b>. Todos os direitos reservados.<br>
-                <span style="font-size: 0.7rem;">Plataforma oficial desenvolvida para o X1 dos Crias da MG.</span>
-            </div>
-        </div>
-    </footer>
+    <div class="card-atleta" onclick="this.classList.toggle('aberta')">
+      <div class="card-inner">
+        <div class="pack-frente"><div class="pack-texto">X1 DOS<br><span>CRIAS</span></div><div class="pack-interrogacao">?</div><div class="pack-instrucao">TOQUE PARA ABRIR</div></div>
+        <div class="pack-verso"><img src="BRAYAN.jpeg" alt="Brayan" class="card-img" onerror="this.style.display='none'"></div>
+      </div>
+    </div>
 
+    <div class="card-atleta" onclick="this.classList.toggle('aberta')">
+      <div class="card-inner">
+        <div class="pack-frente"><div class="pack-texto">X1 DOS<br><span>CRIAS</span></div><div class="pack-interrogacao">?</div><div class="pack-instrucao">TOQUE PARA ABRIR</div></div>
+        <div class="pack-verso"><img src="DANIEL.jpeg" alt="Daniel" class="card-img" onerror="this.style.display='none'"></div>
+      </div>
+    </div>
+
+    <div class="card-atleta" onclick="this.classList.toggle('aberta')">
+      <div class="card-inner">
+        <div class="pack-frente"><div class="pack-texto">X1 DOS<br><span>CRIAS</span></div><div class="pack-interrogacao">?</div><div class="pack-instrucao">TOQUE PARA ABRIR</div></div>
+        <div class="pack-verso"><img src="DIEGO.jpeg" alt="Diego" class="card-img" onerror="this.style.display='none'"></div>
+      </div>
+    </div>
+
+    <div class="card-atleta" onclick="this.classList.toggle('aberta')">
+      <div class="card-inner">
+        <div class="pack-frente"><div class="pack-texto">X1 DOS<br><span>CRIAS</span></div><div class="pack-interrogacao">?</div><div class="pack-instrucao">TOQUE PARA ABRIR</div></div>
+        <div class="pack-verso"><img src="LUIZ_FERNANDO.png" alt="Luiz Fernando" class="card-img" onerror="this.style.display='none'"></div>
+      </div>
+    </div>
+
+    <div class="card-atleta" onclick="this.classList.toggle('aberta')">
+      <div class="card-inner">
+        <div class="pack-frente"><div class="pack-texto">X1 DOS<br><span>CRIAS</span></div><div class="pack-interrogacao">?</div><div class="pack-instrucao">TOQUE PARA ABRIR</div></div>
+        <div class="pack-verso"><img src="MANJHOY.jpeg" alt="Manjhoy" class="card-img" onerror="this.style.display='none'"></div>
+      </div>
+    </div>
+
+    <div class="card-atleta" onclick="this.classList.toggle('aberta')">
+      <div class="card-inner">
+        <div class="pack-frente"><div class="pack-texto">X1 DOS<br><span>CRIAS</span></div><div class="pack-interrogacao">?</div><div class="pack-instrucao">TOQUE PARA ABRIR</div></div>
+        <div class="pack-verso"><img src="MARCOS.jpeg" alt="Marcos" class="card-img" onerror="this.style.display='none'"></div>
+      </div>
+    </div>
+
+    <div class="card-atleta" onclick="this.classList.toggle('aberta')">
+      <div class="card-inner">
+        <div class="pack-frente"><div class="pack-texto">X1 DOS<br><span>CRIAS</span></div><div class="pack-interrogacao">?</div><div class="pack-instrucao">TOQUE PARA ABRIR</div></div>
+        <div class="pack-verso"><img src="OSTIN.jpeg" alt="Ostin" class="card-img" onerror="this.style.display='none'"></div>
+      </div>
+    </div>
+
+    <div class="card-atleta" onclick="this.classList.toggle('aberta')">
+      <div class="card-inner">
+        <div class="pack-frente"><div class="pack-texto">X1 DOS<br><span>CRIAS</span></div><div class="pack-interrogacao">?</div><div class="pack-instrucao">TOQUE PARA ABRIR</div></div>
+        <div class="pack-verso"><img src="NEM.jpeg" alt="Nem" class="card-img" onerror="this.style.display='none'"></div>
+      </div>
+    </div>
+
+    <div class="card-atleta" onclick="this.classList.toggle('aberta')">
+      <div class="card-inner">
+        <div class="pack-frente"><div class="pack-texto">X1 DOS<br><span>CRIAS</span></div><div class="pack-interrogacao">?</div><div class="pack-instrucao">TOQUE PARA ABRIR</div></div>
+        <div class="pack-verso"><img src="SUKITA.png" alt="Sukita" class="card-img" onerror="this.style.display='none'"></div>
+      </div>
+    </div>
+
+    <div class="card-atleta" onclick="this.classList.toggle('aberta')">
+      <div class="card-inner">
+        <div class="pack-frente"><div class="pack-texto">X1 DOS<br><span>CRIAS</span></div><div class="pack-interrogacao">?</div><div class="pack-instrucao">TOQUE PARA ABRIR</div></div>
+        <div class="pack-verso"><img src="MV.jpg" alt="MV" class="card-img" onerror="this.style.display='none'"></div>
+      </div>
+    </div>
+
+    <div class="card-atleta" onclick="this.classList.toggle('aberta')">
+      <div class="card-inner">
+        <div class="pack-frente"><div class="pack-texto">X1 DOS<br><span>CRIAS</span></div><div class="pack-interrogacao">?</div><div class="pack-instrucao">TOQUE PARA ABRIR</div></div>
+        <div class="pack-verso"><img src="MUEL.jpeg" alt="Muel" class="card-img" onerror="this.style.display='none'"></div>
+      </div>
+    </div>
+
+    <div class="card-atleta" onclick="this.classList.toggle('aberta')">
+      <div class="card-inner">
+        <div class="pack-frente"><div class="pack-texto">X1 DOS<br><span>CRIAS</span></div><div class="pack-interrogacao">?</div><div class="pack-instrucao">TOQUE PARA ABRIR</div></div>
+        <div class="pack-verso"><img src="ALISSON.png" alt="Alisson" class="card-img" onerror="this.style.display='none'"></div>
+      </div>
+    </div>
+
+    <div class="card-atleta" onclick="this.classList.toggle('aberta')">
+      <div class="card-inner">
+        <div class="pack-frente"><div class="pack-texto">X1 DOS<br><span>CRIAS</span></div><div class="pack-interrogacao">?</div><div class="pack-instrucao">TOQUE PARA ABRIR</div></div>
+        <div class="pack-verso"><img src="ZINHO.jpeg" alt="Zinho" class="card-img" onerror="this.style.display='none'"></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="cta-bottom">
+  <h2 class="cta-title">Você Decide<br>Quem é o Melhor</h2>
+  <p class="cta-sub">Vote no craque da semana</p>
+  <a href="votacao.html" class="btn-vote" style="font-size:14px;padding:16px 44px;">Votar Agora ⚽</a>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-logo-row">
+    <div class="footer-divider"></div>
+    <span class="footer-brand">X1 dos Crias MG</span>
+    <div class="footer-divider"></div>
+  </div>
+  <p class="footer-copy">
+    &copy; 2026 <strong>Michael Sacramento</strong>. Todos os direitos reservados.<br>
+    <span style="font-size:11px;color:#1a1a1a;">Plataforma oficial desenvolvida para o X1 dos Crias da MG.</span>
+  </p>
+</footer>
+
+<script>
+// Hover 3D nas cards
+document.querySelectorAll('.card-atleta').forEach(c => {
+  c.addEventListener('mousemove', e => {
+    const r = c.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width - .5;
+    const y = (e.clientY - r.top) / r.height - .5;
+    c.querySelector('.card-inner').style.transform =
+      `rotateY(${x*22}deg) rotateX(${-y*14}deg) scale(1.07) translateY(-10px)`;
+  });
+  c.addEventListener('mouseleave', () => {
+    c.querySelector('.card-inner').style.transform = '';
+  });
+});
+</script>
 </body>
 </html>
