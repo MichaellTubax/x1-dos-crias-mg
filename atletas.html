@@ -27,8 +27,6 @@ body {
 /* ── KEYFRAMES ── */
 @keyframes gradientFlow { 0%,100%{background-position:0% 50%} 50%{background-position:100% 50%} }
 @keyframes glowMagenta  { 0%,100%{box-shadow:0 0 15px rgba(219,0,97,.3)} 50%{box-shadow:0 0 35px rgba(219,0,97,.7),0 0 60px rgba(219,0,97,.2)} }
-@keyframes glowOuro     { 0%,100%{filter:drop-shadow(0 0 30px rgba(200,168,0,.2)) brightness(1)} 50%{filter:drop-shadow(0 0 70px rgba(200,168,0,.5)) brightness(1.1)} }
-@keyframes spinY        { from{transform:rotateY(0deg)} to{transform:rotateY(360deg)} }
 @keyframes floatUp      { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
 @keyframes cardIn       { from{opacity:0;transform:translateY(40px) scale(.93)} to{opacity:1;transform:translateY(0) scale(1)} }
 @keyframes shimmer      { 0%{background-position:-200% center} 100%{background-position:200% center} }
@@ -100,37 +98,12 @@ body {
   letter-spacing: 1px; margin-top: 16px; animation: fadeUp .7s .2s ease-out both;
 }
 
-/* ═══ SEÇÃO CAMPEÃO ═══ */
-.champion-section {
-  max-width: 1200px; margin: 0 auto; padding: 100px 32px 60px;
-  display: grid; grid-template-columns: 1fr 420px; gap: 80px; align-items: center;
-}
-.eyebrow {
-  display: inline-flex; align-items: center; gap: 8px; font-family: 'Barlow Condensed', sans-serif; font-size: 11px;
-  font-weight: 600; letter-spacing: 5px; text-transform: uppercase; color: var(--ouro); margin-bottom: 20px;
-}
-.eyebrow::before { content: ''; width: 20px; height: 1.5px; background: var(--ouro); display: inline-block; }
-.champion-name { font-family: 'Bebas Neue', sans-serif; font-size: clamp(5rem, 10vw, 10rem); line-height: .85; letter-spacing: 2px; color: #fff; }
-.champion-name em {
-  font-style: normal; display: block; background: linear-gradient(135deg, var(--ouro), var(--ouro-claro), var(--ouro));
-  background-size: 200% 100%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmer 4s linear infinite;
-}
-.champion-desc { font-family: 'Barlow', sans-serif; font-weight: 300; font-size: 1rem; color: rgba(255,255,255,.45); line-height: 1.8; margin: 24px 0 36px; max-width: 400px; }
-.champion-badge {
-  display: inline-flex; align-items: center; gap: 10px; font-family: 'Barlow Condensed', sans-serif; font-size: 13px;
-  font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--ouro); padding: 12px 28px; border-radius: 2px;
-  border: 1px solid rgba(200,168,0,.35); background: rgba(200,168,0,.06);
-}
-.champion-right { position: relative; display: flex; flex-direction: column; align-items: center; perspective: 1500px; }
-.cinturao-img { width: 150px; object-fit: contain; filter: drop-shadow(0 0 25px rgba(200,168,0,.6)); animation: spinY 5s linear infinite; margin-bottom: 28px; z-index: 10;}
-
 /* ═══ MECÂNICA DOS PACOTES (PACK OPENING) ═══ */
 .card-atleta {
   width: 100%; max-width: 230px; height: 350px;
   opacity: 0; animation: cardIn .7s ease-out forwards;
   cursor: pointer; perspective: 1500px;
 }
-.champion-pack { max-width: 340px; height: 460px; } 
 
 /* stagger delays */
 .card-atleta:nth-child(1){animation-delay:.04s} .card-atleta:nth-child(2){animation-delay:.08s}
@@ -141,6 +114,8 @@ body {
 .card-atleta:nth-child(11){animation-delay:.44s} .card-atleta:nth-child(12){animation-delay:.48s}
 .card-atleta:nth-child(13){animation-delay:.52s} .card-atleta:nth-child(14){animation-delay:.56s}
 .card-atleta:nth-child(15){animation-delay:.60s}
+.card-atleta:nth-child(16){animation-delay:.64s}
+.card-atleta:nth-child(17){animation-delay:.68s}
 
 .card-inner {
   width: 100%; height: 100%; position: relative;
@@ -148,7 +123,7 @@ body {
   transform-style: preserve-3d; animation: floatUp 4s ease-in-out infinite;
 }
 
-/* O SEGREDO DO CLIQUE: O !important obriga o CSS a virar a carta ignorando a inclinação do JS */
+/* O SEGREDO DO CLIQUE */
 .card-atleta.aberta .card-inner {
   transform: rotateY(180deg) scale(1.05) translateY(-5px) !important; 
   animation-play-state: paused;
@@ -179,13 +154,6 @@ body {
 .pack-interrogacao { font-family: 'Bebas Neue', sans-serif; font-size: 4rem; color: #fff; text-shadow: 0 0 15px rgba(255,255,255,0.5); margin: 20px 0; }
 .pack-instrucao { font-family: 'Barlow Condensed', sans-serif; font-size: 0.9rem; color: var(--verde-neon); text-transform: uppercase; font-weight: 700; letter-spacing: 2px; animation: blink 1.5s infinite alternate; }
 
-/* Pacote Campeão Premium */
-.pack-frente.campeao { border-color: var(--ouro); background: rgba(20, 15, 5, 0.9); }
-.pack-frente.campeao::before { border-bottom-color: rgba(200,168,0,0.15); }
-.pack-frente.campeao .pack-texto span { color: var(--ouro); }
-.pack-frente.campeao .pack-interrogacao { color: var(--ouro); text-shadow: 0 0 25px var(--ouro); font-size: 5rem;}
-.pack-frente.campeao .pack-instrucao { color: var(--ouro); }
-
 /* Imagem Revelada */
 .pack-verso { transform: rotateY(180deg); display: flex; align-items: center; justify-content: center; }
 .card-img {
@@ -197,10 +165,7 @@ body {
 }
 
 /* ═══ DIVISOR E TOOLBAR ═══ */
-.section-divider { max-width: 1200px; margin: 20px auto; padding: 0 32px; display: flex; align-items: center; gap: 20px; }
-.div-line { flex: 1; height: 1px; background: rgba(255,255,255,.06); }
-.div-text { font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; letter-spacing: 6px; color: #2a2a2a; white-space: nowrap; text-transform: uppercase; }
-.toolbar { max-width: 1200px; margin: 0 auto 48px; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+.toolbar { max-width: 1200px; margin: 40px auto 48px; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
 .toolbar-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2rem, 4vw, 3rem); letter-spacing: 3px; color: #fff; line-height: 1; }
 .toolbar-sub { font-family: 'Barlow Condensed', sans-serif; font-size: 12px; letter-spacing: 3px; color: var(--cinza-txt); text-transform: uppercase; margin-top: 4px; }
 .toolbar-right { display: flex; align-items: center; gap: 12px; }
@@ -224,8 +189,7 @@ body {
 .footer-copy { font-size:12px;color:#2a2a2a;letter-spacing:.5px;line-height:1.8; }
 .footer-copy strong { color:var(--verde);font-weight:500; }
 
-@media (max-width: 900px) { .champion-section { grid-template-columns: 1fr; gap: 40px; padding: 60px 24px 40px; } .champion-right { order: -1; } .champion-name { font-size: clamp(4rem, 12vw, 7rem); } }
-@media (max-width: 640px) { .navbar { padding: 0 16px; flex-wrap: wrap; height: auto; padding: 12px 16px; gap: 8px; } .nav-logo { margin-right: 0; } .cards-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 20px; } .card-atleta { height: 280px; } .toolbar { padding: 0 16px; } .atletas-grid-section { padding: 0 16px 60px; } .section-divider { padding: 0 16px; } }
+@media (max-width: 640px) { .navbar { padding: 0 16px; flex-wrap: wrap; height: auto; padding: 12px 16px; gap: 8px; } .nav-logo { margin-right: 0; } .cards-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 20px; } .card-atleta { height: 280px; } .toolbar { padding: 0 16px; } .atletas-grid-section { padding: 0 16px 60px; } }
 </style>
 </head>
 <body>
@@ -233,8 +197,7 @@ body {
 <header class="site-header">
   <nav class="navbar">
     <a href="index.html" class="nav-logo">
-      <img src="x1doscria.png" alt="X1" class="nav-logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-      <div style="display:none;height:44px;width:44px;border-radius:50%;border:1.5px solid rgba(200,168,0,.3);background:rgba(200,168,0,.08);align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:16px;color:var(--ouro-claro);">X1</div>
+      <img src="x1doscria.png" alt="X1" class="nav-logo-img">
       <div>
         <span class="nav-brand-main">X1 dos Crias</span>
         <span class="nav-brand-sub">Mangueira</span>
@@ -248,40 +211,13 @@ body {
 
 <section class="page-hero">
   <div class="page-eyebrow">Temporada 2026</div>
-  <h1 class="page-title"><em>Atletas</em> do X1</h1>
-  <p class="page-sub">Abra os pacotes para revelar o Ultimate Team</p>
+  <h1 class="page-title"><em>Elenco</em> da Semana</h1>
+  <p class="page-sub">Abra os pacotes para revelar quem entrou em quadra</p>
 </section>
-
-<section class="champion-section">
-  <div class="champion-left">
-    <div class="eyebrow">👑 Dono do Cinturão</div>
-    <h2 class="champion-name"><em>H9</em>Atual<br>Campeão</h2>
-    <p class="champion-desc">Semana após semana, H9 prova que é o melhor. Ele carrega o cinturão com raça, habilidade e vontade de vencer. Quem vai tirar?</p>
-    <div class="champion-badge">★ Campeão em Exercício — 2026 ★</div>
-  </div>
-  
-  <div class="champion-right">
-    <img src="cinturao.png" alt="Cinturão" class="cinturao-img" onerror="this.style.display='none'">
-    <div class="card-atleta champion-pack" onclick="this.classList.toggle('aberta')">
-      <div class="card-inner">
-        <div class="pack-frente campeao">
-          <div class="pack-texto">CHAMPION<br><span>PACK</span></div>
-          <div class="pack-interrogacao">👑</div>
-          <div class="pack-instrucao">TOQUE PARA REVELAR</div>
-        </div>
-        <div class="pack-verso">
-          <img src="H9.jpeg" alt="H9 Campeão" class="card-img" onerror="this.style.display='none'">
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="section-divider"><div class="div-line"></div><span class="div-text">Elenco Completo</span><div class="div-line"></div></div>
 
 <div class="toolbar">
   <div>
-    <div class="toolbar-title">Packs da Semana</div>
+    <div class="toolbar-title">Packs da Rodada</div>
     <div class="toolbar-sub">Os destaques da última resenha · Quem jogou mais?</div>
   </div>
   <div class="toolbar-right">
@@ -295,105 +231,126 @@ body {
     <div class="card-atleta" onclick="this.classList.toggle('aberta')">
       <div class="card-inner">
         <div class="pack-frente"><div class="pack-texto">X1 DOS<br><span>CRIAS</span></div><div class="pack-interrogacao">?</div><div class="pack-instrucao">TOQUE PARA ABRIR</div></div>
-        <div class="pack-verso"><img src="ANTONY.jpeg" alt="Antony" class="card-img" onerror="this.style.display='none'"></div>
+        <div class="pack-verso"><img src="alissonn.jpg" alt="Alisson" class="card-img" onerror="this.style.display='none'"></div>
       </div>
     </div>
 
     <div class="card-atleta" onclick="this.classList.toggle('aberta')">
       <div class="card-inner">
         <div class="pack-frente"><div class="pack-texto">X1 DOS<br><span>CRIAS</span></div><div class="pack-interrogacao">?</div><div class="pack-instrucao">TOQUE PARA ABRIR</div></div>
-        <div class="pack-verso"><img src="BAMBAM.jpeg" alt="Bambam" class="card-img" onerror="this.style.display='none'"></div>
+        <div class="pack-verso"><img src="andrey.jpg" alt="Andrey" class="card-img" onerror="this.style.display='none'"></div>
       </div>
     </div>
 
     <div class="card-atleta" onclick="this.classList.toggle('aberta')">
       <div class="card-inner">
         <div class="pack-frente"><div class="pack-texto">X1 DOS<br><span>CRIAS</span></div><div class="pack-interrogacao">?</div><div class="pack-instrucao">TOQUE PARA ABRIR</div></div>
-        <div class="pack-verso"><img src="BRAYAN.jpeg" alt="Brayan" class="card-img" onerror="this.style.display='none'"></div>
+        <div class="pack-verso"><img src="brayan.jpg" alt="Brayan" class="card-img" onerror="this.style.display='none'"></div>
       </div>
     </div>
 
     <div class="card-atleta" onclick="this.classList.toggle('aberta')">
       <div class="card-inner">
         <div class="pack-frente"><div class="pack-texto">X1 DOS<br><span>CRIAS</span></div><div class="pack-interrogacao">?</div><div class="pack-instrucao">TOQUE PARA ABRIR</div></div>
-        <div class="pack-verso"><img src="DANIEL.jpeg" alt="Daniel" class="card-img" onerror="this.style.display='none'"></div>
+        <div class="pack-verso"><img src="chitos.PNG" alt="Chitos" class="card-img" onerror="this.style.display='none'"></div>
       </div>
     </div>
 
     <div class="card-atleta" onclick="this.classList.toggle('aberta')">
       <div class="card-inner">
         <div class="pack-frente"><div class="pack-texto">X1 DOS<br><span>CRIAS</span></div><div class="pack-interrogacao">?</div><div class="pack-instrucao">TOQUE PARA ABRIR</div></div>
-        <div class="pack-verso"><img src="DIEGO.jpeg" alt="Diego" class="card-img" onerror="this.style.display='none'"></div>
+        <div class="pack-verso"><img src="clebson.jpg" alt="Clebson" class="card-img" onerror="this.style.display='none'"></div>
       </div>
     </div>
 
     <div class="card-atleta" onclick="this.classList.toggle('aberta')">
       <div class="card-inner">
         <div class="pack-frente"><div class="pack-texto">X1 DOS<br><span>CRIAS</span></div><div class="pack-interrogacao">?</div><div class="pack-instrucao">TOQUE PARA ABRIR</div></div>
-        <div class="pack-verso"><img src="LUIZ_FERNANDO.png" alt="Luiz Fernando" class="card-img" onerror="this.style.display='none'"></div>
+        <div class="pack-verso"><img src="jg.PNG" alt="JG" class="card-img" onerror="this.style.display='none'"></div>
       </div>
     </div>
 
     <div class="card-atleta" onclick="this.classList.toggle('aberta')">
       <div class="card-inner">
         <div class="pack-frente"><div class="pack-texto">X1 DOS<br><span>CRIAS</span></div><div class="pack-interrogacao">?</div><div class="pack-instrucao">TOQUE PARA ABRIR</div></div>
-        <div class="pack-verso"><img src="MANJHOY.jpeg" alt="Manjhoy" class="card-img" onerror="this.style.display='none'"></div>
+        <div class="pack-verso"><img src="joao.jpg" alt="João" class="card-img" onerror="this.style.display='none'"></div>
       </div>
     </div>
 
     <div class="card-atleta" onclick="this.classList.toggle('aberta')">
       <div class="card-inner">
         <div class="pack-frente"><div class="pack-texto">X1 DOS<br><span>CRIAS</span></div><div class="pack-interrogacao">?</div><div class="pack-instrucao">TOQUE PARA ABRIR</div></div>
-        <div class="pack-verso"><img src="MARCOS.jpeg" alt="Marcos" class="card-img" onerror="this.style.display='none'"></div>
+        <div class="pack-verso"><img src="joaomg.jpg" alt="João MG" class="card-img" onerror="this.style.display='none'"></div>
       </div>
     </div>
 
     <div class="card-atleta" onclick="this.classList.toggle('aberta')">
       <div class="card-inner">
         <div class="pack-frente"><div class="pack-texto">X1 DOS<br><span>CRIAS</span></div><div class="pack-interrogacao">?</div><div class="pack-instrucao">TOQUE PARA ABRIR</div></div>
-        <div class="pack-verso"><img src="OSTIN.jpeg" alt="Ostin" class="card-img" onerror="this.style.display='none'"></div>
+        <div class="pack-verso"><img src="kauan.jpg" alt="Kauan" class="card-img" onerror="this.style.display='none'"></div>
       </div>
     </div>
 
     <div class="card-atleta" onclick="this.classList.toggle('aberta')">
       <div class="card-inner">
         <div class="pack-frente"><div class="pack-texto">X1 DOS<br><span>CRIAS</span></div><div class="pack-interrogacao">?</div><div class="pack-instrucao">TOQUE PARA ABRIR</div></div>
-        <div class="pack-verso"><img src="NEM.jpeg" alt="Nem" class="card-img" onerror="this.style.display='none'"></div>
+        <div class="pack-verso"><img src="lula.jpg" alt="Lula" class="card-img" onerror="this.style.display='none'"></div>
       </div>
     </div>
 
     <div class="card-atleta" onclick="this.classList.toggle('aberta')">
       <div class="card-inner">
         <div class="pack-frente"><div class="pack-texto">X1 DOS<br><span>CRIAS</span></div><div class="pack-interrogacao">?</div><div class="pack-instrucao">TOQUE PARA ABRIR</div></div>
-        <div class="pack-verso"><img src="SUKITA.png" alt="Sukita" class="card-img" onerror="this.style.display='none'"></div>
+        <div class="pack-verso"><img src="menorzinho.jpg" alt="Menorzinho" class="card-img" onerror="this.style.display='none'"></div>
       </div>
     </div>
 
     <div class="card-atleta" onclick="this.classList.toggle('aberta')">
       <div class="card-inner">
         <div class="pack-frente"><div class="pack-texto">X1 DOS<br><span>CRIAS</span></div><div class="pack-interrogacao">?</div><div class="pack-instrucao">TOQUE PARA ABRIR</div></div>
-        <div class="pack-verso"><img src="MV.jpg" alt="MV" class="card-img" onerror="this.style.display='none'"></div>
+        <div class="pack-verso"><img src="miguel.jpg" alt="Miguel" class="card-img" onerror="this.style.display='none'"></div>
       </div>
     </div>
 
     <div class="card-atleta" onclick="this.classList.toggle('aberta')">
       <div class="card-inner">
         <div class="pack-frente"><div class="pack-texto">X1 DOS<br><span>CRIAS</span></div><div class="pack-interrogacao">?</div><div class="pack-instrucao">TOQUE PARA ABRIR</div></div>
-        <div class="pack-verso"><img src="MUEL.jpeg" alt="Muel" class="card-img" onerror="this.style.display='none'"></div>
+        <div class="pack-verso"><img src="nin.jpg" alt="Nin" class="card-img" onerror="this.style.display='none'"></div>
       </div>
     </div>
 
     <div class="card-atleta" onclick="this.classList.toggle('aberta')">
       <div class="card-inner">
         <div class="pack-frente"><div class="pack-texto">X1 DOS<br><span>CRIAS</span></div><div class="pack-interrogacao">?</div><div class="pack-instrucao">TOQUE PARA ABRIR</div></div>
-        <div class="pack-verso"><img src="ALISSON.png" alt="Alisson" class="card-img" onerror="this.style.display='none'"></div>
+        <div class="pack-verso"><img src="pretinho.jpg" alt="Pretinho" class="card-img" onerror="this.style.display='none'"></div>
       </div>
     </div>
 
     <div class="card-atleta" onclick="this.classList.toggle('aberta')">
       <div class="card-inner">
         <div class="pack-frente"><div class="pack-texto">X1 DOS<br><span>CRIAS</span></div><div class="pack-interrogacao">?</div><div class="pack-instrucao">TOQUE PARA ABRIR</div></div>
-        <div class="pack-verso"><img src="ZINHO.jpeg" alt="Zinho" class="card-img" onerror="this.style.display='none'"></div>
+        <div class="pack-verso"><img src="yago.png" alt="Yago" class="card-img" onerror="this.style.display='none'"></div>
+      </div>
+    </div>
+
+    <div class="card-atleta" onclick="this.classList.toggle('aberta')">
+      <div class="card-inner">
+        <div class="pack-frente"><div class="pack-texto">X1 DOS<br><span>CRIAS</span></div><div class="pack-interrogacao">?</div><div class="pack-instrucao">TOQUE PARA ABRIR</div></div>
+        <div class="pack-verso"><img src="yllan.jpg" alt="Yllan" class="card-img" onerror="this.style.display='none'"></div>
+      </div>
+    </div>
+
+    <div class="card-atleta" onclick="this.classList.toggle('aberta')">
+      <div class="card-inner">
+        <div class="pack-frente"><div class="pack-texto">X1 DOS<br><span>CRIAS</span></div><div class="pack-interrogacao">?</div><div class="pack-instrucao">TOQUE PARA ABRIR</div></div>
+        <div class="pack-verso"><img src="zinho.jpg" alt="Zinho" class="card-img" onerror="this.style.display='none'"></div>
+      </div>
+    </div>
+
+    <div class="card-atleta" onclick="this.classList.toggle('aberta')">
+      <div class="card-inner">
+        <div class="pack-frente"><div class="pack-texto">X1 DOS<br><span>CRIAS</span></div><div class="pack-interrogacao">?</div><div class="pack-instrucao">TOQUE PARA ABRIR</div></div>
+        <div class="pack-verso"><img src="angelo.JPG" alt="angelo" class="card-img" onerror="this.style.display='none'"></div>
       </div>
     </div>
 
@@ -401,9 +358,9 @@ body {
 </section>
 
 <section class="cta-bottom">
-  <h2 class="cta-title">Você Decide<br>Quem é o Melhor</h2>
-  <p class="cta-sub">Vote no craque da semana</p>
-  <a href="votacao.html" class="btn-vote" style="font-size:14px;padding:16px 44px;">Votar Agora ⚽</a>
+  <h2 class="cta-title">Sua Voz Tem Peso</h2>
+  <p class="cta-sub">Vote agora e escolha o Craque da Semana</p>
+  <a href="votacao.html" class="btn-vote" style="font-size:14px;padding:16px 44px;">Votar no Craque 🏆</a>
 </section>
 
 <footer class="site-footer">
@@ -425,8 +382,7 @@ document.querySelectorAll('.card-atleta').forEach(c => {
     const r = c.getBoundingClientRect();
     const x = (e.clientX - r.left) / r.width - .5;
     const y = (e.clientY - r.top) / r.height - .5;
-    c.querySelector('.card-inner').style.transform =
-      `rotateY(${x*22}deg) rotateX(${-y*14}deg) scale(1.07) translateY(-10px)`;
+    c.querySelector('.card-inner').style.transform = `rotateY(${x*22}deg) rotateX(${-y*14}deg) scale(1.07) translateY(-10px)`;
   });
   c.addEventListener('mouseleave', () => {
     c.querySelector('.card-inner').style.transform = '';
