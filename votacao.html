@@ -218,5 +218,51 @@ iframe {
   </p>
 </footer>
 
+
+<audio id="bgMusic" loop>
+  <source src="tz.mp3" type="audio/mpeg">
+</audio>
+
+<button id="soundToggle" style="
+  position: fixed; 
+  bottom: 20px; 
+  right: 20px; 
+  z-index: 9999; 
+  background: var(--magenta); 
+  color: #fff; 
+  border: 1px solid rgba(255,255,255,0.2); 
+  border-radius: 50px; 
+  padding: 12px 20px; 
+  font-family: 'Barlow Condensed', sans-serif; 
+  font-weight: 700; 
+  font-size: 16px; 
+  letter-spacing: 1px; 
+  cursor: pointer; 
+  box-shadow: 0 0 20px rgba(219,0,97,0.5);
+  transition: all 0.3s ease;">
+  🔇 LIGAR SOM
+</button>
+
+<script>
+  const music = document.getElementById('bgMusic');
+  const soundBtn = document.getElementById('soundToggle');
+
+  // Ajuste o volume (0.0 é mudo, 1.0 é no máximo. 0.3 é uma música de fundo agradável)
+  music.volume = 0.3; 
+
+  soundBtn.addEventListener('click', () => {
+    if (music.paused) {
+      music.play();
+      soundBtn.innerHTML = '🔊 DESLIGAR SOM';
+      soundBtn.style.background = 'var(--verde)';
+      soundBtn.style.boxShadow = '0 0 20px rgba(27,123,67,0.5)';
+    } else {
+      music.pause();
+      soundBtn.innerHTML = '🔇 LIGAR SOM';
+      soundBtn.style.background = 'var(--magenta)';
+      soundBtn.style.boxShadow = '0 0 20px rgba(219,0,97,0.5)';
+    }
+  });
+</script>
 </body>
 </html>
