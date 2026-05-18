@@ -257,15 +257,31 @@ iframe {
 
 <audio id="bgMusic" loop><source src="shakira.mp3" type="audio/mpeg"></audio>
 <script>
-// MÁGICA DA MÚSICA CONTÍNUA PARA VOTAÇÃO
+// ==========================================
+// MÁGICA DA MÚSICA UNIVERSAL
+// ==========================================
+const splash = document.getElementById('splash-screen');
 const music = document.getElementById('bgMusic');
 const soundBtn = document.getElementById('soundToggle');
-music.volume = 0.3;
 
-if (sessionStorage.getItem('musicPlaying') === 'true') {
+// Mantém o volume agradável
+if(music) music.volume = 0.3;
+
+const wasPlaying = sessionStorage.getItem('musicPlaying') === 'true';
+
+// 1. Sincronização ao mudar de página
+if (wasPlaying && music) {
+  // Se existir a tela de splash (só na Home), esconde ela imediatamente
+  if (splash) {
+    splash.style.transition = 'none'; 
+    splash.classList.add('hidden'); 
+  }
+  
+  // Puxa o tempo exato de onde parou
   const savedTime = sessionStorage.getItem('musicTime');
   if (savedTime) { music.currentTime = parseFloat(savedTime); }
   
+  // Continua tocando
   music.play().then(() => {
     setButtonPlaying();
   }).catch(() => {
@@ -274,30 +290,101 @@ if (sessionStorage.getItem('musicPlaying') === 'true') {
   });
 }
 
-music.addEventListener('timeupdate', () => {
-  sessionStorage.setItem('musicTime', music.currentTime);
-});
-
-soundBtn.addEventListener('click', () => {
-  if (music.paused) {
-    music.play();
+// 2. Clique na tela de Splash (Ocorre apenas na Home)
+if (splash && music) {
+  splash.addEventListener('click', () => {
+    splash.classList.add('hidden'); 
+    music.play(); 
     sessionStorage.setItem('musicPlaying', 'true');
     setButtonPlaying();
-  } else {
-    music.pause();
-    sessionStorage.setItem('musicPlaying', 'false');
-    setButtonPaused();
-  }
-});
+  });
+}
+
+// 3. Salva o tempo da música a cada segundo
+if (music) {
+  music.addEventListener('timeupdate', () => {
+    sessionStorage.setItem('musicTime', music.currentTime);
+  });
+}
+
+// 4. Controle do Botão de Som
+if (soundBtn && music) {
+  soundBtn.addEventListener('click', (e) => {
+    e.stopPropagation(); // Impede clique acidental na capa
+    if (music.paused) {
+      music.play();
+      sessionStorage.setItem('musicPlaying', 'true');
+      setButtonPlaying();
+    } else {
+      music.pause();
+      sessionStorage.setItem('musicPlaying', 'false');
+      setButtonPaused();
+    }
+  });
+}
 
 function setButtonPlaying() {
-  soundBtn.innerHTML = '🔊 SOM';
-  soundBtn.style.background = 'linear-gradient(135deg,#1b7b43,#22cc66)';
+  if(soundBtn) {
+    soundBtn.innerHTML = '🔊 SOM';
+    soundBtn.style.background = 'linear-gradient(135deg,#1b7b43,#22cc66)';
+  }
 }
+
 function setButtonPaused() {
-  soundBtn.innerHTML = '🔇 SOM';
-  soundBtn.style.background = 'linear-gradient(135deg,var(--ouro),var(--ouro-claro))';
+  if(soundBtn) {
+    soundBtn.innerHTML = '🔇 SOM';
+    soundBtn.style.background = 'linear-gradient(135deg,var(--ouro),var(--ouro-claro))';
+  }
 }
+
+// ==========================================
+// EFEITOS ESPECÍFICOS (Se existirem na página)
+// ==========================================
+
+// Efeito 3D Hover (Vai funcionar sozinho na aba Atletas)
+document.querySelectorAll('.card-atleta').forEach(c=>{
+  c.addEventListener('mousemove',e=>{
+    if(c.classList.contains('aberta')) return; 
+    const r=c.getBoundingClientRect();
+    const x=(e.clientX-r.left)/r.width-.5;
+    const y=(e.clientY-r.top)/r.height-.5;
+    c.querySelector('.card-inner').style.transform=`rotateY(${x*20}deg) rotateX(${-y*15}deg)`;
+  });
+  
+  c.addEventListener('mouseleave',()=>{
+    if(!c.classList.contains('aberta')) {
+      c.querySelector('.card-inner').style.transform='';
+    }
+  });
+});
+
+// Scroll Reveal animado (Vai funcionar sozinho na Home)
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.style.opacity='1';
+      e.target.style.transform='translateY(0)';
+    }
+  });
+},{threshold:.1});
+
+document.querySelectorAll('.manifesto-stat,.mini-card').forEach(el=>{
+  el.style.opacity='0';
+  el.style.transform='translateY(20px)';
+  el.style.transition='opacity .6s ease,transform .6s ease';
+  obs.observe(el);
+});
+
+// Votos da Home (Só roda na Home)
+(function(){
+  const el = document.getElementById('hero-votes');
+  if(el){
+    const key='x1_vote_count_2026';
+    let c=parseInt(localStorage.getItem(key)||'0',10);
+    if(!c){c=57+Math.floor(Math.random()*50);localStorage.setItem(key,c);}
+    el.textContent=c;
+  }
+})();
 </script>
 </body>
 </html>
