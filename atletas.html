@@ -10,20 +10,21 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --azul:       #003087;
-  --azul-esc:   #00091f;
-  --azul-med:   #0044bb;
-  --azul-claro: #1a6bff;
-  --ouro:       #c8960a;
-  --ouro-claro: #f5c842;
-  --ouro-brilho:#ffe580;
-  --vermelho:   #e00020;
-  --verde-bra:  #00b844;
-  --cinza-txt:  rgba(255,255,255,0.5);
+  /* ══ PALETA EA FC WORLD CUP ══ */
+  --bg-dark:        #0d0106;
+  --bg-panel:       #4a0416;
+  --bg-panel-light: #7a0827;
+  --ouro-fifa:      #d4af37;
+  --ouro-claro:     #f5d77f;
+  --ouro-brilho:    #fff3cd;
+  --ea-red:         #e3003a;
+  --cinza-txt:      rgba(255,255,255,0.7);
+  --branco:         #ffffff;
+  --verde-bra:      #00b844;
 }
 
 html { scroll-behavior: smooth; }
-body { font-family:'Barlow',sans-serif; background:var(--azul-esc); color:#fff; min-height:100vh; overflow-x:hidden; }
+body { font-family:'Barlow',sans-serif; background:var(--bg-dark); color:#fff; min-height:100vh; overflow-x:hidden; }
 
 /* ══ CORREÇÃO PARA SAFARI/IPHONE ══ */
 .pack-frente, .pack-verso {
@@ -44,10 +45,9 @@ body { font-family:'Barlow',sans-serif; background:var(--azul-esc); color:#fff; 
 @keyframes shimmer        { 0%{background-position:-200% center} 100%{background-position:200% center} }
 @keyframes fadeUp         { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
 @keyframes cardIn         { from{opacity:0;transform:translateY(50px) scale(.88)} to{opacity:1;transform:translateY(0) scale(1)} }
-@keyframes glowOuro       { 0%,100%{box-shadow:0 0 30px rgba(245,200,66,.3)} 50%{box-shadow:0 0 70px rgba(245,200,66,.7),0 0 120px rgba(245,200,66,.1)} }
+@keyframes glowOuro       { 0%,100%{box-shadow:0 0 30px rgba(212,175,55,.3)} 50%{box-shadow:0 0 70px rgba(212,175,55,.7),0 0 120px rgba(212,175,55,.1)} }
 @keyframes ticker         { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
 @keyframes blink          { 0%,100%{opacity:1} 50%{opacity:.25} }
-@keyframes shineCard      { 0%{left:-120%} 100%{left:200%} }
 @keyframes gradShift      { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
 @keyframes holoPulse      { 0%,100%{opacity:.5} 50%{opacity:1} }
 @keyframes revealFlash    {
@@ -59,20 +59,18 @@ body { font-family:'Barlow',sans-serif; background:var(--azul-esc); color:#fff; 
 @keyframes scanLine       { 0%{top:-2px} 100%{top:105%} }
 
 /* ══ PARTICLES ══ */
-#particles-canvas { position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.3; }
+#particles-canvas { position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5; }
 
 /* ══ TICKER ══ */
 .ticker-bar {
-  background:linear-gradient(90deg,#0a0f1e 0%,var(--azul) 25%,#0a0f1e 50%,var(--azul) 75%,#0a0f1e 100%);
+  background:linear-gradient(90deg,#0d0106 0%,var(--bg-panel) 25%,#0d0106 50%,var(--bg-panel) 75%,#0d0106 100%);
   background-size:400% 100%;animation:gradShift 8s linear infinite;
   overflow:hidden;height:40px;display:flex;align-items:center;
-  position:relative;z-index:999;border-bottom:2px solid rgba(245,200,66,.4);
+  position:relative;z-index:999;border-bottom:2px solid rgba(212,175,55,.4);
 }
-.ticker-bar::before,.ticker-bar::after {
-  content:'';position:absolute;top:0;bottom:0;width:80px;z-index:2;pointer-events:none;
-}
-.ticker-bar::before{left:0;background:linear-gradient(to right,var(--azul-esc),transparent);}
-.ticker-bar::after{right:0;background:linear-gradient(to left,var(--azul-esc),transparent);}
+.ticker-bar::before,.ticker-bar::after { content:'';position:absolute;top:0;bottom:0;width:80px;z-index:2;pointer-events:none; }
+.ticker-bar::before{left:0;background:linear-gradient(to right,var(--bg-dark),transparent);}
+.ticker-bar::after{right:0;background:linear-gradient(to left,var(--bg-dark),transparent);}
 .ticker-track { display:flex;gap:0;white-space:nowrap;animation:ticker 28s linear infinite; }
 .ticker-item {
   font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:11px;
@@ -86,12 +84,12 @@ body { font-family:'Barlow',sans-serif; background:var(--azul-esc); color:#fff; 
 /* ══ HEADER ══ */
 .site-header {
   position:sticky;top:0;z-index:1000;
-  background:rgba(0,9,31,.92);backdrop-filter:blur(30px) saturate(1.8);
-  border-bottom:1px solid rgba(245,200,66,.1);
+  background:rgba(13,1,6,.92);backdrop-filter:blur(30px) saturate(1.8);
+  border-bottom:1px solid rgba(212,175,55,.15);
 }
 .site-header::after {
   content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
-  background:linear-gradient(90deg,var(--verde-bra),var(--ouro-claro),var(--vermelho),var(--ouro-claro),var(--azul-claro));
+  background:linear-gradient(90deg,var(--ea-red),var(--ouro-claro),var(--bg-panel-light),var(--ouro-claro),var(--ea-red));
   background-size:300% 100%;animation:gradientFlow 4s linear infinite;
 }
 .navbar {
@@ -107,24 +105,24 @@ body { font-family:'Barlow',sans-serif; background:var(--azul-esc); color:#fff; 
 .nav-link:hover { color:#fff; }
 .nav-link:hover::after,.nav-link.active::after { left:16px;right:16px; }
 .nav-link.active { color:var(--ouro-claro); }
-.nav-cta { text-decoration:none;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#00091f;padding:12px 28px;background:linear-gradient(135deg,var(--ouro-claro) 0%,var(--ouro-brilho) 50%,var(--ouro-claro) 100%);background-size:200% 100%;transition:all .25s;margin-left:14px;animation:glowOuro 3s ease-in-out infinite;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%); }
+.nav-cta { text-decoration:none;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#0d0106;padding:12px 28px;background:linear-gradient(135deg,var(--ouro-claro) 0%,var(--ouro-brilho) 50%,var(--ouro-claro) 100%);background-size:200% 100%;transition:all .25s;margin-left:14px;animation:glowOuro 3s ease-in-out infinite;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%); }
 .nav-cta:hover { background-position:100%;transform:translateY(-2px); }
 
 /* ══ PAGE HERO ══ */
 .page-hero {
   position:relative;overflow:hidden;padding:100px 48px 80px;text-align:center;
   background:
-    radial-gradient(ellipse at 50% 120%,rgba(0,68,187,.5) 0%,transparent 60%),
-    radial-gradient(ellipse at 80% -20%,rgba(245,200,66,.06) 0%,transparent 50%),
-    var(--azul-esc);
+    radial-gradient(ellipse at 50% 120%,rgba(122,8,39,.5) 0%,transparent 60%),
+    radial-gradient(ellipse at 80% -20%,rgba(212,175,55,.06) 0%,transparent 50%),
+    var(--bg-dark);
 }
 .page-hero::before {
   content:'';position:absolute;inset:0;pointer-events:none;
-  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='92' viewBox='0 0 80 92'%3E%3Cpath d='M40 0 L80 23 L80 69 L40 92 L0 69 L0 23 Z' fill='none' stroke='rgba(245,200,66,0.05)' stroke-width='1.5'/%3E%3C/svg%3E");
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='92' viewBox='0 0 80 92'%3E%3Cpath d='M40 0 L80 23 L80 69 L40 92 L0 69 L0 23 Z' fill='none' stroke='rgba(212,175,55,0.05)' stroke-width='1.5'/%3E%3C/svg%3E");
   background-size:80px 92px;
 }
 .page-hero-scanline { position:absolute;inset:0;pointer-events:none;overflow:hidden; }
-.page-hero-scanline::after { content:'';position:absolute;left:0;right:0;top:0;height:120px;background:linear-gradient(to bottom,transparent,rgba(245,200,66,.025),transparent);animation:scanLine 10s linear infinite; }
+.page-hero-scanline::after { content:'';position:absolute;left:0;right:0;top:0;height:120px;background:linear-gradient(to bottom,transparent,rgba(212,175,55,.025),transparent);animation:scanLine 10s linear infinite; }
 
 .page-eyebrow {
   display:inline-flex;align-items:center;gap:12px;
@@ -139,7 +137,7 @@ body { font-family:'Barlow',sans-serif; background:var(--azul-esc); color:#fff; 
 }
 .page-title em {
   font-style:normal;
-  background:linear-gradient(135deg,var(--ouro),var(--ouro-claro),var(--ouro-brilho),var(--ouro));
+  background:linear-gradient(135deg,var(--ouro-fifa),var(--ouro-claro),var(--ouro-brilho),var(--ouro-fifa));
   background-size:200% 100%;
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;
   background-clip:text;animation:shimmer 5s linear infinite;
@@ -153,13 +151,12 @@ body { font-family:'Barlow',sans-serif; background:var(--azul-esc); color:#fff; 
   display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;
   position:relative;z-index:5;
 }
-.toolbar-left {}
 .toolbar-title { font-family:'Anton',sans-serif;font-size:clamp(1.8rem,4vw,3rem);letter-spacing:3px;color:#fff;line-height:1; }
 .toolbar-sub { font-family:'Barlow Condensed',sans-serif;font-size:.85rem;color:var(--cinza-txt);letter-spacing:1px;margin-top:4px; }
 .btn-vote {
   display:inline-flex;align-items:center;gap:10px;text-decoration:none;
   font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:12px;letter-spacing:3px;text-transform:uppercase;
-  color:#00091f;padding:14px 32px;
+  color:#0d0106;padding:14px 32px;
   background:linear-gradient(135deg,var(--ouro-claro),var(--ouro-brilho),var(--ouro-claro));
   background-size:200% 100%;transition:all .25s;
   animation:glowOuro 3s ease-in-out infinite;
@@ -192,8 +189,6 @@ body { font-family:'Barlow',sans-serif; background:var(--azul-esc); color:#fff; 
 .card-atleta:nth-child(10){animation-delay:.48s}
 .card-atleta:nth-child(11){animation-delay:.53s}
 .card-atleta:nth-child(12){animation-delay:.58s}
-.card-atleta:nth-child(13){animation-delay:.63s}
-.card-atleta:nth-child(14){animation-delay:.68s}
 
 .card-inner {
   width:100%;aspect-ratio:2/3;position:relative;
@@ -207,22 +202,22 @@ body { font-family:'Barlow',sans-serif; background:var(--azul-esc); color:#fff; 
   backface-visibility:hidden;border-radius:12px;
 }
 
-/* ── FRENTE DO PACOTE ── */
+/* ── FRENTE DO PACOTE (TEMA EA FC) ── */
 .pack-frente {
-  background:linear-gradient(155deg, var(--azul-med) 0%, var(--azul) 40%, var(--azul-esc) 100%);
-  border:2px solid rgba(245,200,66,.3);
-  box-shadow:0 12px 40px rgba(0,0,0,.7),inset 0 1px 0 rgba(245,200,66,.15);
+  background:linear-gradient(155deg, var(--bg-panel-light) 0%, var(--bg-panel) 40%, var(--bg-dark) 100%);
+  border:2px solid rgba(212,175,55,.4);
+  box-shadow:0 12px 40px rgba(0,0,0,.8),inset 0 1px 0 rgba(245,200,66,.2);
   display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;
   transform: translateZ(1px);
 }
 .pack-frente::before {
   content:'';position:absolute;inset:0;pointer-events:none;
-  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='46' viewBox='0 0 40 46'%3E%3Cpath d='M20 0 L40 11.5 L40 34.5 L20 46 L0 34.5 L0 11.5 Z' fill='none' stroke='rgba(255,255,255,0.08)' stroke-width='1'/%3E%3C/svg%3E");
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='46' viewBox='0 0 40 46'%3E%3Cpath d='M20 0 L40 11.5 L40 34.5 L20 46 L0 34.5 L0 11.5 Z' fill='none' stroke='rgba(255,255,255,0.06)' stroke-width='1'/%3E%3C/svg%3E");
   background-size:40px 46px;
 }
 .pack-frente::after {
   content:'';position:absolute;top:0;left:0;right:0;height:4px;
-  background:linear-gradient(90deg,var(--ouro),var(--ouro-claro),var(--ouro-brilho),var(--ouro-claro),var(--ouro));
+  background:linear-gradient(90deg,var(--ouro-fifa),var(--ouro-claro),var(--ouro-brilho),var(--ouro-claro),var(--ouro-fifa));
   background-size:200% 100%;animation:shimmer 3s linear infinite;
 }
 
@@ -232,9 +227,9 @@ body { font-family:'Barlow',sans-serif; background:var(--azul-esc); color:#fff; 
   background:linear-gradient(
     105deg,
     transparent 20%,
-    rgba(255,255,255,.08) 40%,
-    rgba(245,200,66,.1) 50%,
-    rgba(100,180,255,.08) 60%,
+    rgba(212,175,55,.15) 40%,
+    rgba(227,0,58,.1) 50%,
+    rgba(255,255,255,.1) 60%,
     transparent 80%
   );
   background-size:200% 200%;
@@ -243,19 +238,19 @@ body { font-family:'Barlow',sans-serif; background:var(--azul-esc); color:#fff; 
 
 .pack-copa-logo {
   font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:900;
-  letter-spacing:5px;color:rgba(245,200,66,.6);text-transform:uppercase;margin-bottom:8px;
+  letter-spacing:5px;color:rgba(212,175,55,.7);text-transform:uppercase;margin-bottom:8px;
   position:relative;z-index:1;
 }
 .pack-texto {
   font-family:'Anton',sans-serif;color:#fff;font-size:1.65rem;letter-spacing:4px;
-  text-align:center;line-height:1;text-shadow:0 2px 15px rgba(0,0,0,.6);
+  text-align:center;line-height:1;text-shadow:0 2px 15px rgba(0,0,0,.8);
   position:relative;z-index:1;
 }
 .pack-texto span { color:var(--ouro-claro); }
 .pack-stars { color:var(--ouro-claro);font-size:12px;letter-spacing:4px;margin:10px 0 6px;position:relative;z-index:1; }
 .pack-interrogacao {
   font-family:'Anton',sans-serif;font-size:4.5rem;color:#fff;
-  text-shadow:0 0 30px rgba(245,200,66,.6),0 0 60px rgba(245,200,66,.15);
+  text-shadow:0 0 30px rgba(212,175,55,.7),0 0 60px rgba(227,0,58,.3);
   margin:4px 0;position:relative;z-index:1;
 }
 .pack-instrucao {
@@ -266,35 +261,34 @@ body { font-family:'Barlow',sans-serif; background:var(--azul-esc); color:#fff; 
 }
 .pack-flag-strip {
   position:absolute;bottom:0;left:0;right:0;height:7px;
-  background:linear-gradient(90deg,var(--verde-bra) 0%,var(--verde-bra) 33%,var(--ouro-claro) 33%,var(--ouro-claro) 66%,var(--vermelho) 66%,var(--vermelho) 100%);
+  background:linear-gradient(90deg,var(--ea-red) 0%,var(--ea-red) 33%,var(--ouro-claro) 33%,var(--ouro-claro) 66%,var(--verde-bra) 66%,var(--verde-bra) 100%);
   opacity:.9;
 }
 
 /* CARD HOVER GLOW */
 .card-atleta:not(.aberta):hover .pack-frente {
-  box-shadow:0 20px 60px rgba(0,0,0,.8),0 0 40px rgba(245,200,66,.3);
-  border-color:rgba(245,200,66,.6);
+  box-shadow:0 20px 60px rgba(0,0,0,.9),0 0 40px rgba(212,175,55,.4);
+  border-color:rgba(212,175,55,.7);
 }
 
 /* ── VERSO (A FIGURINHA) ── */
 .pack-verso {
   transform:rotateY(180deg) translateZ(1px);
-  background:linear-gradient(155deg, var(--azul-med) 0%, var(--azul) 40%, var(--azul-esc) 100%);
-  border:2px solid rgba(245,200,66,.35);
+  background:linear-gradient(155deg, var(--bg-panel-light) 0%, var(--bg-panel) 40%, var(--bg-dark) 100%);
+  border:2px solid rgba(212,175,55,.4);
   border-radius:12px;
   display:flex;flex-direction:column;align-items:center;justify-content:flex-end;
   overflow:hidden;
-  box-shadow:0 12px 40px rgba(0,0,0,.7);
+  box-shadow:0 12px 40px rgba(0,0,0,.8);
 }
 .pack-verso::before {
   content:'';position:absolute;top:0;left:0;right:0;height:4px;
-  background:linear-gradient(90deg,var(--ouro),var(--ouro-claro),var(--ouro-brilho),var(--ouro-claro),var(--ouro));
+  background:linear-gradient(90deg,var(--ouro-fifa),var(--ouro-claro),var(--ouro-brilho),var(--ouro-claro),var(--ouro-fifa));
   background-size:200% 100%;animation:shimmer 3s linear infinite;
 }
-/* Field pattern on verso background */
 .pack-verso::after {
   content:'';position:absolute;inset:0;pointer-events:none;
-  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Ccircle cx='40' cy='40' r='25' fill='none' stroke='rgba(255,255,255,0.04)' stroke-width='1'/%3E%3Ccircle cx='40' cy='40' r='2' fill='rgba(255,255,255,0.04)'/%3E%3C/svg%3E");
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Ccircle cx='40' cy='40' r='25' fill='none' stroke='rgba(255,255,255,0.03)' stroke-width='1'/%3E%3Ccircle cx='40' cy='40' r='2' fill='rgba(255,255,255,0.03)'/%3E%3C/svg%3E");
   background-size:80px 80px;
 }
 
@@ -305,52 +299,52 @@ body { font-family:'Barlow',sans-serif; background:var(--azul-esc); color:#fff; 
   filter:drop-shadow(0 10px 30px rgba(0,0,0,.8));transition:filter .3s;z-index:1;
 }
 .card-atleta.aberta .card-img {
-  filter:drop-shadow(0 20px 60px rgba(200,150,10,.7)) brightness(1.1);
+  filter:drop-shadow(0 20px 60px rgba(212,175,55,.6)) brightness(1.05);
 }
 .card-label {
   position:relative;z-index:2;width:100%;
-  background:linear-gradient(135deg,var(--ouro),var(--ouro-claro),var(--ouro-brilho));
+  background:linear-gradient(135deg,var(--ouro-fifa),var(--ouro-claro),var(--ouro-brilho));
   padding:10px 14px;text-align:center;
 }
 .card-label-num {
   font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;
-  letter-spacing:3px;text-transform:uppercase;color:var(--azul-esc);opacity:.6;
+  letter-spacing:3px;text-transform:uppercase;color:var(--bg-dark);opacity:.7;
 }
 .card-label-name {
   font-family:'Anton',sans-serif;font-size:1.15rem;letter-spacing:2px;
-  color:var(--azul-esc);line-height:1;
+  color:var(--bg-dark);line-height:1;
 }
 
 /* ══ CTA BOTTOM ══ */
 .cta-bottom {
   position:relative;overflow:hidden;padding:80px 48px;text-align:center;
-  background:linear-gradient(135deg,var(--ouro) 0%,var(--ouro-claro) 40%,var(--ouro-brilho) 60%,var(--ouro-claro) 100%);
+  background:linear-gradient(135deg,var(--ouro-fifa) 0%,var(--ouro-claro) 40%,var(--ouro-brilho) 60%,var(--ouro-claro) 100%);
   background-size:300% 100%;animation:shimmer 6s linear infinite;
 }
 .cta-bottom::before {
   content:'';position:absolute;inset:0;
-  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='70' viewBox='0 0 60 70'%3E%3Cpath d='M30 0 L60 17 L60 53 L30 70 L0 53 L0 17 Z' fill='none' stroke='rgba(0,26,77,0.1)' stroke-width='1'/%3E%3C/svg%3E");
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='70' viewBox='0 0 60 70'%3E%3Cpath d='M30 0 L60 17 L60 53 L30 70 L0 53 L0 17 Z' fill='none' stroke='rgba(0,0,0,0.05)' stroke-width='1'/%3E%3C/svg%3E");
   background-size:60px 70px;
 }
-.cta-title { font-family:'Anton',sans-serif;font-size:clamp(3rem,8vw,6rem);letter-spacing:4px;color:var(--azul-esc);line-height:.9;margin-bottom:12px;position:relative;z-index:10; }
-.cta-sub { font-family:'Barlow',sans-serif;font-size:1rem;color:var(--azul-esc);opacity:.65;margin-bottom:36px;position:relative;z-index:10; }
+.cta-title { font-family:'Anton',sans-serif;font-size:clamp(3rem,8vw,6rem);letter-spacing:4px;color:#0d0106;line-height:.9;margin-bottom:12px;position:relative;z-index:10; }
+.cta-sub { font-family:'Barlow',sans-serif;font-size:1rem;color:#0d0106;opacity:.7;margin-bottom:36px;position:relative;z-index:10; }
 .btn-dark {
   position:relative;z-index:10;
   display:inline-flex;align-items:center;gap:10px;text-decoration:none;
   font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:13px;
   letter-spacing:3px;text-transform:uppercase;color:var(--ouro-claro);
-  padding:18px 48px;background:var(--azul-esc);
-  border:1px solid rgba(245,200,66,.3);transition:all .25s;
+  padding:18px 48px;background:var(--bg-dark);
+  border:1px solid rgba(212,175,55,.4);transition:all .25s;
   clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%);
 }
-.btn-dark:hover { background:var(--azul);transform:translateY(-3px);box-shadow:0 20px 50px rgba(0,0,0,.6); }
+.btn-dark:hover { background:var(--bg-panel);transform:translateY(-3px);box-shadow:0 20px 50px rgba(0,0,0,.6); }
 
 /* ══ FOOTER ══ */
-.site-footer { background:var(--azul-esc);border-top:1px solid rgba(245,200,66,.08);padding:40px 48px 32px;text-align:center; }
+.site-footer { background:var(--bg-dark);border-top:1px solid rgba(212,175,55,.1);padding:40px 48px 32px;text-align:center; }
 .footer-logo-row { display:flex;align-items:center;justify-content:center;gap:24px;margin-bottom:16px; }
-.footer-divider { width:48px;height:1px;background:rgba(245,200,66,.12); }
-.footer-brand { font-family:'Anton',sans-serif;font-size:20px;letter-spacing:6px;color:rgba(245,200,66,.2); }
-.footer-copy { font-size:12px;color:rgba(255,255,255,.2);letter-spacing:.5px;line-height:2; }
+.footer-divider { width:48px;height:1px;background:rgba(212,175,55,.15); }
+.footer-brand { font-family:'Anton',sans-serif;font-size:20px;letter-spacing:6px;color:rgba(212,175,55,.3); }
+.footer-copy { font-size:12px;color:rgba(255,255,255,.3);letter-spacing:.5px;line-height:2; }
 .footer-copy strong { color:var(--verde-bra);font-weight:500; }
 
 @media(max-width:1024px){
@@ -370,12 +364,12 @@ body { font-family:'Barlow',sans-serif; background:var(--azul-esc); color:#fff; 
 
 <div class="ticker-bar">
   <div class="ticker-track">
-    <span class="ticker-item gold"><span class="ticker-dot"></span>Copa do Mundo 2026</span>
+    <span class="ticker-item gold"><span class="ticker-dot"></span>Copa do Mundo EA FC</span>
     <span class="ticker-item white"><span class="ticker-dot"></span>Álbum de Figurinhas Oficial</span>
     <span class="ticker-item gold"><span class="ticker-dot"></span>Vote no Craque da Semana</span>
     <span class="ticker-item white"><span class="ticker-dot"></span>X1 dos Crias MG · Mangueira</span>
     <span class="ticker-item gold"><span class="ticker-dot"></span>Toque para revelar</span>
-    <span class="ticker-item white"><span class="ticker-dot"></span>Copa do Mundo 2026</span>
+    <span class="ticker-item white"><span class="ticker-dot"></span>Copa do Mundo EA FC</span>
     <span class="ticker-item gold"><span class="ticker-dot"></span>Álbum de Figurinhas Oficial</span>
     <span class="ticker-item white"><span class="ticker-dot"></span>Vote no Craque da Semana</span>
     <span class="ticker-item gold"><span class="ticker-dot"></span>X1 dos Crias MG · Mangueira</span>
@@ -420,114 +414,87 @@ body { font-family:'Barlow',sans-serif; background:var(--azul-esc); color:#fff; 
     <div class="card-atleta" onclick="revealCard(this)">
       <div class="card-inner">
         <div class="pack-frente"><div class="pack-shine"></div><div class="pack-copa-logo">Copa · 2026</div><div class="pack-texto">X1 DOS<br><span>CRIAS</span></div><div class="pack-stars">★ ★ ★</div><div class="pack-interrogacao">?</div><div class="pack-instrucao">Toque para abrir</div><div class="pack-flag-strip"></div></div>
-        <div class="pack-verso"><img src="gordinho.jpeg" alt="Gordinho" class="card-img" onerror="this.style.display='none'"><div class="card-label"><div class="card-label-num">X1 · 2026</div><div class="card-label-name">Gordinho</div></div></div>
+        <div class="pack-verso"><img src="allissoon.jpeg" alt="Alisson" class="card-img" onerror="this.style.display='none'"><div class="card-label"><div class="card-label-num">EA FC · 2026</div><div class="card-label-name">Alisson</div></div></div>
       </div>
     </div>
 
     <div class="card-atleta" onclick="revealCard(this)">
       <div class="card-inner">
         <div class="pack-frente"><div class="pack-shine"></div><div class="pack-copa-logo">Copa · 2026</div><div class="pack-texto">X1 DOS<br><span>CRIAS</span></div><div class="pack-stars">★ ★ ★</div><div class="pack-interrogacao">?</div><div class="pack-instrucao">Toque para abrir</div><div class="pack-flag-strip"></div></div>
-        <div class="pack-verso"><img src="chupeta.jpeg" alt="Chupeta" class="card-img" onerror="this.style.display='none'"><div class="card-label"><div class="card-label-num">X1 · 2026</div><div class="card-label-name">Chupeta</div></div></div>
+        <div class="pack-verso"><img src="bizinho.jpeg" alt="Bizinho" class="card-img" onerror="this.style.display='none'"><div class="card-label"><div class="card-label-num">EA FC · 2026</div><div class="card-label-name">Bizinho</div></div></div>
       </div>
     </div>
 
     <div class="card-atleta" onclick="revealCard(this)">
       <div class="card-inner">
         <div class="pack-frente"><div class="pack-shine"></div><div class="pack-copa-logo">Copa · 2026</div><div class="pack-texto">X1 DOS<br><span>CRIAS</span></div><div class="pack-stars">★ ★ ★</div><div class="pack-interrogacao">?</div><div class="pack-instrucao">Toque para abrir</div><div class="pack-flag-strip"></div></div>
-        <div class="pack-verso"><img src="chato.jpeg" alt="Chato" class="card-img" onerror="this.style.display='none'"><div class="card-label"><div class="card-label-num">X1 · 2026</div><div class="card-label-name">Chato</div></div></div>
+        <div class="pack-verso"><img src="bn.jpeg" alt="BN" class="card-img" onerror="this.style.display='none'"><div class="card-label"><div class="card-label-num">EA FC · 2026</div><div class="card-label-name">BN</div></div></div>
       </div>
     </div>
 
     <div class="card-atleta" onclick="revealCard(this)">
       <div class="card-inner">
         <div class="pack-frente"><div class="pack-shine"></div><div class="pack-copa-logo">Copa · 2026</div><div class="pack-texto">X1 DOS<br><span>CRIAS</span></div><div class="pack-stars">★ ★ ★</div><div class="pack-interrogacao">?</div><div class="pack-instrucao">Toque para abrir</div><div class="pack-flag-strip"></div></div>
-        <div class="pack-verso"><img src="paaraa.jpeg" alt="Pará" class="card-img" onerror="this.style.display='none'"><div class="card-label"><div class="card-label-num">X1 · 2026</div><div class="card-label-name">Pará</div></div></div>
+        <div class="pack-verso"><img src="breenoo.jpeg" alt="Breno" class="card-img" onerror="this.style.display='none'"><div class="card-label"><div class="card-label-num">EA FC · 2026</div><div class="card-label-name">Breno</div></div></div>
       </div>
     </div>
 
     <div class="card-atleta" onclick="revealCard(this)">
       <div class="card-inner">
         <div class="pack-frente"><div class="pack-shine"></div><div class="pack-copa-logo">Copa · 2026</div><div class="pack-texto">X1 DOS<br><span>CRIAS</span></div><div class="pack-stars">★ ★ ★</div><div class="pack-interrogacao">?</div><div class="pack-instrucao">Toque para abrir</div><div class="pack-flag-strip"></div></div>
-        <div class="pack-verso"><img src="sukiita.jpeg" alt="Sukita" class="card-img" onerror="this.style.display='none'"><div class="card-label"><div class="card-label-num">X1 · 2026</div><div class="card-label-name">Sukita</div></div></div>
+        <div class="pack-verso"><img src="charaa.jpeg" alt="Chara" class="card-img" onerror="this.style.display='none'"><div class="card-label"><div class="card-label-num">EA FC · 2026</div><div class="card-label-name">Chara</div></div></div>
       </div>
     </div>
 
     <div class="card-atleta" onclick="revealCard(this)">
       <div class="card-inner">
         <div class="pack-frente"><div class="pack-shine"></div><div class="pack-copa-logo">Copa · 2026</div><div class="pack-texto">X1 DOS<br><span>CRIAS</span></div><div class="pack-stars">★ ★ ★</div><div class="pack-interrogacao">?</div><div class="pack-instrucao">Toque para abrir</div><div class="pack-flag-strip"></div></div>
-        <div class="pack-verso"><img src="pedrinho.jpeg" alt="Pedrinho" class="card-img" onerror="this.style.display='none'"><div class="card-label"><div class="card-label-num">X1 · 2026</div><div class="card-label-name">Pedrinho</div></div></div>
+        <div class="pack-verso"><img src="faael.jpeg" alt="Fael" class="card-img" onerror="this.style.display='none'"><div class="card-label"><div class="card-label-num">EA FC · 2026</div><div class="card-label-name">Fael</div></div></div>
       </div>
     </div>
 
     <div class="card-atleta" onclick="revealCard(this)">
       <div class="card-inner">
         <div class="pack-frente"><div class="pack-shine"></div><div class="pack-copa-logo">Copa · 2026</div><div class="pack-texto">X1 DOS<br><span>CRIAS</span></div><div class="pack-stars">★ ★ ★</div><div class="pack-interrogacao">?</div><div class="pack-instrucao">Toque para abrir</div><div class="pack-flag-strip"></div></div>
-        <div class="pack-verso"><img src="guigui.jpeg" alt="Guigui" class="card-img" onerror="this.style.display='none'"><div class="card-label"><div class="card-label-num">X1 · 2026</div><div class="card-label-name">Guigui</div></div></div>
+        <div class="pack-verso"><img src="hg.jpeg" alt="HG" class="card-img" onerror="this.style.display='none'"><div class="card-label"><div class="card-label-num">EA FC · 2026</div><div class="card-label-name">HG</div></div></div>
       </div>
     </div>
 
     <div class="card-atleta" onclick="revealCard(this)">
       <div class="card-inner">
         <div class="pack-frente"><div class="pack-shine"></div><div class="pack-copa-logo">Copa · 2026</div><div class="pack-texto">X1 DOS<br><span>CRIAS</span></div><div class="pack-stars">★ ★ ★</div><div class="pack-interrogacao">?</div><div class="pack-instrucao">Toque para abrir</div><div class="pack-flag-strip"></div></div>
-        <div class="pack-verso"><img src="anthonyy.jpeg" alt="Anthony" class="card-img" onerror="this.style.display='none'"><div class="card-label"><div class="card-label-num">X1 · 2026</div><div class="card-label-name">Anthony</div></div></div>
+        <div class="pack-verso"><img src="jooao.jpeg" alt="João" class="card-img" onerror="this.style.display='none'"><div class="card-label"><div class="card-label-num">EA FC · 2026</div><div class="card-label-name">João</div></div></div>
       </div>
     </div>
 
     <div class="card-atleta" onclick="revealCard(this)">
       <div class="card-inner">
         <div class="pack-frente"><div class="pack-shine"></div><div class="pack-copa-logo">Copa · 2026</div><div class="pack-texto">X1 DOS<br><span>CRIAS</span></div><div class="pack-stars">★ ★ ★</div><div class="pack-interrogacao">?</div><div class="pack-instrucao">Toque para abrir</div><div class="pack-flag-strip"></div></div>
-        <div class="pack-verso"><img src="vitinhoo.jpeg" alt="Vitinho" class="card-img" onerror="this.style.display='none'"><div class="card-label"><div class="card-label-num">X1 · 2026</div><div class="card-label-name">Vitinho</div></div></div>
+        <div class="pack-verso"><img src="klebersoon.jpeg" alt="Kleberson" class="card-img" onerror="this.style.display='none'"><div class="card-label"><div class="card-label-num">EA FC · 2026</div><div class="card-label-name">Kleberson</div></div></div>
       </div>
     </div>
 
     <div class="card-atleta" onclick="revealCard(this)">
       <div class="card-inner">
         <div class="pack-frente"><div class="pack-shine"></div><div class="pack-copa-logo">Copa · 2026</div><div class="pack-texto">X1 DOS<br><span>CRIAS</span></div><div class="pack-stars">★ ★ ★</div><div class="pack-interrogacao">?</div><div class="pack-instrucao">Toque para abrir</div><div class="pack-flag-strip"></div></div>
-        <div class="pack-verso"><img src="carre.jpeg" alt="Carré" class="card-img" onerror="this.style.display='none'"><div class="card-label"><div class="card-label-num">X1 · 2026</div><div class="card-label-name">Carré</div></div></div>
+        <div class="pack-verso"><img src="pauliinho.jpeg" alt="Paulinho" class="card-img" onerror="this.style.display='none'"><div class="card-label"><div class="card-label-num">EA FC · 2026</div><div class="card-label-name">Paulinho</div></div></div>
       </div>
     </div>
 
     <div class="card-atleta" onclick="revealCard(this)">
       <div class="card-inner">
         <div class="pack-frente"><div class="pack-shine"></div><div class="pack-copa-logo">Copa · 2026</div><div class="pack-texto">X1 DOS<br><span>CRIAS</span></div><div class="pack-stars">★ ★ ★</div><div class="pack-interrogacao">?</div><div class="pack-instrucao">Toque para abrir</div><div class="pack-flag-strip"></div></div>
-        <div class="pack-verso"><img src="ylllaan.jpeg" alt="Yllan" class="card-img" onerror="this.style.display='none'"><div class="card-label"><div class="card-label-num">X1 · 2026</div><div class="card-label-name">Yllan</div></div></div>
+        <div class="pack-verso"><img src="preetinhoo.jpeg" alt="Pretinho" class="card-img" onerror="this.style.display='none'"><div class="card-label"><div class="card-label-num">EA FC · 2026</div><div class="card-label-name">Pretinho</div></div></div>
       </div>
     </div>
 
     <div class="card-atleta" onclick="revealCard(this)">
       <div class="card-inner">
         <div class="pack-frente"><div class="pack-shine"></div><div class="pack-copa-logo">Copa · 2026</div><div class="pack-texto">X1 DOS<br><span>CRIAS</span></div><div class="pack-stars">★ ★ ★</div><div class="pack-interrogacao">?</div><div class="pack-instrucao">Toque para abrir</div><div class="pack-flag-strip"></div></div>
-        <div class="pack-verso"><img src="kauuaan.jpeg" alt="Kauan" class="card-img" onerror="this.style.display='none'"><div class="card-label"><div class="card-label-num">X1 · 2026</div><div class="card-label-name">Kauan</div></div></div>
+        <div class="pack-verso"><img src="samuca.jpeg" alt="Samuca" class="card-img" onerror="this.style.display='none'"><div class="card-label"><div class="card-label-num">EA FC · 2026</div><div class="card-label-name">Samuca</div></div></div>
       </div>
     </div>
 
-    <div class="card-atleta" onclick="revealCard(this)">
-      <div class="card-inner">
-        <div class="pack-frente"><div class="pack-shine"></div><div class="pack-copa-logo">Copa · 2026</div><div class="pack-texto">X1 DOS<br><span>CRIAS</span></div><div class="pack-stars">★ ★ ★</div><div class="pack-interrogacao">?</div><div class="pack-instrucao">Toque para abrir</div><div class="pack-flag-strip"></div></div>
-        <div class="pack-verso"><img src="kiputa.jpeg" alt="Kiputa" class="card-img" onerror="this.style.display='none'"><div class="card-label"><div class="card-label-num">X1 · 2026</div><div class="card-label-name">Kiputa</div></div></div>
-      </div>
-    </div>
-
-    <div class="card-atleta" onclick="revealCard(this)">
-      <div class="card-inner">
-        <div class="pack-frente"><div class="pack-shine"></div><div class="pack-copa-logo">Copa · 2026</div><div class="pack-texto">X1 DOS<br><span>CRIAS</span></div><div class="pack-stars">★ ★ ★</div><div class="pack-interrogacao">?</div><div class="pack-instrucao">Toque para abrir</div><div class="pack-flag-strip"></div></div>
-        <div class="pack-verso"><img src="anndreyy.jpeg" alt="Andrey" class="card-img" onerror="this.style.display='none'"><div class="card-label"><div class="card-label-num">X1 · 2026</div><div class="card-label-name">Andrey</div></div></div>
-      </div>
-    </div>
-
-    <div class="card-atleta" onclick="revealCard(this)">
-      <div class="card-inner">
-        <div class="pack-frente"><div class="pack-shine"></div><div class="pack-copa-logo">Copa · 2026</div><div class="pack-texto">X1 DOS<br><span>CRIAS</span></div><div class="pack-stars">★ ★ ★</div><div class="pack-interrogacao">?</div><div class="pack-instrucao">Toque para abrir</div><div class="pack-flag-strip"></div></div>
-        <div class="pack-verso"><img src="dom.jpeg" alt="Dom" class="card-img" onerror="this.style.display='none'"><div class="card-label"><div class="card-label-num">X1 · 2026</div><div class="card-label-name">Dom</div></div></div>
-      </div>
-    </div>
-
-    <div class="card-atleta" onclick="revealCard(this)">
-      <div class="card-inner">
-        <div class="pack-frente"><div class="pack-shine"></div><div class="pack-copa-logo">Copa · 2026</div><div class="pack-texto">X1 DOS<br><span>CRIAS</span></div><div class="pack-stars">★ ★ ★</div><div class="pack-interrogacao">?</div><div class="pack-instrucao">Toque para abrir</div><div class="pack-flag-strip"></div></div>
-        <div class="pack-verso"><img src="chheetos.jpeg" alt="Cheetos" class="card-img" onerror="this.style.display='none'"><div class="card-label"><div class="card-label-num">X1 · 2026</div><div class="card-label-name">Cheetos</div></div></div>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -547,14 +514,14 @@ body { font-family:'Barlow',sans-serif; background:var(--azul-esc); color:#fff; 
 </footer>
 
 <script>
-/* PARTICLES */
+/* PARTICLES - CORES EA FC WORLD CUP */
 (function(){
   const canvas=document.getElementById('particles-canvas');
   const ctx=canvas.getContext('2d');
   let W,H,pts=[];
   function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight;}
   resize();window.addEventListener('resize',resize);
-  function mkPt(){return{x:Math.random()*W,y:Math.random()*H+H,size:Math.random()*1.8+.4,speed:Math.random()*.35+.12,dx:(Math.random()-.5)*.35,opacity:Math.random()*.45+.15,color:Math.random()>.5?'rgba(245,200,66,':'rgba(100,160,255,'};}
+  function mkPt(){return{x:Math.random()*W,y:Math.random()*H+H,size:Math.random()*1.8+.4,speed:Math.random()*.35+.12,dx:(Math.random()-.5)*.35,opacity:Math.random()*.45+.15,color:Math.random()>.5?'rgba(212, 175, 55,':'rgba(227, 0, 58,'};}
   for(let i=0;i<50;i++){const p=mkPt();p.y=Math.random()*H;pts.push(p);}
   function draw(){ctx.clearRect(0,0,W,H);pts.forEach((p,i)=>{p.y-=p.speed;p.x+=p.dx;if(p.y<-10){pts[i]=mkPt();}ctx.beginPath();ctx.arc(p.x,p.y,p.size,0,Math.PI*2);ctx.fillStyle=p.color+p.opacity+')';ctx.fill();});requestAnimationFrame(draw);}
   draw();
@@ -568,7 +535,7 @@ document.querySelectorAll('.card-atleta').forEach(c=>{
     const x=(e.clientX-r.left)/r.width-.5;
     const y=(e.clientY-r.top)/r.height-.5;
     c.querySelector('.card-inner').style.transform=`rotateY(${x*22}deg) rotateX(${-y*16}deg) scale(1.04)`;
-    c.querySelector('.pack-shine').style.background=`linear-gradient(${105+x*30}deg,transparent 20%,rgba(255,255,255,${.05+Math.abs(x)*.08}) 40%,rgba(245,200,66,${.08+Math.abs(y)*.08}) 50%,rgba(100,180,255,${.05+Math.abs(x)*.06}) 60%,transparent 80%)`;
+    c.querySelector('.pack-shine').style.background=`linear-gradient(${105+x*30}deg,transparent 20%,rgba(212, 175, 55,${.05+Math.abs(x)*.08}) 40%,rgba(227, 0, 58,${.08+Math.abs(y)*.08}) 50%,rgba(255, 255, 255,${.05+Math.abs(x)*.06}) 60%,transparent 80%)`;
   });
   c.addEventListener('mouseleave',()=>{
     if(!c.classList.contains('aberta')){
@@ -578,7 +545,7 @@ document.querySelectorAll('.card-atleta').forEach(c=>{
   });
 });
 
-/* REVEAL WITH PARTICLES */
+/* REVEAL WITH PARTICLES - CORES EA FC */
 function revealCard(card){
   const wasOpen=card.classList.contains('aberta');
   card.classList.toggle('aberta');
@@ -601,7 +568,7 @@ function spawnParticles(card){
     p.style.cssText=`
       position:fixed;left:${cx}px;top:${cy}px;width:6px;height:6px;
       border-radius:50%;pointer-events:none;z-index:9999;
-      background:${Math.random()>.5?'#f5c842':'#ffffff'};
+      background:${Math.random()>.5?'#d4af37':'#e3003a'};
       --bx:${bx};--by:${by};
       animation:particleBurst .7s ease-out forwards;
       transform-origin:center;
