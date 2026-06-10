@@ -29,7 +29,6 @@ body { font-family:'Barlow',sans-serif; background:var(--bg-dark); color:#fff; m
 @keyframes shimmer      { 0%{background-position:-200% center} 100%{background-position:200% center} }
 @keyframes fadeUp       { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
 @keyframes glowOuro     { 0%,100%{box-shadow:0 0 20px rgba(212,175,55,.3)} 50%{box-shadow:0 0 50px rgba(212,175,55,.8),0 0 80px rgba(212,175,55,.2)} }
-@keyframes pulseOuro    { 0%{box-shadow:0 0 0 0 rgba(212,175,55,.5)} 70%{box-shadow:0 0 0 14px rgba(212,175,55,0)} 100%{box-shadow:0 0 0 0 rgba(212,175,55,0)} }
 @keyframes ticker       { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
 @keyframes pulseRed     { 0%{box-shadow:0 0 0 0 rgba(227,0,58,.5)} 70%{box-shadow:0 0 0 10px rgba(227,0,58,0)} 100%{box-shadow:0 0 0 0 rgba(227,0,58,0)} }
 @keyframes scanLine     { 0%{top:-2px} 100%{top:105%} }
@@ -102,73 +101,113 @@ body { font-family:'Barlow',sans-serif; background:var(--bg-dark); color:#fff; m
 
 /* ══ VOTE CARD ══ */
 .votacao-section {
-  max-width:860px;margin:-30px auto 80px;padding:0 24px;
+  max-width:860px;margin:-30px auto 40px;padding:0 24px;
   position:relative;z-index:10;animation:fadeUp .8s .3s ease-out both;
 }
-
 .vote-card {
   background: linear-gradient(145deg, var(--bg-panel-light) 0%, var(--bg-dark) 100%);
   border: 2px solid rgba(212,175,55,.4);
-  border-radius:14px;
-  overflow:hidden;
+  border-radius:14px;overflow:hidden;
   box-shadow: 0 30px 80px rgba(0,0,0,.9), 0 0 60px rgba(212,175,55,.1);
   position:relative;
 }
-
 .vote-card::before {
   content:'';position:absolute;top:0;left:0;right:0;height:4px;z-index:2;
   background:linear-gradient(90deg,var(--ouro-fifa),var(--ouro-claro),var(--ouro-brilho),var(--ouro-claro),var(--ouro-fifa));
   background-size:200% 100%;animation:shimmer 4s linear infinite;
 }
-
 .vote-card-header {
-  position:relative;z-index:1;
-  padding:32px 36px;
+  position:relative;z-index:1;padding:32px 36px;
   border-bottom:1px solid rgba(212,175,55,.15);
   background:linear-gradient(135deg,rgba(212,175,55,.12) 0%,transparent 60%);
   display:flex;align-items:center;gap:24px;flex-wrap:wrap;
 }
-
 .vote-live-badge {
   display:flex;align-items:center;gap:8px;
   background:rgba(227,0,58,.15);color:var(--ea-red);
   padding:8px 20px;border-radius:50px;
   font-family:'Barlow Condensed',sans-serif;font-weight:900;letter-spacing:2.5px;text-transform:uppercase;font-size:13px;
-  border:1px solid rgba(227,0,58,.4);
-  flex-shrink:0;
+  border:1px solid rgba(227,0,58,.4);flex-shrink:0;
 }
 .vote-live-dot { width:10px;height:10px;border-radius:50%;background:var(--ea-red);animation:pulseRed 2s infinite; }
-
 .vote-card-title { font-family:'Anton',sans-serif;font-size:2.2rem;letter-spacing:3px;color:var(--ouro-claro);line-height:1; }
 .vote-card-sub { font-family:'Barlow',sans-serif;color:var(--cinza-txt);font-size:.88rem;margin-top:6px; }
-
 .vote-trophy { font-size:2.5rem; margin-left:auto; filter:drop-shadow(0 0 10px rgba(212,175,55,.5)); }
-
 .vote-header-flag {
   position:absolute;bottom:0;left:0;right:0;height:3px;
   background:linear-gradient(90deg,var(--ea-red),var(--ouro-claro),var(--bg-panel-light),var(--ouro-claro),var(--ea-red));
   background-size:200% 100%;animation:gradientFlow 4s linear infinite;
 }
-
 .vote-stars-row {
   display:flex;align-items:center;justify-content:space-between;
-  padding:18px 36px;
-  border-bottom:1px solid rgba(212,175,55,.1);
-  background:rgba(0,0,0,.3);
-  position:relative;z-index:1;
+  padding:18px 36px;border-bottom:1px solid rgba(212,175,55,.1);
+  background:rgba(0,0,0,.3);position:relative;z-index:1;
 }
 .vote-stars-row span { font-size:13px;color:var(--ouro-claro);letter-spacing:6px; }
 .vote-edition { font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:900;letter-spacing:4px;text-transform:uppercase;color:rgba(212,175,55,.6); }
 
-.iframe-wrap {
-  background:#fff;
-  position:relative;z-index:1;
-}
-iframe {
-  width:100%;height:1200px;border:none;display:block;
-}
+.iframe-wrap { background:#fff;position:relative;z-index:1; }
+iframe { width:100%;height:1200px;border:none;display:block; }
 
-/* ══ FOOTER ══ */
+/* ══ SEÇÃO DO CHAT AO VIVO ══ */
+.chat-section {
+  max-width:860px;margin:0 auto 80px;padding:0 24px;
+  position:relative;z-index:10;animation:fadeUp .8s .4s ease-out both;
+}
+.chat-container {
+  background: linear-gradient(145deg, #120207 0%, var(--bg-dark) 100%);
+  border: 2px solid rgba(212,175,55,.3);
+  border-radius: 14px; overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0,0,0,.9);
+}
+.chat-header {
+  padding:20px 28px; background: rgba(74,4,22,.5);
+  border-bottom: 1px solid rgba(212,175,55,.2);
+  font-family: 'Anton', sans-serif; font-size: 1.5rem; letter-spacing: 2px;
+  color: #fff; display: flex; align-items: center; gap: 12px;
+}
+.chat-header span { color: var(--ouro-claro); }
+.chat-messages-box {
+  height: 400px; overflow-y: auto; padding: 24px;
+  display: flex; flex-direction: column; gap: 16px;
+  background: rgba(0,0,0,.2); scrollbar-width: thin;
+}
+.chat-msg {
+  background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.05);
+  padding: 12px 18px; border-radius: 4px; animation: fadeUp .3s ease-out;
+  border-left: 3px solid var(--ea-red);
+}
+.chat-meta { display: flex; justify-content: space-between; margin-bottom: 4px; font-size: 11px; }
+.chat-author { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; color: var(--ouro-claro); }
+.chat-time { color: rgba(255,255,255,.3); }
+.chat-text { font-size: 14px; color: rgba(255,255,255,.85); line-height: 1.4; word-break: break-word; }
+
+.chat-form {
+  padding: 24px; background: rgba(13,1,6,.95);
+  border-top: 1px solid rgba(212,175,55,.15);
+  display: grid; grid-template-columns: 1fr; gap: 14px;
+}
+@media(min-width: 600px) {
+  .chat-form { grid-template-columns: 180px 1fr auto; align-items: end; }
+}
+.input-group { display: flex; flex-direction: column; gap: 6px; }
+.input-group label { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,.4); }
+.chat-input {
+  background: #1a0209; border: 1px solid rgba(212,175,55,.2);
+  padding: 14px 16px; color: #fff; font-family: 'Barlow', sans-serif; font-size: 14px;
+  transition: all .25s;
+}
+.chat-input:focus { outline: none; border-color: var(--ouro-claro); background: #26040f; box-shadow: 0 0 10px rgba(212,175,55,.1); }
+.btn-send {
+  height: 47px; padding: 0 32px; font-family: 'Barlow Condensed', sans-serif; font-weight: 900;
+  font-size: 12px; letter-spacing: 3px; text-transform: uppercase; color: #0d0106;
+  background: linear-gradient(135deg, var(--ouro-claro), var(--ouro-brilho), var(--ouro-claro));
+  background-size: 200% 100%; border: none; cursor: pointer; transition: all .25s;
+  clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+}
+.btn-send:hover { background-position: 100%; transform: translateY(-1px); }
+
+/* ══ FOOTER ORIGINAL ÍNTEGRO ══ */
 .site-footer { background:var(--bg-dark);border-top:1px solid rgba(212,175,55,.1);padding:40px 48px 32px;text-align:center; }
 .footer-logo-row { display:flex;align-items:center;justify-content:center;gap:24px;margin-bottom:16px; }
 .footer-divider { width:48px;height:1px;background:rgba(212,175,55,.15); }
@@ -198,15 +237,13 @@ iframe {
     <span class="ticker-item white"><span class="ticker-dot"></span>A Voz é da Comunidade</span>
     <span class="ticker-item gold"><span class="ticker-dot"></span>Votação Aberta Agora</span>
     <span class="ticker-item white"><span class="ticker-dot"></span>Edição Especial EA FC — X1 dos Crias MG</span>
-    <span class="ticker-item gold"><span class="ticker-dot"></span>Escolha o Craque da Semana</span>
-    <span class="ticker-item white"><span class="ticker-dot"></span>A Voz é da Comunidade</span>
   </div>
 </div>
 
 <header class="site-header">
   <nav class="navbar">
     <a href="index.html" class="nav-logo">
-      <img src="x1doscria.png" alt="X1" class="nav-logo-img" onerror="this.style.display='none'">
+      <img src="x1doscria.jpg" alt="X1" class="nav-logo-img" onerror="this.style.display='none'">
       <div>
         <span class="nav-brand-main">X1 dos Crias</span>
         <span class="nav-brand-sub">Copa 2026 · Mangueira</span>
@@ -229,10 +266,7 @@ iframe {
 <section class="votacao-section">
   <div class="vote-card">
     <div class="vote-card-header">
-      <div class="vote-live-badge">
-        <span class="vote-live-dot"></span>
-        Ao Vivo
-      </div>
+      <div class="vote-live-badge"><span class="vote-live-dot"></span>Ao Vivo</div>
       <div class="vote-header-text">
         <div class="vote-card-title">🗳️ Urna Eletrônica</div>
         <div class="vote-card-sub">Preencha o formulário · X1 dos Crias MG · Edição Especial</div>
@@ -248,6 +282,33 @@ iframe {
     <div class="iframe-wrap">
       <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfjG1JIjp2oVfHAlQS6nFhv2BpIvg-2-wZXPf_U4Xv8YtpmIQ/viewform?embedded=true" title="Formulário de Votação — Craque da Semana X1 dos Crias MG">Carregando…</iframe>
     </div>
+  </div>
+</section>
+
+<section class="chat-section">
+  <div class="chat-container">
+    <div class="chat-header">💬 RESENHA <span>AO VIVO</span></div>
+    <div class="chat-messages-box" id="chat-feed">
+      <div class="chat-msg" style="border-left-color: var(--ouro-fifa);">
+        <div class="chat-meta">
+          <span class="chat-author">Moderação</span>
+          <span class="chat-time">Agora</span>
+        </div>
+        <div class="chat-text">O couro vai comer! Deixe seu comentário sobre as partidas da rodada. O chat atualiza sozinho em tempo real! 🔥</div>
+      </div>
+    </div>
+
+    <form class="chat-form" id="chat-form-submit" onsubmit="return false;">
+      <div class="input-group">
+        <label for="chat-username">Apelido / Nome</label>
+        <input type="text" id="chat-username" class="chat-input" placeholder="Ex: Cria_MG" required maxlength="15">
+      </div>
+      <div class="input-group">
+        <label for="chat-message-text">Comentário</label>
+        <input type="text" id="chat-message-text" class="chat-input" placeholder="Manda a resenha sobre o craque da semana..." required maxlength="120">
+      </div>
+      <button type="submit" class="btn-send" id="chat-btn-send">Enviar 🚀</button>
+    </form>
   </div>
 </section>
 
@@ -273,6 +334,99 @@ iframe {
   function draw(){ctx.clearRect(0,0,W,H);pts.forEach((p,i)=>{p.y-=p.speed;p.x+=p.dx;if(p.y<-10){pts[i]=mkPt();}ctx.beginPath();ctx.arc(p.x,p.y,p.size,0,Math.PI*2);ctx.fillStyle=p.color+p.opacity+')';ctx.fill();});requestAnimationFrame(draw);}
   draw();
 })();
+</script>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
+  import { getFirestore, collection, addDoc, query, orderBy, limit, onSnapshot } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js";
+
+  // Credenciais geradas para o seu projeto dos-crias-chat
+  const firebaseConfig = {
+    apiKey: "AIzaSyA0Id-Plle4dyRvvd7gPNlBBnreaymALYA",
+    authDomain: "dos-crias-chat.firebaseapp.com",
+    projectId: "dos-crias-chat",
+    storageBucket: "dos-crias-chat.firebasestorage.app",
+    messagingSenderId: "810085500384",
+    appId: "1:810085500384:web:3c3e09307fe45194e65785",
+    measurementId: "G-5TGJMLJVJP"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+  const msgsRef = collection(db, "comentarios_rodada");
+
+  const feed = document.getElementById("chat-feed");
+  const form = document.getElementById("chat-form-submit");
+  const btnSend = document.getElementById("chat-btn-send");
+
+  // Listener para carregar as últimas 60 mensagens
+  const q = query(msgsRef, orderBy("timestamp", "asc"), limit(60));
+
+  onSnapshot(q, (snapshot) => {
+    feed.innerHTML = ""; 
+    
+    if(snapshot.empty) {
+      feed.innerHTML = `<div class="chat-msg"><div class="chat-text" style="color:rgba(255,255,255,.3); text-align:center;">Nenhuma corneta enviada ainda. Estreie o chat! 💬</div></div>`;
+      return;
+    }
+
+    snapshot.forEach((doc) => {
+      const d = doc.data();
+      const hora = d.timestamp ? new Date(d.timestamp.toDate()).toLocaleTimeString('pt-BR', {hour: '2-digit', minute:'2-digit'}) : '--:--';
+      
+      const msgDiv = document.createElement("div");
+      msgDiv.classList.add("chat-msg");
+      
+      msgDiv.innerHTML = `
+        <div class="chat-meta">
+          <span class="chat-author">${escapeHTML(d.autor)}</span>
+          <span class="chat-time">${hora}</span>
+        </div>
+        <div class="chat-text">${escapeHTML(d.mensagem)}</div>
+      `;
+      feed.appendChild(msgDiv);
+    });
+
+    feed.scrollTop = feed.scrollHeight;
+  });
+
+  // Função para cadastrar a mensagem no Firestore
+  async function postComment() {
+    const userField = document.getElementById("chat-username");
+    const textField = document.getElementById("chat-message-text");
+
+    const user = userField.value.trim();
+    const txt = textField.value.trim();
+
+    if(!user || !txt) return;
+
+    btnSend.disabled = true;
+    btnSend.innerText = "Enviando...";
+
+    try {
+      await addDoc(msgsRef, {
+        autor: user,
+        mensagem: txt,
+        timestamp: new Date()
+      });
+      textField.value = "";
+    } catch (err) {
+      console.error("Erro Firebase:", err);
+      alert("Erro ao enviar mensagem. Certifique-se de ter ativado o Firestore Database em Modo de Teste!");
+    } finally {
+      btnSend.disabled = false;
+      btnSend.innerText = "Enviar 🚀";
+    }
+  }
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    postComment();
+  });
+
+  function escapeHTML(str) {
+    return str.replace(/[&<>'"]/g, tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag));
+  }
 </script>
 
 </body>
