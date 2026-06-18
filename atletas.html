@@ -23,24 +23,23 @@
   --branco:         #ffffff;
 }
 
-html { scroll-behavior: smooth; }
 body { font-family:'Barlow',sans-serif; background:var(--bg-dark); color:#fff; min-height:100vh; overflow-x:hidden; }
 
-/* ══ CORREÇÃO PARA SAFARI/IPHONE ══ */
+/* ══ OTIMIZAÇÃO PARA CELULARES (SEM LAG) ══ */
+.card-inner { 
+  width:100%; aspect-ratio:2/3; position:relative; 
+  transition:transform 0.6s cubic-bezier(.175,.885,.32,1.275); 
+  transform-style:preserve-3d; 
+  will-change:transform; /* Prepara a placa de vídeo do celular */
+}
+.card-atleta.aberta .card-inner { transform:rotateY(180deg) !important; }
+
 .pack-frente, .pack-verso {
   position:absolute; inset:0; width:100%; height:100%;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  border-radius:10px;
-  -webkit-transform: translate3d(0,0,0);
+  -webkit-backface-visibility: hidden; backface-visibility: hidden;
+  border-radius:12px; -webkit-transform: translate3d(0,0,0);
 }
 
-.pack-frente *, .pack-verso * {
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-}
-
-/* ══ KEYFRAMES ══ */
 @keyframes gradientFlow   { 0%,100%{background-position:0% 50%} 50%{background-position:100% 50%} }
 @keyframes shimmer        { 0%{background-position:-200% center} 100%{background-position:200% center} }
 @keyframes fadeUp         { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
@@ -49,15 +48,15 @@ body { font-family:'Barlow',sans-serif; background:var(--bg-dark); color:#fff; m
 @keyframes blink          { 0%,100%{opacity:1} 50%{opacity:.25} }
 @keyframes gradShift      { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
 @keyframes holoPulse      { 0%,100%{opacity:.5} 50%{opacity:1} }
-@keyframes revealFlash    {
-  0%{filter:brightness(1) drop-shadow(0 8px 32px rgba(0,0,0,.6));}
-  30%{filter:brightness(2) drop-shadow(0 0 60px rgba(245,200,66,1)) drop-shadow(0 0 20px rgba(255,255,255,.5));}
-  100%{filter:brightness(1.1) drop-shadow(0 20px 60px rgba(200,150,10,.7));}
-}
 @keyframes particleBurst  { 0%{transform:translate(0,0) scale(1);opacity:1} 100%{transform:translate(var(--bx),var(--by)) scale(0);opacity:0} }
-@keyframes scanLine       { 0%{top:-2px} 100%{top:105%} }
 
-/* ══ PARTICLES ══ */
+/* Animação de revelação otimizada sem "filter" pesado */
+@keyframes revealFlash {
+  0% { box-shadow: 0 12px 40px rgba(0,0,0,.8); transform: rotateY(180deg) translateZ(1px) scale(1); }
+  30% { box-shadow: 0 0 60px rgba(245,200,66,.8), 0 0 100px rgba(245,200,66,.4); transform: rotateY(180deg) translateZ(1px) scale(1.03); }
+  100% { box-shadow: 0 20px 50px rgba(0,0,0,.9), 0 0 30px rgba(212,175,55,.4); transform: rotateY(180deg) translateZ(1px) scale(1); }
+}
+
 #particles-canvas { position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.4; }
 
 /* ══ TICKER ══ */
@@ -67,34 +66,16 @@ body { font-family:'Barlow',sans-serif; background:var(--bg-dark); color:#fff; m
   overflow:hidden;height:40px;display:flex;align-items:center;
   position:relative;z-index:999;border-bottom:2px solid rgba(212,175,55,.4);
 }
-.ticker-bar::before,.ticker-bar::after { content:'';position:absolute;top:0;bottom:0;width:80px;z-index:2;pointer-events:none; }
-.ticker-bar::before{left:0;background:linear-gradient(to right,var(--bg-dark),transparent);}
-.ticker-bar::after{right:0;background:linear-gradient(to left,var(--bg-dark),transparent);}
 .ticker-track { display:flex;gap:0;white-space:nowrap;animation:ticker 28s linear infinite; }
-.ticker-item {
-  font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:11px;
-  letter-spacing:4px;text-transform:uppercase;padding:0 56px;
-  display:flex;align-items:center;gap:12px;
-}
+.ticker-item { font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:11px;letter-spacing:4px;text-transform:uppercase;padding:0 56px;display:flex;align-items:center;gap:12px; }
 .ticker-item.gold { color:var(--ouro-claro); }
 .ticker-item.white { color:rgba(255,255,255,.8); }
 .ticker-dot { width:5px;height:5px;border-radius:50%;background:var(--ouro-claro);flex-shrink:0; }
 
 /* ══ HEADER ══ */
-.site-header {
-  position:sticky;top:0;z-index:1000;
-  background:rgba(0,26,64,.92);backdrop-filter:blur(30px) saturate(1.8);
-  border-bottom:1px solid rgba(212,175,55,.2);
-}
-.site-header::after {
-  content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
-  background:linear-gradient(90deg,var(--verde-copa),var(--ouro-claro),var(--bg-panel-light),var(--ouro-claro),var(--vermelho-copa));
-  background-size:300% 100%;animation:gradientFlow 4s linear infinite;
-}
-.navbar {
-  max-width:1400px;margin:0 auto;padding:0 48px;height:76px;
-  display:flex;align-items:center;gap:4px;
-}
+.site-header { position:sticky;top:0;z-index:1000;background:rgba(0,26,64,.92);backdrop-filter:blur(30px) saturate(1.8);border-bottom:1px solid rgba(212,175,55,.2); }
+.site-header::after { content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--verde-copa),var(--ouro-claro),var(--bg-panel-light),var(--ouro-claro),var(--vermelho-copa));background-size:300% 100%;animation:gradientFlow 4s linear infinite; }
+.navbar { max-width:1400px;margin:0 auto;padding:0 48px;height:76px;display:flex;align-items:center;gap:4px; }
 .nav-logo { display:flex;align-items:center;gap:16px;margin-right:auto;text-decoration:none; }
 .nav-logo-img { height:60px;width:auto;object-fit:contain;filter:drop-shadow(0 4px 16px rgba(0,0,0,.8)); }
 .nav-brand-main { font-family:'Anton',sans-serif;font-size:20px;letter-spacing:5px;color:#fff;display:block;line-height:1; }
@@ -102,248 +83,85 @@ body { font-family:'Barlow',sans-serif; background:var(--bg-dark); color:#fff; m
 .nav-link { text-decoration:none;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.6);padding:9px 16px;border-radius:2px;transition:all .2s;position:relative; }
 .nav-link::after { content:'';position:absolute;bottom:-1px;left:50%;right:50%;height:2px;background:var(--ouro-claro);transition:all .25s; }
 .nav-link:hover { color:#fff; }
-.nav-link:hover::after,.nav-link.active::after { left:16px;right:16px; }
+.nav-link:hover::after, .nav-link.active::after { left:16px;right:16px; }
 .nav-link.active { color:var(--ouro-claro); }
 .nav-cta { text-decoration:none;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#001a40;padding:12px 28px;background:linear-gradient(135deg,var(--ouro-claro) 0%,var(--ouro-brilho) 50%,var(--ouro-claro) 100%);background-size:200% 100%;transition:all .25s;margin-left:14px;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%); }
 .nav-cta:hover { background-position:100%;transform:translateY(-2px); }
 
-/* ══ PAGE HERO ══ */
-.page-hero {
-  position:relative;overflow:hidden;padding:100px 48px 80px;text-align:center;
-  background:
-    radial-gradient(ellipse at 50% 120%,rgba(26,107,255,.4) 0%,transparent 60%),
-    radial-gradient(ellipse at 80% -20%,rgba(212,175,55,.06) 0%,transparent 50%),
-    var(--bg-dark);
-}
-.page-hero::before {
-  content:'';position:absolute;inset:0;pointer-events:none;
-  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='92' viewBox='0 0 80 92'%3E%3Cpath d='M40 0 L80 23 L80 69 L40 92 L0 69 L0 23 Z' fill='none' stroke='rgba(212,175,55,0.05)' stroke-width='1.5'/%3E%3C/svg%3E");
-  background-size:80px 92px;
-}
-.page-hero-scanline { position:absolute;inset:0;pointer-events:none;overflow:hidden; }
-.page-hero-scanline::after { content:'';position:absolute;left:0;right:0;top:0;height:120px;background:linear-gradient(to bottom,transparent,rgba(212,175,55,.025),transparent);animation:scanLine 10s linear infinite; }
-
-.page-eyebrow {
-  display:inline-flex;align-items:center;gap:12px;
-  font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:900;
-  letter-spacing:6px;text-transform:uppercase;color:var(--ouro-claro);margin-bottom:16px;
-  animation:fadeUp .5s ease-out both;
-}
+/* ══ PAGE HERO E TOOLBAR ══ */
+.page-hero { position:relative;overflow:hidden;padding:100px 48px 80px;text-align:center;background:radial-gradient(ellipse at 50% 120%,rgba(26,107,255,.4) 0%,transparent 60%),radial-gradient(ellipse at 80% -20%,rgba(212,175,55,.06) 0%,transparent 50%),var(--bg-dark); }
+.page-eyebrow { display:inline-flex;align-items:center;gap:12px;font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:900;letter-spacing:6px;text-transform:uppercase;color:var(--ouro-claro);margin-bottom:16px;animation:fadeUp .5s ease-out both; }
 .page-eyebrow::before,.page-eyebrow::after { content:'';width:28px;height:2px;background:var(--ouro-claro); }
-.page-title {
-  font-family:'Anton',sans-serif;font-size:clamp(4rem,10vw,9rem);
-  letter-spacing:3px;color:#fff;line-height:.85;animation:fadeUp .6s .1s ease-out both;
-}
-.page-title em {
-  font-style:normal;
-  background:linear-gradient(135deg,var(--ouro-fifa),var(--ouro-claro),var(--ouro-brilho),var(--ouro-fifa));
-  background-size:200% 100%;
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-  background-clip:text;animation:shimmer 5s linear infinite;
-}
-.page-sub { font-family:'Barlow',sans-serif;font-weight:300;font-size:1rem;color:var(--cinza-txt);letter-spacing:1px;margin-top:14px;animation:fadeUp .7s .2s ease-out both; }
-.page-stars { color:var(--ouro-claro);font-size:16px;letter-spacing:8px;margin-top:14px;animation:fadeUp .8s .25s ease-out both; }
+.page-title { font-family:'Anton',sans-serif;font-size:clamp(4rem,10vw,9rem);letter-spacing:3px;color:#fff;line-height:.85;animation:fadeUp .6s .1s ease-out both; }
+.page-title em { font-style:normal;background:linear-gradient(135deg,var(--ouro-fifa),var(--ouro-claro),var(--ouro-brilho),var(--ouro-fifa));background-size:200% 100%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 5s linear infinite; }
+.page-sub { font-family:'Barlow',sans-serif;font-weight:300;font-size:1rem;color:var(--cinza-txt);letter-spacing:1px;margin-top:14px; }
 
-/* ══ TOOLBAR ══ */
-.toolbar {
-  max-width:1400px;margin:48px auto 40px;padding:0 48px;
-  display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;
-  position:relative;z-index:5;
-}
+.toolbar { max-width:1400px;margin:48px auto 40px;padding:0 48px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;position:relative;z-index:5; }
 .toolbar-title { font-family:'Anton',sans-serif;font-size:clamp(1.8rem,4vw,3rem);letter-spacing:3px;color:#fff;line-height:1; }
 .toolbar-sub { font-family:'Barlow Condensed',sans-serif;font-size:.85rem;color:var(--cinza-txt);letter-spacing:1px;margin-top:4px; }
-.btn-vote {
-  display:inline-flex;align-items:center;gap:10px;text-decoration:none;
-  font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:12px;letter-spacing:3px;text-transform:uppercase;
-  color:#001a40;padding:14px 32px;
-  background:linear-gradient(135deg,var(--ouro-claro),var(--ouro-brilho),var(--ouro-claro));
-  background-size:200% 100%;transition:all .25s;
-  clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);
-}
-.btn-vote:hover { background-position:100%;transform:translateY(-2px); }
+.btn-vote { display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:12px;letter-spacing:3px;text-transform:uppercase;color:#001a40;padding:14px 32px;background:linear-gradient(135deg,var(--ouro-claro),var(--ouro-brilho),var(--ouro-claro));background-size:200% 100%;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%); }
 
-/* ══ CARDS GRID ══ */
+/* ══ GRID ══ */
 .atletas-grid-section { max-width:1400px;margin:0 auto;padding:0 48px 100px;position:relative;z-index:5; }
-.cards-grid {
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(210px,1fr));
-  gap:28px;
-}
+.cards-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:28px; }
+.card-atleta { opacity:0;animation:cardIn .8s ease-out forwards;perspective:1200px;cursor:pointer;position:relative; }
 
-/* ══ CARD FIGURINHA ══ */
-.card-atleta {
-  opacity:0;animation:cardIn .8s ease-out forwards;
-  perspective:1200px;cursor:pointer;position:relative;
-}
-.card-atleta:nth-child(1){animation-delay:.03s}
-.card-atleta:nth-child(2){animation-delay:.08s}
-.card-atleta:nth-child(3){animation-delay:.13s}
-.card-atleta:nth-child(4){animation-delay:.18s}
-.card-atleta:nth-child(5){animation-delay:.23s}
-.card-atleta:nth-child(6){animation-delay:.28s}
-.card-atleta:nth-child(7){animation-delay:.33s}
-
-.card-inner {
-  width:100%;aspect-ratio:2/3;position:relative;
-  transition:transform 0.7s cubic-bezier(.175,.885,.32,1.275);
-  transform-style:preserve-3d;
-}
-.card-atleta.aberta .card-inner { transform:rotateY(180deg) !important; }
-
-/* ── FRENTE DO PACOTE (TEMA PANINI) ── */
+/* ══ FRENTE DA FIGURINHA ══ */
 .pack-frente {
   background:linear-gradient(155deg, var(--bg-panel-light) 0%, var(--bg-panel) 40%, var(--bg-dark) 100%);
-  border:2px solid rgba(212,175,55,.4);
-  box-shadow:0 12px 40px rgba(0,0,0,.8),inset 0 1px 0 rgba(245,200,66,.2);
+  border:2px solid rgba(212,175,55,.4);box-shadow:0 12px 40px rgba(0,0,0,.8);
   display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;
   transform: translateZ(1px);
 }
-.pack-frente::before {
-  content:'';position:absolute;inset:0;pointer-events:none;
-  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='46' viewBox='0 0 40 46'%3E%3Cpath d='M20 0 L40 11.5 L40 34.5 L20 46 L0 34.5 L0 11.5 Z' fill='none' stroke='rgba(255,255,255,0.06)' stroke-width='1'/%3E%3C/svg%3E");
-  background-size:40px 46px;
-}
-.pack-frente::after {
-  content:'';position:absolute;top:0;left:0;right:0;height:4px;
-  background:linear-gradient(90deg,var(--ouro-fifa),var(--ouro-claro),var(--ouro-brilho),var(--ouro-claro),var(--ouro-fifa));
-  background-size:200% 100%;animation:shimmer 3s linear infinite;
-}
-
-/* HOLO SHIMMER */
-.pack-shine {
-  position:absolute;inset:0;border-radius:12px;pointer-events:none;
-  background:linear-gradient(
-    105deg,
-    transparent 20%,
-    rgba(212,175,55,.15) 40%,
-    rgba(26,107,255,.1) 50%,
-    rgba(255,255,255,.1) 60%,
-    transparent 80%
-  );
-  background-size:200% 200%;
-  animation:gradShift 4s linear infinite,holoPulse 6s ease-in-out infinite;
-}
-
-.pack-copa-logo {
-  font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:900;
-  letter-spacing:5px;color:rgba(212,175,55,.7);text-transform:uppercase;margin-bottom:8px;
-  position:relative;z-index:1;
-}
-.pack-texto {
-  font-family:'Anton',sans-serif;color:#fff;font-size:1.65rem;letter-spacing:4px;
-  text-align:center;line-height:1;text-shadow:0 2px 15px rgba(0,0,0,.8);
-  position:relative;z-index:1;
-}
+.pack-frente::after { content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--ouro-fifa),var(--ouro-claro),var(--ouro-brilho),var(--ouro-claro),var(--ouro-fifa));background-size:200% 100%;animation:shimmer 3s linear infinite; }
+.pack-shine { position:absolute;inset:0;border-radius:12px;pointer-events:none;background:linear-gradient(105deg,transparent 20%,rgba(212,175,55,.15) 40%,rgba(26,107,255,.1) 50%,rgba(255,255,255,.1) 60%,transparent 80%);background-size:200% 200%;animation:gradShift 4s linear infinite,holoPulse 6s ease-in-out infinite; }
+.pack-copa-logo { font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:900;letter-spacing:5px;color:rgba(212,175,55,.7);text-transform:uppercase;margin-bottom:8px; }
+.pack-texto { font-family:'Anton',sans-serif;color:#fff;font-size:1.65rem;letter-spacing:4px;text-align:center;line-height:1; }
 .pack-texto span { color:var(--ouro-claro); }
-.pack-stars { color:var(--ouro-claro);font-size:12px;letter-spacing:4px;margin:10px 0 6px;position:relative;z-index:1; }
-.pack-interrogacao {
-  font-family:'Anton',sans-serif;font-size:4.5rem;color:#fff;
-  text-shadow:0 0 30px rgba(212,175,55,.7),0 0 60px rgba(26,107,255,.3);
-  margin:4px 0;position:relative;z-index:1;
-}
-.pack-instrucao {
-  font-family:'Barlow Condensed',sans-serif;font-size:.72rem;letter-spacing:2.5px;
-  text-transform:uppercase;color:var(--ouro-claro);
-  animation:blink 1.8s infinite alternate;font-weight:700;margin-top:6px;
-  position:relative;z-index:1;
-}
-.pack-flag-strip {
-  position:absolute;bottom:0;left:0;right:0;height:7px;
-  background:linear-gradient(90deg,var(--bg-panel-light) 0%,var(--bg-panel-light) 33%,var(--ouro-claro) 33%,var(--ouro-claro) 66%,var(--verde-copa) 66%,var(--verde-copa) 100%);
-  opacity:.9;
-}
+.pack-interrogacao { font-family:'Anton',sans-serif;font-size:4.5rem;color:#fff;text-shadow:0 0 30px rgba(212,175,55,.7); }
+.pack-instrucao { font-family:'Barlow Condensed',sans-serif;font-size:.72rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--ouro-claro);animation:blink 1.8s infinite alternate;font-weight:700; }
 
-/* CARD HOVER GLOW */
-.card-atleta:not(.aberta):hover .pack-frente {
-  box-shadow:0 20px 60px rgba(0,0,0,.9),0 0 40px rgba(212,175,55,.4);
-  border-color:rgba(212,175,55,.7);
-}
-
-/* ── VERSO (A FIGURINHA) ── */
+/* ══ O VERSO CORRIGIDO (Arte 100% limpa) ══ */
 .pack-verso {
-  transform:rotateY(180deg) translateZ(1px);
-  background:linear-gradient(155deg, var(--bg-panel-light) 0%, var(--bg-panel) 40%, var(--bg-dark) 100%);
-  border:2px solid rgba(212,175,55,.4);
-  border-radius:12px;
-  display:flex;flex-direction:column;align-items:center;justify-content:flex-end;
-  overflow:hidden;
-  box-shadow:0 12px 40px rgba(0,0,0,.8);
+  transform: rotateY(180deg) translateZ(1px);
+  background: var(--bg-dark); /* Evita vazamento de cor */
+  border-radius: 12px;
+  overflow: hidden; /* Garante que as bordas da sua arte fiquem arredondadas */
+  box-shadow: 0 12px 40px rgba(0,0,0,.8);
 }
-.pack-verso::before {
-  content:'';position:absolute;top:0;left:0;right:0;height:4px;
-  background:linear-gradient(90deg,var(--ouro-fifa),var(--ouro-claro),var(--ouro-brilho),var(--ouro-claro),var(--ouro-fifa));
-  background-size:200% 100%;animation:shimmer 3s linear infinite;
-}
-.pack-verso::after {
-  content:'';position:absolute;inset:0;pointer-events:none;
-  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Ccircle cx='40' cy='40' r='25' fill='none' stroke='rgba(255,255,255,0.03)' stroke-width='1'/%3E%3Ccircle cx='40' cy='40' r='2' fill='rgba(255,255,255,0.03)'/%3E%3C/svg%3E");
-  background-size:80px 80px;
-}
-
 .card-atleta.aberta .pack-verso { animation:revealFlash 1.2s ease-out forwards; }
 
 .card-img {
-  position:absolute;inset:0;width:100%;height:100%;object-fit:contain;
-  filter:drop-shadow(0 10px 30px rgba(0,0,0,.8));transition:filter .3s;z-index:1;
-}
-.card-atleta.aberta .card-img {
-  filter:drop-shadow(0 20px 60px rgba(212,175,55,.6)) brightness(1.05);
-}
-.card-label {
-  position:relative;z-index:2;width:100%;
-  background:linear-gradient(135deg,var(--ouro-fifa),var(--ouro-claro),var(--ouro-brilho));
-  padding:10px 14px;text-align:center;
-}
-.card-label-num {
-  font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;
-  letter-spacing:3px;text-transform:uppercase;color:var(--bg-dark);opacity:.7;
-}
-.card-label-name {
-  font-family:'Anton',sans-serif;font-size:1.15rem;letter-spacing:2px;
-  color:var(--bg-dark);line-height:1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Faz a sua figurinha preencher todo o espaço da carta perfeitamente */
+  display: block;
 }
 
-/* ══ CTA BOTTOM ══ */
-.cta-bottom {
-  position:relative;overflow:hidden;padding:80px 48px;text-align:center;
-  background:linear-gradient(135deg,var(--ouro-fifa) 0%,var(--ouro-claro) 40%,var(--ouro-brilho) 60%,var(--ouro-claro) 100%);
-  background-size:300% 100%;animation:shimmer 6s linear infinite;
-}
-.cta-bottom::before {
-  content:'';position:absolute;inset:0;
-  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='70' viewBox='0 0 60 70'%3E%3Cpath d='M30 0 L60 17 L60 53 L30 70 L0 53 L0 17 Z' fill='none' stroke='rgba(0,0,0,0.05)' stroke-width='1'/%3E%3C/svg%3E");
-  background-size:60px 70px;
-}
-.cta-title { font-family:'Anton',sans-serif;font-size:clamp(3rem,8vw,6rem);letter-spacing:4px;color:#001a40;line-height:.9;margin-bottom:12px;position:relative;z-index:10; }
-.cta-sub { font-family:'Barlow',sans-serif;font-size:1rem;color:#001a40;opacity:.7;margin-bottom:36px;position:relative;z-index:10; }
-.btn-dark {
-  position:relative;z-index:10;
-  display:inline-flex;align-items:center;gap:10px;text-decoration:none;
-  font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:13px;
-  letter-spacing:3px;text-transform:uppercase;color:var(--ouro-claro);
-  padding:18px 48px;background:var(--bg-dark);
-  border:1px solid rgba(212,175,55,.4);transition:all .25s;
-  clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%);
-}
-.btn-dark:hover { background:var(--bg-panel);transform:translateY(-3px);box-shadow:0 20px 50px rgba(0,0,0,.6); }
+/* ══ CTA BOTTOM E FOOTER ══ */
+.cta-bottom { position:relative;overflow:hidden;padding:80px 48px;text-align:center;background:linear-gradient(135deg,var(--ouro-fifa) 0%,var(--ouro-claro) 40%,var(--ouro-brilho) 60%,var(--ouro-claro) 100%);background-size:300% 100%;animation:shimmer 6s linear infinite; }
+.cta-title { font-family:'Anton',sans-serif;font-size:clamp(3rem,8vw,6rem);letter-spacing:4px;color:#001a40;line-height:.9;margin-bottom:12px; }
+.btn-dark { display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:13px;letter-spacing:3px;text-transform:uppercase;color:var(--ouro-claro);padding:18px 48px;background:var(--bg-dark);border:1px solid rgba(212,175,55,.4);clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%); }
 
-/* ══ FOOTER ══ */
-.site-footer { background:var(--bg-dark);border-top:1px solid rgba(212,175,55,.1);padding:40px 48px 32px;text-align:center; }
-.footer-logo-row { display:flex;align-items:center;justify-content:center;gap:24px;margin-bottom:16px; }
-.footer-divider { width:48px;height:1px;background:rgba(212,175,55,.15); }
-.footer-brand { font-family:'Anton',sans-serif;font-size:20px;letter-spacing:6px;color:rgba(212,175,55,.3); }
-.footer-copy { font-size:12px;color:rgba(255,255,255,.3);letter-spacing:.5px;line-height:2; }
-.footer-copy strong { color:var(--verde-copa);font-weight:500; }
+.site-footer { background:var(--bg-dark);border-top:1px solid rgba(212,175,55,.1);padding:64px 48px 40px; }
+.footer-inner { max-width:1400px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:56px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,.05); }
+.footer-logo-wrap { display:flex;align-items:center;gap:16px;margin-bottom:16px; }
+.footer-logo-img { height:52px;width:auto;filter:drop-shadow(0 4px 10px rgba(0,0,0,.8)); }
+.footer-brand-name { font-family:'Anton',sans-serif;font-size:20px;letter-spacing:5px;color:var(--ouro-claro); }
+.footer-brand-text { font-family:'Barlow',sans-serif;font-size:.85rem;color:rgba(255,255,255,.3);line-height:2; }
+.footer-nav-title { font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--ouro-claro);margin-bottom:20px; }
+.footer-nav-links { display:flex;flex-direction:column;gap:12px; }
+.footer-nav-link { text-decoration:none;font-family:'Barlow Condensed',sans-serif;font-size:.95rem;color:rgba(255,255,255,.4);transition:color .2s;letter-spacing:1px; }
+.footer-nav-link:hover { color:var(--ouro-claro); }
+.footer-bottom { max-width:1400px;margin:28px auto 0;display:flex;align-items:center;justify-content:space-between; }
+.footer-bottom-txt { font-family:'Barlow Condensed',sans-serif;font-size:.8rem;color:rgba(255,255,255,.25);letter-spacing:1px; }
 
-@media(max-width:1024px){
-  .navbar{padding:12px 24px;height:auto;flex-wrap:wrap;gap:8px;}
+@media(max-width:1024px){ 
+  .navbar{padding:12px 24px;height:auto;flex-wrap:wrap;gap:8px;} 
   .atletas-grid-section,.toolbar{padding-left:24px;padding-right:24px;}
-  .page-hero{padding:70px 24px 60px;}
+  .footer-inner{grid-template-columns:1fr;gap:32px;}
 }
-@media(max-width:640px){
-  .cards-grid{grid-template-columns:repeat(2,1fr);gap:14px;}
-  .cta-bottom{padding:60px 24px;}
-}
+@media(max-width:640px){ .cards-grid{grid-template-columns:repeat(2,1fr);gap:14px;} }
 </style>
 </head>
 <body>
@@ -354,14 +172,7 @@ body { font-family:'Barlow',sans-serif; background:var(--bg-dark); color:#fff; m
   <div class="ticker-track">
     <span class="ticker-item gold"><span class="ticker-dot"></span>Álbum Panini Copa 2026</span>
     <span class="ticker-item white"><span class="ticker-dot"></span>Álbum de Figurinhas Oficial</span>
-    <span class="ticker-item gold"><span class="ticker-dot"></span>Vote no Craque da Semana</span>
-    <span class="ticker-item white"><span class="ticker-dot"></span>X1 dos Crias MG · Mangueira</span>
     <span class="ticker-item gold"><span class="ticker-dot"></span>Toque para revelar</span>
-    <span class="ticker-item white"><span class="ticker-dot"></span>Álbum Panini Copa 2026</span>
-    <span class="ticker-item gold"><span class="ticker-dot"></span>Álbum de Figurinhas Oficial</span>
-    <span class="ticker-item white"><span class="ticker-dot"></span>Vote no Craque da Semana</span>
-    <span class="ticker-item gold"><span class="ticker-dot"></span>X1 dos Crias MG · Mangueira</span>
-    <span class="ticker-item white"><span class="ticker-dot"></span>Toque para revelar</span>
   </div>
 </div>
 
@@ -381,10 +192,9 @@ body { font-family:'Barlow',sans-serif; background:var(--bg-dark); color:#fff; m
 </header>
 
 <section class="page-hero">
-  <div class="page-hero-scanline"></div>
   <div class="page-eyebrow">Edição Oficial</div>
   <h1 class="page-title">Álbum de<br><em>Figurinhas</em></h1>
-  <p class="page-sub">Toque nos pacotes para revelar os 7 craques da Mangueira desta semana</p>
+  <p class="page-sub">Toque nos pacotes para revelar os 8 craques da Mangueira desta semana</p>
   <div class="page-stars">★ ★ ★ ★ ★</div>
 </section>
 
@@ -401,57 +211,73 @@ body { font-family:'Barlow',sans-serif; background:var(--bg-dark); color:#fff; m
 
     <div class="card-atleta" onclick="revealCard(this)">
       <div class="card-inner">
-        <div class="pack-frente"><div class="pack-shine"></div><div class="pack-copa-logo">Álbum · 2026</div><div class="pack-texto">X1 DOS<br><span>CRIAS</span></div><div class="pack-stars">★ ★ ★</div><div class="pack-interrogacao">?</div><div class="pack-instrucao">Toque para abrir</div><div class="pack-flag-strip"></div></div>
-        <div class="pack-verso"><img src="aandreey.jpeg" alt="Andrey" class="card-img" onerror="this.style.display='none'"><div class="card-label"><div class="card-label-num">ÁLBUM · 2026</div><div class="card-label-name">Andrey</div></div></div>
+        <div class="pack-frente"><div class="pack-shine"></div><div class="pack-copa-logo">Álbum · 2026</div><div class="pack-texto">X1 DOS<br><span>CRIAS</span></div><div class="pack-interrogacao">?</div><div class="pack-instrucao">Abrir</div></div>
+        <div class="pack-verso">
+          <img src="aandreey.jpeg" alt="Andrey" class="card-img" onerror="this.style.display='none'">
+        </div>
       </div>
     </div>
 
     <div class="card-atleta" onclick="revealCard(this)">
       <div class="card-inner">
-        <div class="pack-frente"><div class="pack-shine"></div><div class="pack-copa-logo">Álbum · 2026</div><div class="pack-texto">X1 DOS<br><span>CRIAS</span></div><div class="pack-stars">★ ★ ★</div><div class="pack-interrogacao">?</div><div class="pack-instrucao">Toque para abrir</div><div class="pack-flag-strip"></div></div>
-        <div class="pack-verso"><img src="hgh.jpeg" alt="HG" class="card-img" onerror="this.style.display='none'"><div class="card-label"><div class="card-label-num">ÁLBUM · 2026</div><div class="card-label-name">HG</div></div></div>
+        <div class="pack-frente"><div class="pack-shine"></div><div class="pack-copa-logo">Álbum · 2026</div><div class="pack-texto">X1 DOS<br><span>CRIAS</span></div><div class="pack-interrogacao">?</div><div class="pack-instrucao">Abrir</div></div>
+        <div class="pack-verso">
+          <img src="hgh.jpeg" alt="HG" class="card-img" onerror="this.style.display='none'">
+        </div>
       </div>
     </div>
 
     <div class="card-atleta" onclick="revealCard(this)">
       <div class="card-inner">
-        <div class="pack-frente"><div class="pack-shine"></div><div class="pack-copa-logo">Álbum · 2026</div><div class="pack-texto">X1 DOS<br><span>CRIAS</span></div><div class="pack-stars">★ ★ ★</div><div class="pack-interrogacao">?</div><div class="pack-instrucao">Toque para abrir</div><div class="pack-flag-strip"></div></div>
-        <div class="pack-verso"><img src="joaoao.jpeg" alt="João" class="card-img" onerror="this.style.display='none'"><div class="card-label"><div class="card-label-num">ÁLBUM · 2026</div><div class="card-label-name">João</div></div></div>
+        <div class="pack-frente"><div class="pack-shine"></div><div class="pack-copa-logo">Álbum · 2026</div><div class="pack-texto">X1 DOS<br><span>CRIAS</span></div><div class="pack-interrogacao">?</div><div class="pack-instrucao">Abrir</div></div>
+        <div class="pack-verso">
+          <img src="joaoao.jpeg" alt="João" class="card-img" onerror="this.style.display='none'">
+        </div>
       </div>
     </div>
 
     <div class="card-atleta" onclick="revealCard(this)">
       <div class="card-inner">
-        <div class="pack-frente"><div class="pack-shine"></div><div class="pack-copa-logo">Álbum · 2026</div><div class="pack-texto">X1 DOS<br><span>CRIAS</span></div><div class="pack-stars">★ ★ ★</div><div class="pack-interrogacao">?</div><div class="pack-instrucao">Toque para abrir</div><div class="pack-flag-strip"></div></div>
-        <div class="pack-verso"><img src="pedriinhoo.jpeg" alt="Pedrinho" class="card-img" onerror="this.style.display='none'"><div class="card-label"><div class="card-label-num">ÁLBUM · 2026</div><div class="card-label-name">Pedrinho</div></div></div>
+        <div class="pack-frente"><div class="pack-shine"></div><div class="pack-copa-logo">Álbum · 2026</div><div class="pack-texto">X1 DOS<br><span>CRIAS</span></div><div class="pack-interrogacao">?</div><div class="pack-instrucao">Abrir</div></div>
+        <div class="pack-verso">
+          <img src="pedriinhoo.jpeg" alt="Pedrinho" class="card-img" onerror="this.style.display='none'">
+        </div>
       </div>
     </div>
 
     <div class="card-atleta" onclick="revealCard(this)">
       <div class="card-inner">
-        <div class="pack-frente"><div class="pack-shine"></div><div class="pack-copa-logo">Álbum · 2026</div><div class="pack-texto">X1 DOS<br><span>CRIAS</span></div><div class="pack-stars">★ ★ ★</div><div class="pack-interrogacao">?</div><div class="pack-instrucao">Toque para abrir</div><div class="pack-flag-strip"></div></div>
-        <div class="pack-verso"><img src="suukkita.jpeg" alt="Sukita" class="card-img" onerror="this.style.display='none'"><div class="card-label"><div class="card-label-num">ÁLBUM · 2026</div><div class="card-label-name">Sukita</div></div></div>
+        <div class="pack-frente"><div class="pack-shine"></div><div class="pack-copa-logo">Álbum · 2026</div><div class="pack-texto">X1 DOS<br><span>CRIAS</span></div><div class="pack-interrogacao">?</div><div class="pack-instrucao">Abrir</div></div>
+        <div class="pack-verso">
+          <img src="suukkita.jpeg" alt="Sukita" class="card-img" onerror="this.style.display='none'">
+        </div>
       </div>
     </div>
 
     <div class="card-atleta" onclick="revealCard(this)">
       <div class="card-inner">
-        <div class="pack-frente"><div class="pack-shine"></div><div class="pack-copa-logo">Álbum · 2026</div><div class="pack-texto">X1 DOS<br><span>CRIAS</span></div><div class="pack-stars">★ ★ ★</div><div class="pack-interrogacao">?</div><div class="pack-instrucao">Toque para abrir</div><div class="pack-flag-strip"></div></div>
-        <div class="pack-verso"><img src="yanan.jpeg" alt="Yan" class="card-img" onerror="this.style.display='none'"><div class="card-label"><div class="card-label-num">ÁLBUM · 2026</div><div class="card-label-name">Yan</div></div></div>
+        <div class="pack-frente"><div class="pack-shine"></div><div class="pack-copa-logo">Álbum · 2026</div><div class="pack-texto">X1 DOS<br><span>CRIAS</span></div><div class="pack-interrogacao">?</div><div class="pack-instrucao">Abrir</div></div>
+        <div class="pack-verso">
+          <img src="yanan.jpeg" alt="Yan" class="card-img" onerror="this.style.display='none'">
+        </div>
       </div>
     </div>
 
     <div class="card-atleta" onclick="revealCard(this)">
       <div class="card-inner">
-        <div class="pack-frente"><div class="pack-shine"></div><div class="pack-copa-logo">Álbum · 2026</div><div class="pack-texto">X1 DOS<br><span>CRIAS</span></div><div class="pack-stars">★ ★ ★</div><div class="pack-interrogacao">?</div><div class="pack-instrucao">Toque para abrir</div><div class="pack-flag-strip"></div></div>
-        <div class="pack-verso"><img src="yyllan.jpeg" alt="Yllan" class="card-img" onerror="this.style.display='none'"><div class="card-label"><div class="card-label-num">ÁLBUM · 2026</div><div class="card-label-name">Yllan</div></div></div>
+        <div class="pack-frente"><div class="pack-shine"></div><div class="pack-copa-logo">Álbum · 2026</div><div class="pack-texto">X1 DOS<br><span>CRIAS</span></div><div class="pack-interrogacao">?</div><div class="pack-instrucao">Abrir</div></div>
+        <div class="pack-verso">
+          <img src="yyllan.jpeg" alt="Yllan" class="card-img" onerror="this.style.display='none'">
+        </div>
       </div>
     </div>
 
-     <div class="card-atleta" onclick="revealCard(this)">
+    <div class="card-atleta" onclick="revealCard(this)">
       <div class="card-inner">
-        <div class="pack-frente"><div class="pack-shine"></div><div class="pack-copa-logo">Álbum · 2026</div><div class="pack-texto">X1 DOS<br><span>CRIAS</span></div><div class="pack-stars">★ ★ ★</div><div class="pack-interrogacao">?</div><div class="pack-instrucao">Toque para abrir</div><div class="pack-flag-strip"></div></div>
-        <div class="pack-verso"><img src="lele.jpeg" alt="Lelê" class="card-img" onerror="this.style.display='none'"><div class="card-label"><div class="card-label-num">ÁLBUM · 2026</div><div class="card-label-name">Lelê</div></div></div>
+        <div class="pack-frente"><div class="pack-shine"></div><div class="pack-copa-logo">Álbum · 2026</div><div class="pack-texto">X1 DOS<br><span>CRIAS</span></div><div class="pack-interrogacao">?</div><div class="pack-instrucao">Abrir</div></div>
+        <div class="pack-verso">
+          <img src="lele.jpeg" alt="Lelê" class="card-img" onerror="this.style.display='none'">
+        </div>
       </div>
     </div>
 
@@ -460,21 +286,33 @@ body { font-family:'Barlow',sans-serif; background:var(--bg-dark); color:#fff; m
 
 <section class="cta-bottom">
   <h2 class="cta-title">⭐ VOTE NO CRAQUE ⭐</h2>
-  <p class="cta-sub">O mérito é de quem joga. A voz é da comunidade.</p>
   <a href="votacao.html" class="btn-dark">🏆 Abrir Urna Eletrônica</a>
 </section>
 
 <footer class="site-footer">
-  <div class="footer-logo-row">
-    <div class="footer-divider"></div>
-    <span class="footer-brand">X1 dos Crias MG</span>
-    <div class="footer-divider"></div>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo-wrap">
+        <img src="x1doscria.jpg" alt="X1" class="footer-logo-img" onerror="this.style.display='none'">
+        <span class="footer-brand-name">X1 dos Crias</span>
+      </div>
+      <p class="footer-brand-text">O álbum oficial da galera da Mangueira.<br>Copa 2026 · Temporada em curso.</p>
+    </div>
+    <div>
+      <div class="footer-nav-title">Páginas</div>
+      <div class="footer-nav-links">
+        <a href="index.html" class="footer-nav-link">Início</a>
+        <a href="atletas.html" class="footer-nav-link">Álbum de Figurinhas</a>
+        <a href="votacao.html" class="footer-nav-link">Votação</a>
+      </div>
+    </div>
   </div>
-  <p class="footer-copy">&copy; 2026 <strong>Michael Sacramento</strong>. Todos os direitos reservados.<br><span style="font-size:11px;color:rgba(255,255,255,.1);">Álbum oficial · Copa 2026 · X1 dos Crias da MG.</span></p>
+  <div class="footer-bottom">
+    <span class="footer-bottom-txt">© 2026 Michael Sacramento · X1 dos Crias MG · Todos os direitos reservados</span>
+  </div>
 </footer>
 
 <script>
-/* PARTICLES */
 (function(){
   const canvas=document.getElementById('particles-canvas');
   const ctx=canvas.getContext('2d');
@@ -487,7 +325,6 @@ body { font-family:'Barlow',sans-serif; background:var(--bg-dark); color:#fff; m
   draw();
 })();
 
-/* CARD 3D TILT */
 document.querySelectorAll('.card-atleta').forEach(c=>{
   c.addEventListener('mousemove',e=>{
     if(c.classList.contains('aberta'))return;
@@ -495,23 +332,16 @@ document.querySelectorAll('.card-atleta').forEach(c=>{
     const x=(e.clientX-r.left)/r.width-.5;
     const y=(e.clientY-r.top)/r.height-.5;
     c.querySelector('.card-inner').style.transform=`rotateY(${x*22}deg) rotateX(${-y*16}deg) scale(1.04)`;
-    c.querySelector('.pack-shine').style.background=`linear-gradient(${105+x*30}deg,transparent 20%,rgba(212, 175, 55,${.05+Math.abs(x)*.08}) 40%,rgba(26, 107, 255,${.08+Math.abs(y)*.08}) 50%,rgba(255, 255, 255,${.05+Math.abs(x)*.06}) 60%,transparent 80%)`;
   });
   c.addEventListener('mouseleave',()=>{
-    if(!c.classList.contains('aberta')){
-      c.querySelector('.card-inner').style.transform='';
-      c.querySelector('.pack-shine').style.background='';
-    }
+    if(!c.classList.contains('aberta')){ c.querySelector('.card-inner').style.transform=''; }
   });
 });
 
-/* REVEAL WITH PARTICLES */
 function revealCard(card){
   const wasOpen=card.classList.contains('aberta');
   card.classList.toggle('aberta');
-  if(!wasOpen){
-    spawnParticles(card);
-  }
+  if(!wasOpen){ spawnParticles(card); }
 }
 
 function spawnParticles(card){
@@ -523,15 +353,12 @@ function spawnParticles(card){
     const p=document.createElement('div');
     const angle=(i/N)*360;
     const dist=60+Math.random()*80;
-    const bx=Math.cos(angle*Math.PI/180)*dist+'px';
-    const by=Math.sin(angle*Math.PI/180)*dist+'px';
     p.style.cssText=`
       position:fixed;left:${cx}px;top:${cy}px;width:6px;height:6px;
       border-radius:50%;pointer-events:none;z-index:9999;
       background:${Math.random()>.5?'#d4af37':'#1a6bff'};
-      --bx:${bx};--by:${by};
-      animation:particleBurst .7s ease-out forwards;
-      transform-origin:center;
+      --bx:${Math.cos(angle*Math.PI/180)*dist+'px'};--by:${Math.sin(angle*Math.PI/180)*dist+'px'};
+      animation:particleBurst .7s ease-out forwards;transform-origin:center;
     `;
     document.body.appendChild(p);
     setTimeout(()=>p.remove(),700);
