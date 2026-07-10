@@ -248,8 +248,41 @@ iframe {
       <span>★ ★ ★ ★ ★</span>
     </div>
     <div class="iframe-wrap">
-      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfjG1JIjp2oVfHAlQS6nFhv2BpIvg-2-wZXPf_U4Xv8YtpmIQ/viewform?embedded=true" title="Formulário de Votação — Craque da Semana X1 dos Crias MG">Carregando…</iframe>
+      <iframe 
+        id="voteFrame"
+        src="https://docs.google.com/forms/d/e/1FAIpQLSdfScTz6XGaplbNvMDqR4zJUtqLvkx8v9fzuOh0ShhbnvU_RA/viewform?embedded=true&hl=pt-BR"
+        width="100%"
+        height="1200"
+        frameborder="0"
+        marginheight="0"
+        marginwidth="0"
+        sandbox="allow-scripts allow-forms allow-same-origin allow-popups allow-top-navigation"
+        loading="lazy"
+        title="Formulário de Votação"
+        onload="document.getElementById('iframeLoader').style.display='none'"
+      >Carregando…</iframe>
+      <div id="iframeLoader" style="
+        position:absolute;inset:0;
+        background:rgba(0,26,64,.95);
+        display:flex;flex-direction:column;
+        align-items:center;justify-content:center;gap:20px;
+        z-index:10;pointer-events:none;
+      ">
+        <div style="width:44px;height:44px;border:3px solid rgba(212,175,55,.2);border-top-color:#f5d77f;border-radius:50%;animation:spin 1s linear infinite"></div>
+        <span style="font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:3px;text-transform:uppercase;color:rgba(212,175,55,.7)">Carregando urna…</span>
+      </div>
     </div>
+    <!-- BOTÃO FALLBACK — aparece se iframe bloquear -->
+    <div style="text-align:center;padding:24px 20px 32px;background:rgba(0,0,0,.3)">
+      <p style="font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:2px;color:rgba(255,255,255,.4);margin-bottom:16px;text-transform:uppercase">Formulário não carregou? Abra diretamente:</p>
+      <a 
+        href="https://docs.google.com/forms/d/e/1FAIpQLSdfScTz6XGaplbNvMDqR4zJUtqLvkx8v9fzuOh0ShhbnvU_RA/viewform"
+        target="_blank"
+        rel="noopener"
+        style="display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:13px;letter-spacing:3px;text-transform:uppercase;color:#001a40;padding:16px 40px;background:linear-gradient(135deg,#f5d77f,#fff3cd,#f5d77f);clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%)"
+      >🗳️ ABRIR FORMULÁRIO</a>
+    </div>
+    <style>@keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}</style>
   </div>
 </section>
 
