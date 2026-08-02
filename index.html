@@ -114,7 +114,7 @@ body { font-family:'Barlow',sans-serif; background:var(--bg-dark); color:#fff; m
 .hero-right { animation:slideInRight .9s .2s ease-out both;display:flex;flex-direction:column;align-items:center; }
 .hero-video-frame { position:relative;width:100%;max-width:360px;border-radius:0;animation:videoGlow 4s ease-in-out infinite; }
 .hero-video-frame::before { content:'';position:absolute;inset:-2px;z-index:-1;background:linear-gradient(135deg,var(--ouro-fifa),var(--bg-panel-light),var(--ouro-fifa));background-size:300% 300%;animation:gradShift 6s linear infinite;border-radius:2px; }
-.hero-video-frame::after { content:'MV · CRAQUE DA SEMANA';position:absolute;bottom:-36px;left:0;right:0;text-align:center;font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:900;letter-spacing:5px;text-transform:uppercase;color:rgba(212,175,55,.8); }
+.hero-video-frame::after { content:'MARRETA · CRAQUE DA SEMANA';position:absolute;bottom:-36px;left:0;right:0;text-align:center;font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:900;letter-spacing:5px;text-transform:uppercase;color:rgba(212,175,55,.8); }
 .hero-video-frame video { width:100%;display:block;filter:brightness(1.05) contrast(1.05) saturate(1.1); }
 .hero-video-badge { position:absolute;top:16px;left:16px;z-index:2;background:rgba(0,26,64,.85);border:1px solid rgba(212,175,55,.5);padding:6px 14px;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--ouro-claro);backdrop-filter:blur(10px);display:flex;align-items:center;gap:8px; }
 .live-dot { width:7px;height:7px;border-radius:50%;background:#ff4040;animation:pulseOuro 1.5s infinite; }
@@ -268,14 +268,14 @@ body { font-family:'Barlow',sans-serif; background:var(--bg-dark); color:#fff; m
       </div>
       <div class="hero-stats">
         <div class="hero-stat"><div class="hero-stat-val" id="hero-votes">--</div><div class="hero-stat-lbl">Votos essa semana</div></div>
-        <div class="hero-stat"><div class="hero-stat-val">10</div><div class="hero-stat-lbl">Figurinhas</div></div>
+        <div class="hero-stat"><div class="hero-stat-val">12</div><div class="hero-stat-lbl">Figurinhas</div></div>
         <div class="hero-stat"><div class="hero-stat-val">2026</div><div class="hero-stat-lbl">Temporada</div></div>
       </div>
     </div>
     <div class="hero-right">
       <div class="hero-video-frame">
         <div class="hero-video-badge"><span class="live-dot"></span>ÚLTIMO CRAQUE</div>
-        <video src="craquemv.mp4" autoplay loop muted playsinline></video>
+        <video src="craquemarreta.MOV" autoplay loop muted playsinline></video>
       </div>
     </div>
   </div>
@@ -396,7 +396,7 @@ body { font-family:'Barlow',sans-serif; background:var(--bg-dark); color:#fff; m
 (function(){
   const el=document.getElementById('hero-votes');
   if(el){
-    const c = 817; 
+    const c = 511; 
     const dur=1500; const startTime=performance.now();
     function countUp(ts){
       const p=Math.min((ts-startTime)/dur,1);
