@@ -1,414 +1,627 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta name="geo.region" content="BR-RJ">
-<meta name="geo.placename" content="Mangueira">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>X1 dos Crias MG — Copa 2026</title>
-<meta name="description" content="Álbum oficial X1 dos Crias MG. Vote no Craque da Semana. Copa 2026.">
+<meta name="description" content="Álbum oficial X1 dos Crias MG. Vote no Craque da Semana. Copa 2026 · Mangueira.">
+<meta name="theme-color" content="#080a06">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@200;300;400;500;600;700&family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,700;0,900;1,700&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;600;700;900&family=Barlow:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
-:root {
-  /* ══ PALETA ÁLBUM PANINI COPA 2026 ══ */
-  --bg-dark:        #001a40; /* Azul marinho escuro */
-  --bg-panel:       #003087; /* Azul clássico Panini */
-  --bg-panel-light: #1a6bff; /* Azul vibrante */
-  --ouro-fifa:      #d4af37; 
-  --ouro-claro:     #f5d77f;
-  --ouro-brilho:    #fff3cd;
-  --vermelho-copa:  #e3003a; 
-  --verde-copa:     #00b844;
-  --cinza-txt:      rgba(255,255,255,0.7);
-  --branco:         #ffffff;
+:root{
+  /* ══ IDENTIDADE X1 DOS CRIAS ══ */
+  --preto:      #080a06;
+  --preto2:     #0d0f0a;
+  --preto3:     #121510;
+  --verde:      #a8e63d;    /* verde lima neon do X1 */
+  --verde2:     #c5f25a;    /* verde mais claro */
+  --verde-dark: #4a7a0e;
+  --rosa:       #f0127a;    /* rosa neon dos crias */
+  --rosa2:      #ff3d9a;
+  --dourado:    #f5c842;
+  --dourado2:   #ffe380;
+  --branco:     #f4f4f0;
+  --cinza:      rgba(244,244,240,.5);
+  --cinza2:     rgba(244,244,240,.25);
+  --border-v:   rgba(168,230,61,.18);
+  --border-r:   rgba(240,18,122,.18);
 }
 
-html { scroll-behavior: smooth; }
-body { font-family:'Barlow',sans-serif; background:var(--bg-dark); color:#fff; min-height:100vh; overflow-x:hidden; }
+html{scroll-behavior:smooth}
+body{font-family:'Barlow',sans-serif;background:var(--preto);color:var(--branco);overflow-x:hidden;min-height:100vh}
 
-/* ══ KEYFRAMES ══ */
-@keyframes gradientFlow   { 0%,100%{background-position:0% 50%} 50%{background-position:100% 50%} }
-@keyframes shimmer        { 0%{background-position:-200% center} 100%{background-position:200% center} }
-@keyframes fadeUp         { from{opacity:0;transform:translateY(40px)} to{opacity:1;transform:translateY(0)} }
-@keyframes floatUp        { 0%,100%{transform:translateY(0) rotate(0deg)} 50%{transform:translateY(-14px) rotate(.5deg)} }
-@keyframes glowOuro       { 0%,100%{box-shadow:0 0 30px rgba(212,175,55,.3),0 0 0 1px rgba(212,175,55,.2)} 50%{box-shadow:0 0 70px rgba(212,175,55,.7),0 0 120px rgba(212,175,55,.15),0 0 0 1px rgba(212,175,55,.4)} }
-@keyframes ticker         { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
-@keyframes pulseOuro      { 0%{box-shadow:0 0 0 0 rgba(212,175,55,.7)} 70%{box-shadow:0 0 0 18px rgba(212,175,55,0)} 100%{box-shadow:0 0 0 0 rgba(212,175,55,0)} }
-@keyframes scanLine       { 0%{top:-2px} 100%{top:105%} }
-@keyframes slideInLeft    { from{opacity:0;transform:translateX(-60px)} to{opacity:1;transform:translateX(0)} }
-@keyframes slideInRight   { from{opacity:0;transform:translateX(60px)} to{opacity:1;transform:translateX(0)} }
-@keyframes borderPulse    { 0%,100%{border-color:rgba(212,175,55,.25)} 50%{border-color:rgba(212,175,55,.7)} }
-@keyframes gradShift      { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
-@keyframes videoGlow      { 0%,100%{box-shadow:0 0 40px rgba(212,175,55,.2),0 40px 80px rgba(0,0,0,.8)} 50%{box-shadow:0 0 80px rgba(212,175,55,.5),0 0 40px rgba(26,107,255,.4),0 40px 80px rgba(0,0,0,.8)} }
-@keyframes ctaTextShift   { 0%,100%{letter-spacing:4px} 50%{letter-spacing:6px} }
+/* ── NOISE TEXTURE ── */
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");opacity:.035;pointer-events:none;z-index:9000}
 
-/* ══ CANVAS PARTICLES ══ */
-#particles-canvas {position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.4;}
+/* ── KEYFRAMES ── */
+@keyframes ticker       {0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+@keyframes fadeUp       {from{opacity:0;transform:translateY(52px)}to{opacity:1;transform:translateY(0)}}
+@keyframes neonPulseV   {0%,100%{text-shadow:0 0 12px var(--verde),0 0 24px rgba(168,230,61,.4)}50%{text-shadow:0 0 20px var(--verde),0 0 36px rgba(168,230,61,.55)}}
+@keyframes neonPulseR   {0%,100%{text-shadow:0 0 12px var(--rosa),0 0 24px rgba(240,18,122,.4)}50%{text-shadow:0 0 20px var(--rosa),0 0 36px rgba(240,18,122,.55)}}
+@keyframes drip         {0%{transform:scaleY(0);transform-origin:top}100%{transform:scaleY(1);transform-origin:top}}
+@keyframes shimmerV     {0%{background-position:-200% center}100%{background-position:200% center}}
+@keyframes scanBeam     {0%{transform:translateY(110vh)}100%{transform:translateY(-110vh)}}
+@keyframes blipV        {0%,49%{opacity:1;transform:scale(1)}50%,100%{opacity:0;transform:scale(1.8)}}
+@keyframes floatLogo    {0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-12px) rotate(1deg)}}
+@keyframes borderNeon   {0%,100%{border-color:rgba(168,230,61,.3)}50%{border-color:rgba(168,230,61,.9);box-shadow:0 0 20px rgba(168,230,61,.3)}}
+@keyframes gradNeon     {0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+@keyframes countUp      {from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes graffSlash   {from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0% 0 0)}}
+@keyframes spin         {0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+@keyframes splatter     {0%{opacity:0;transform:scale(0.3) rotate(-15deg)}60%{opacity:1;transform:scale(1.05) rotate(2deg)}100%{transform:scale(1) rotate(0deg)}}
 
-/* ══ TICKER ══ */
-.ticker-bar {
-  background:linear-gradient(90deg, #001a40 0%, var(--bg-panel) 25%, #001a40 50%, var(--bg-panel) 75%, #001a40 100%);
-  background-size:400% 100%;animation:gradShift 8s linear infinite;
-  overflow:hidden;height:40px;display:flex;align-items:center;
-  position:relative;z-index:999;border-bottom:2px solid rgba(212,175,55,.4);
+.scan-beam{position:fixed;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,rgba(168,230,61,.08),transparent);pointer-events:none;z-index:8998;animation:scanBeam 14s linear infinite}
+
+/* ── TICKER ── */
+.ticker{height:38px;background:#000;border-bottom:2px solid var(--verde);overflow:hidden;display:flex;align-items:center;position:relative;z-index:1001}
+.ticker::before,.ticker::after{content:'';position:absolute;top:0;bottom:0;width:60px;z-index:2}
+.ticker::before{left:0;background:linear-gradient(to right,#000,transparent)}
+.ticker::after{right:0;background:linear-gradient(to left,#000,transparent)}
+.ticker-track{display:flex;white-space:nowrap;animation:ticker 24s linear infinite}
+.ti{font-family:'DM Mono',monospace;font-weight:500;font-size:10px;letter-spacing:4px;text-transform:uppercase;padding:0 56px;display:flex;align-items:center;gap:12px}
+.ti.v{color:var(--verde)}
+.ti.r{color:var(--rosa)}
+.ti.w{color:rgba(244,244,240,.4)}
+.tsep{width:4px;height:4px;border-radius:50%;background:var(--rosa);flex-shrink:0}
+
+/* ── HEADER ── */
+.header{position:sticky;top:0;z-index:1000;background:rgba(8,10,6,.97);backdrop-filter:blur(10px);border-bottom:1px solid var(--border-v)}
+.header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--rosa),var(--verde),var(--dourado),var(--verde),var(--rosa));background-size:300%;animation:gradNeon 5s linear infinite}
+.nav{max-width:1480px;margin:0 auto;padding:0 48px;height:74px;display:flex;align-items:center;gap:8px}
+.logo{display:flex;align-items:center;gap:14px;text-decoration:none;margin-right:auto}
+.logo-img{height:56px;width:auto;filter:drop-shadow(0 0 12px rgba(168,230,61,.4))}
+.logo-txt-main{font-family:'Black Ops One',sans-serif;font-size:18px;letter-spacing:3px;color:var(--branco);display:block;line-height:1}
+.logo-txt-sub{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:5px;color:var(--verde);text-transform:uppercase;display:block;margin-top:4px}
+.nl{text-decoration:none;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--cinza);padding:8px 16px;position:relative;transition:color .2s}
+.nl::after{content:'';position:absolute;bottom:0;left:16px;right:16px;height:2px;background:var(--verde);transform:scaleX(0);transform-origin:left;transition:transform .22s}
+.nl:hover{color:var(--verde)}
+.nl:hover::after,.nl.act::after{transform:scaleX(1)}
+.nl.act{color:var(--verde)}
+.nav-cta{text-decoration:none;font-family:'Black Ops One',sans-serif;font-size:11px;letter-spacing:2px;color:#000;background:linear-gradient(135deg,var(--verde),var(--verde2));padding:12px 28px;margin-left:12px;clip-path:polygon(8px 0,100% 0,calc(100% - 8px) 100%,0 100%);transition:transform .2s,box-shadow .2s;position:relative;overflow:hidden}
+.nav-cta::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.3),transparent);transform:translateX(-100%);transition:transform .4s}
+.nav-cta:hover::before{transform:translateX(100%)}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(168,230,61,.4)}
+
+/* ── HERO ── */
+.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;overflow:hidden;background:var(--preto)}
+
+/* GRAFFITI TEXTURE BG */
+.hero-bg{
+  position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 55% 70% at 10% 50%,rgba(168,230,61,.07) 0%,transparent 65%),
+    radial-gradient(ellipse 50% 60% at 90% 40%,rgba(240,18,122,.07) 0%,transparent 65%),
+    radial-gradient(ellipse 80% 40% at 50% 110%,rgba(168,230,61,.05) 0%,transparent 60%),
+    var(--preto);
 }
-.ticker-track { display:flex;gap:0;white-space:nowrap;animation:ticker 28s linear infinite; }
-.ticker-item { font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:11px;letter-spacing:4px;text-transform:uppercase;padding:0 56px;display:flex;align-items:center;gap:12px; }
-.ticker-item.gold { color:var(--ouro-claro); }
-.ticker-item.white { color:rgba(255,255,255,.8); }
-.ticker-dot { width:5px;height:5px;border-radius:50%;background:var(--ouro-claro);flex-shrink:0; }
-
-/* ══ HEADER ══ */
-.site-header { position:sticky;top:0;z-index:1000;background:rgba(0,26,64,.92);backdrop-filter:blur(30px) saturate(1.8);border-bottom:1px solid rgba(212,175,55,.2); }
-.site-header::after { content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--verde-copa),var(--ouro-claro),var(--bg-panel-light),var(--ouro-claro),var(--vermelho-copa));background-size:300% 100%;animation:gradientFlow 4s linear infinite; }
-.navbar { max-width:1400px;margin:0 auto;padding:0 48px;height:76px;display:flex;align-items:center;gap:4px; }
-.nav-logo { display:flex;align-items:center;gap:16px;margin-right:auto;text-decoration:none; }
-.nav-logo-img { height:60px;width:auto;object-fit:contain;filter:drop-shadow(0 4px 16px rgba(0,0,0,.8)); }
-.nav-brand-main { font-family:'Anton',sans-serif;font-size:20px;letter-spacing:5px;color:#fff;display:block;line-height:1; }
-.nav-brand-sub  { font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:5px;color:var(--ouro-claro);text-transform:uppercase;display:block;margin-top:4px; }
-.nav-link { text-decoration:none;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.6);padding:9px 16px;border-radius:2px;transition:all .2s;position:relative; }
-.nav-link::after { content:'';position:absolute;bottom:-1px;left:50%;right:50%;height:2px;background:var(--ouro-claro);transition:all .25s; }
-.nav-link:hover { color:#fff; }
-.nav-link:hover::after { left:16px;right:16px; }
-.nav-link.active { color:var(--ouro-claro); }
-.nav-link.active::after { left:16px;right:16px; }
-.nav-cta { text-decoration:none;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#001a40;padding:12px 28px;background:linear-gradient(135deg,var(--ouro-claro) 0%,var(--ouro-brilho) 50%,var(--ouro-claro) 100%);background-size:200% 100%;transition:all .25s;margin-left:14px;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%); }
-.nav-cta:hover { background-position:100%;transform:translateY(-2px); }
-
-/* ══ HERO ══ */
-.hero { position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;background:radial-gradient(ellipse at 65% 50%, rgba(26,107,255,.3) 0%, transparent 55%),radial-gradient(ellipse at 10% 80%, rgba(0,184,68,.1) 0%, transparent 40%),radial-gradient(ellipse at 90% 10%, rgba(227,0,58,.1) 0%, transparent 40%),var(--bg-dark); }
-.hero-field { position:absolute;inset:0;z-index:0;overflow:hidden;opacity:.05;pointer-events:none; }
-.hero-field svg { width:100%;height:100%;object-fit:cover; }
-.hero-scanline { position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden; }
-.hero-scanline::after { content:'';position:absolute;left:0;right:0;top:0;height:180px;background:linear-gradient(to bottom,transparent,rgba(255,255,255,.05),transparent);animation:scanLine 10s linear infinite; }
-.hero-content { position:relative;z-index:5;max-width:1400px;width:100%;margin:0 auto;padding:100px 48px;display:grid;grid-template-columns:1.1fr 0.9fr;align-items:center;gap:60px; }
-
-.hero-left { animation:slideInLeft .9s .1s ease-out both; }
-.hero-season-tag { display:inline-flex;align-items:center;gap:12px;background:rgba(212,175,55,.15);border:1px solid rgba(212,175,55,.5);padding:9px 22px;font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:900;letter-spacing:6px;text-transform:uppercase;color:var(--ouro-claro);margin-bottom:24px;clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%); }
-.hero-season-dot { width:7px;height:7px;border-radius:50%;background:var(--ouro-claro);animation:pulseOuro 2s infinite; }
-.hero-title { font-family:'Anton',sans-serif;font-size:clamp(4.5rem,11vw,10.5rem);line-height:.85;letter-spacing:2px;color:#fff;text-shadow:0 8px 60px rgba(0,0,0,.9),0 2px 0 rgba(255,255,255,.1); }
-.hero-title em { font-style:normal;display:block;background:linear-gradient(135deg,var(--ouro-fifa) 0%,var(--ouro-claro) 40%,var(--ouro-brilho) 60%,var(--ouro-claro) 100%);background-size:300% 100%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 5s linear infinite; }
-.hero-title .mg { font-size:.55em;color:rgba(255,255,255,.3);-webkit-text-fill-color:rgba(255,255,255,.3); }
-.hero-sub { font-family:'Barlow',sans-serif;font-weight:300;font-size:1.05rem;color:var(--cinza-txt);max-width:420px;line-height:1.85;margin:22px 0 38px; }
-
-.hero-actions { display:flex;align-items:center;gap:14px;flex-wrap:wrap; }
-.btn-primary { display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:13px;letter-spacing:3px;text-transform:uppercase;color:#001a40;padding:18px 44px;background:linear-gradient(135deg,var(--ouro-claro),var(--ouro-brilho),var(--ouro-claro));background-size:200% 100%;transition:all .3s;clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%);position:relative;overflow:hidden; }
-.btn-primary::after { content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.5),transparent);transform:skewX(-20deg);transition:left .5s; }
-.btn-primary:hover { background-position:100%;transform:translateY(-3px); }
-.btn-primary:hover::after { left:150%; }
-
-.btn-secondary { display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:3px;text-transform:uppercase;color:#fff;padding:17px 32px;border:1px solid rgba(255,255,255,.3);transition:all .25s; }
-.btn-secondary:hover { color:var(--ouro-claro);border-color:rgba(212,175,55,.6);background:rgba(212,175,55,.15);transform:translateY(-2px); }
-
-.hero-stats { display:flex;gap:0;margin-top:44px;padding-top:36px;border-top:1px solid rgba(255,255,255,.15); }
-.hero-stat { flex:1;padding-right:28px;border-right:1px solid rgba(255,255,255,.15); }
-.hero-stat:last-child { border-right:none;padding-right:0;padding-left:28px; }
-.hero-stat:not(:first-child) { padding-left:28px; }
-.hero-stat-val { font-family:'Anton',sans-serif;font-size:2.6rem;letter-spacing:2px;color:var(--ouro-claro);line-height:1; }
-.hero-stat-lbl { font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.6);margin-top:5px; }
-
-/* HERO RIGHT (VÍDEO DO CRAQUE MAESTRO COPA 2026) */
-.hero-right { animation:slideInRight .9s .2s ease-out both;display:flex;flex-direction:column;align-items:center; }
-.hero-video-frame { position:relative;width:100%;max-width:360px;border-radius:0;animation:videoGlow 4s ease-in-out infinite; }
-.hero-video-frame::before { content:'';position:absolute;inset:-2px;z-index:-1;background:linear-gradient(135deg,var(--ouro-fifa),var(--bg-panel-light),var(--ouro-fifa));background-size:300% 300%;animation:gradShift 6s linear infinite;border-radius:2px; }
-.hero-video-frame::after { content:'MARRETA · CRAQUE DA SEMANA';position:absolute;bottom:-36px;left:0;right:0;text-align:center;font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:900;letter-spacing:5px;text-transform:uppercase;color:rgba(212,175,55,.8); }
-.hero-video-frame video { width:100%;display:block;filter:brightness(1.05) contrast(1.05) saturate(1.1); }
-.hero-video-badge { position:absolute;top:16px;left:16px;z-index:2;background:rgba(0,26,64,.85);border:1px solid rgba(212,175,55,.5);padding:6px 14px;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--ouro-claro);backdrop-filter:blur(10px);display:flex;align-items:center;gap:8px; }
-.live-dot { width:7px;height:7px;border-radius:50%;background:#ff4040;animation:pulseOuro 1.5s infinite; }
-
-/* ══ SECTION DIVIDER ══ */
-.section-divider { height:2px;background:linear-gradient(90deg,transparent,rgba(212,175,55,.4),rgba(212,175,55,1),rgba(212,175,55,.4),transparent); }
-
-/* ══ STICKER PREVIEW STRIP ══ */
-.sticker-strip { background: linear-gradient(180deg, rgba(0,48,135,.6) 0%, rgba(0,26,64,.9) 100%);padding:80px 48px;position:relative;overflow:hidden;border-top:1px solid rgba(212,175,55,.15);border-bottom:1px solid rgba(212,175,55,.15); }
-.sticker-strip::before { content:'';position:absolute;inset:0;pointer-events:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='92' viewBox='0 0 80 92'%3E%3Cpath d='M40 0 L80 23 L80 69 L40 92 L0 69 L0 23 Z' fill='none' stroke='rgba(212,175,55,0.08)' stroke-width='1'/%3E%3C/svg%3E");background-size:80px 92px; }
-.strip-inner { max-width:1400px;margin:0 auto;position:relative; }
-.section-tag { display:inline-flex;align-items:center;gap:10px;font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:900;letter-spacing:6px;text-transform:uppercase;color:var(--ouro-claro);margin-bottom:10px; }
-.section-tag::before { content:'';width:28px;height:2px;background:var(--ouro-claro); }
-.section-title { font-family:'Anton',sans-serif;font-size:clamp(2.8rem,6vw,5rem);letter-spacing:3px;color:#fff;line-height:.9;margin-bottom:8px; }
-.section-title em { font-style:normal;color:var(--ouro-claro); }
-.section-sub { font-family:'Barlow',sans-serif;font-size:.95rem;color:var(--cinza-txt);margin-bottom:48px; }
-
-.mini-cards-row { display:flex;gap:14px;overflow-x:auto;padding-bottom:8px;scrollbar-width:none; }
-.mini-card { flex:0 0 138px;height:207px;cursor:pointer;position:relative;overflow:hidden;background:linear-gradient(155deg, rgba(26,107,255,.6) 0%, rgba(0,26,64,.95) 100%);border:1px solid rgba(212,175,55,.3);transition:all .35s cubic-bezier(.175,.885,.32,1.275); }
-.mini-card::before { content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--ouro-fifa),var(--ouro-claro),var(--ouro-brilho),var(--ouro-claro),var(--ouro-fifa));background-size:200% 100%;animation:shimmer 3s linear infinite; }
-.mini-card::after { content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.1) 0%,transparent 50%);transition:opacity .3s; }
-.mini-card:hover { transform:translateY(-12px) scale(1.06);border-color:rgba(212,175,55,.8);box-shadow:0 30px 60px rgba(0,0,0,.9),0 0 40px rgba(212,175,55,.4); }
-.mini-card-num { font-family:'Anton',sans-serif;font-size:2.2rem;letter-spacing:2px;color:rgba(255,255,255,.15);position:absolute;top:6px;right:10px; }
-.mini-card-icon { font-size:2.4rem;margin-bottom:8px;position:relative;z-index:1; }
-.mini-card-label { font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--ouro-claro);text-align:center;padding:0 8px;position:relative;z-index:1; }
-.mini-card-inner { display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;position:relative;z-index:1; }
-
-/* ══ VIDEO SECTIONS ══ */
-.video-section { max-width:1400px;margin:0 auto;padding:60px 48px; display:grid; grid-template-columns:1fr 1fr; gap:40px; }
-.video-box-wrap { display:flex; flex-direction:column; align-items:center; }
-.video-container { position:relative;overflow:hidden;width:100%; max-width:380px; border:2px solid rgba(212,175,55,.4); box-shadow:0 30px 80px rgba(0,0,0,.9),0 0 60px rgba(212,175,55,.15); }
-.video-container video { width:100%;display:block;filter:brightness(1.05) saturate(1.1); }
-.video-overlay { position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,26,64,.95) 0%,transparent 45%);pointer-events:none; }
-.video-title { position:absolute;bottom:28px;left:0;right:0;text-align:center;font-family:'Anton',sans-serif;font-size:2rem;letter-spacing:3px;color:#fff;text-shadow:0 4px 30px rgba(0,0,0,.9); }
-.video-title em { color:var(--ouro-claro);font-style:normal; }
-
-/* ══ MANIFESTO ══ */
-.manifesto-section { max-width:1400px;margin:0 auto;padding:100px 48px; }
-.manifesto-grid { display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center; }
-.manifesto-quote { font-family:'Anton',sans-serif;font-size:clamp(2.5rem,5vw,4.5rem);letter-spacing:2px;color:#fff;line-height:.9;margin-bottom:24px; }
-.manifesto-quote em { font-style:normal;color:var(--ouro-claro); }
-.manifesto-body { font-family:'Barlow',sans-serif;font-weight:300;font-size:1rem;color:var(--cinza-txt);line-height:2;margin-bottom:36px;border-left:3px solid rgba(212,175,55,.5);padding-left:20px; }
-
-.manifesto-stats { display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:40px; }
-.manifesto-stat { background:linear-gradient(145deg, rgba(0,48,135,.5) 0%, rgba(0,26,64,.8) 100%);border:1px solid rgba(212,175,55,.2);padding:24px 22px;position:relative;overflow:hidden;transition:all .3s; }
-.manifesto-stat::before { content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--ouro-fifa),var(--ouro-claro)); }
-.manifesto-stat:hover { border-color:rgba(212,175,55,.6);transform:translateY(-4px);box-shadow:0 20px 40px rgba(0,0,0,.6); }
-.stat-num { font-family:'Anton',sans-serif;font-size:3rem;letter-spacing:2px;color:var(--ouro-claro);line-height:1; }
-.stat-lbl { font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.6);margin-top:5px; }
-
-.manifesto-trophy-col { display:flex;flex-direction:column;align-items:center; }
-.trophy-card { width:100%;max-width:320px;background:linear-gradient(155deg, rgba(26,107,255,.4) 0%, rgba(0,26,64,.98) 100%);border:2px solid rgba(212,175,55,.4);padding:44px 32px;text-align:center;position:relative;overflow:hidden;box-shadow:0 40px 100px rgba(0,0,0,.9),0 0 60px rgba(212,175,55,.15); }
-.trophy-card::before { content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--ouro-fifa),var(--ouro-claro),var(--ouro-brilho),var(--ouro-claro),var(--ouro-fifa));background-size:200% 100%;animation:shimmer 4s linear infinite; }
-.trophy-icon { font-size:5rem;display:block;margin-bottom:16px;filter:drop-shadow(0 0 20px rgba(212,175,55,.8)); }
-.trophy-title { font-family:'Anton',sans-serif;font-size:1.8rem;letter-spacing:4px;color:var(--ouro-claro);margin-bottom:10px; }
-.trophy-sub { font-family:'Barlow',sans-serif;font-size:.9rem;color:var(--cinza-txt);line-height:1.7;margin-bottom:16px; }
-
-/* ══ CTA BANNER ══ */
-.cta-banner { position:relative;overflow:hidden;padding:120px 48px;text-align:center;background:radial-gradient(ellipse at 50% 50%, rgba(26,107,255,.4) 0%, transparent 60%),linear-gradient(135deg,var(--bg-dark) 0%,#000a1a 100%); }
-.cta-title { font-family:'Anton',sans-serif;font-size:clamp(4rem,12vw,10rem);letter-spacing:4px;color:#fff;line-height:.85;margin-bottom:24px;position:relative;z-index:1; }
-.cta-title em { font-style:normal;background:linear-gradient(135deg,var(--ouro-fifa),var(--ouro-claro),var(--ouro-brilho),var(--ouro-claro),var(--ouro-fifa));background-size:300% 100%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 5s linear infinite; }
-.btn-cta-dark { display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:13px;letter-spacing:3px;text-transform:uppercase;color:var(--ouro-claro);padding:18px 48px;background:rgba(0,26,64,.9);border:1px solid rgba(212,175,55,.5);transition:all .25s;clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%);position:relative;z-index:2; }
-.btn-cta-dark:hover { background:rgba(0,48,135,.9);border-color:var(--ouro-claro);transform:translateY(-3px);box-shadow:0 20px 50px rgba(0,0,0,.8); }
-
-/* ══ FOOTER ══ */
-.site-footer { background:var(--bg-dark);border-top:1px solid rgba(212,175,55,.2);padding:64px 48px 40px; }
-.footer-inner { max-width:1400px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:56px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,.1); }
-.footer-logo-wrap { display:flex;align-items:center;gap:16px;margin-bottom:16px; }
-.footer-logo-img { height:52px;width:auto;filter:drop-shadow(0 4px 10px rgba(0,0,0,.8)); }
-.footer-brand-name { font-family:'Anton',sans-serif;font-size:20px;letter-spacing:5px;color:var(--ouro-claro); }
-.footer-brand-text { font-family:'Barlow',sans-serif;font-size:.85rem;color:rgba(255,255,255,.5);line-height:2; }
-.footer-nav-title { font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--ouro-claro);margin-bottom:20px; }
-.footer-nav-link { text-decoration:none;font-family:'Barlow Condensed',sans-serif;font-size:.95rem;color:rgba(255,255,255,.6);transition:color .2s;letter-spacing:1px;display:block;margin-bottom:12px;}
-.footer-nav-link:hover { color:var(--ouro-claro); }
-.footer-bottom { max-width:1400px;margin:28px auto 0;display:flex;align-items:center;justify-content:space-between; }
-.footer-bottom-txt { font-family:'Barlow Condensed',sans-serif;font-size:.8rem;color:rgba(255,255,255,.4);letter-spacing:1px; }
-
-@media(max-width:1024px){
-  .hero-content{grid-template-columns:1fr;text-align:center;gap:40px;}
-  .video-section{grid-template-columns:1fr; gap:40px;}
-  .manifesto-grid{grid-template-columns:1fr;gap:48px;}
-  .manifesto-body{border-left:none;padding-left:0;}
-  .footer-inner{grid-template-columns:1fr;gap:32px;}
-  .hero-stats{justify-content:center;}
+.hero-grid{
+  position:absolute;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(168,230,61,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(168,230,61,.04) 1px,transparent 1px);
+  background-size:64px 64px;
+  mask-image:radial-gradient(ellipse 90% 90% at 50% 50%,black 0%,transparent 80%);
 }
-@media(max-width:640px){
-  .navbar{padding:12px 20px;height:auto;flex-wrap:wrap;gap:8px;}
-  .hero-content,.video-section,.cta-banner{padding-left:24px;padding-right:24px;}
-  .hero-title{font-size:clamp(4rem,14vw,6rem);}
+/* BIG BG WORD */
+.hero-watermark{
+  position:absolute;bottom:-60px;right:-40px;z-index:0;pointer-events:none;
+  font-family:'Black Ops One',sans-serif;font-size:clamp(180px,24vw,360px);
+  letter-spacing:-4px;line-height:1;
+  color:transparent;-webkit-text-stroke:1px rgba(168,230,61,.055);
+  user-select:none;white-space:nowrap;
+}
+/* DIAGONAL ACCENT */
+.hero-slash{
+  position:absolute;top:0;right:0;bottom:0;width:45%;
+  background:linear-gradient(135deg,transparent 0%,rgba(168,230,61,.03) 50%,rgba(240,18,122,.04) 100%);
+  clip-path:polygon(20% 0,100% 0,100% 100%,0% 100%);
+  pointer-events:none;z-index:0;
+}
+
+.hero-content{position:relative;z-index:4;max-width:1480px;width:100%;margin:0 auto;padding:80px 48px;display:grid;grid-template-columns:1fr 480px;gap:80px;align-items:center}
+
+/* LEFT */
+.hero-tag{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:'DM Mono',monospace;font-size:9px;letter-spacing:6px;text-transform:uppercase;
+  color:var(--verde);
+  background:rgba(168,230,61,.08);border:1px solid rgba(168,230,61,.25);
+  padding:8px 20px;margin-bottom:24px;
+  animation:fadeUp .5s .05s ease-out both;
+}
+.hero-tag-dot{width:7px;height:7px;border-radius:50%;background:var(--verde);box-shadow:0 0 8px var(--verde);animation:blipV 1.3s infinite}
+
+.hero-h{
+  font-family:'Black Ops One',sans-serif;
+  font-size:clamp(5rem,12vw,14rem);
+  line-height:.82;
+  animation:fadeUp .6s .12s ease-out both;
+}
+.hl-1{display:block;color:var(--branco)}
+.hl-2{
+  display:block;
+  background:linear-gradient(90deg,var(--verde) 0%,var(--verde2) 35%,#fff 55%,var(--verde2) 75%,var(--verde) 100%);
+  background-size:300%;
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  animation:shimmerV 4s linear infinite,neonPulseV 3s ease-in-out infinite;
+  filter:drop-shadow(0 0 30px rgba(168,230,61,.25));
+}
+.hl-3{
+  display:block;
+  color:var(--rosa);
+  animation:neonPulseR 3s 1s ease-in-out infinite;
+  filter:drop-shadow(0 0 20px rgba(240,18,122,.4));
+}
+
+.hero-sub{font-size:1rem;font-weight:300;color:var(--cinza);line-height:1.8;margin:20px 0 32px;max-width:480px;animation:fadeUp .7s .22s ease-out both}
+.hero-sub strong{color:var(--branco);font-weight:500}
+
+.hero-btns{display:flex;gap:16px;flex-wrap:wrap;animation:fadeUp .8s .28s ease-out both}
+
+.btn-verde{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-family:'Black Ops One',sans-serif;font-size:13px;letter-spacing:2px;color:#000;background:linear-gradient(135deg,var(--verde),var(--verde2));padding:16px 36px;clip-path:polygon(10px 0,100% 0,calc(100% - 10px) 100%,0 100%);position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s}
+.btn-verde::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);transform:translateX(-100%);transition:transform .4s}
+.btn-verde:hover::before{transform:translateX(100%)}
+.btn-verde:hover{transform:translateY(-3px);box-shadow:0 20px 60px rgba(168,230,61,.4)}
+
+.btn-outline-rosa{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--branco);border:1.5px solid rgba(240,18,122,.4);padding:15px 28px;transition:all .2s}
+.btn-outline-rosa:hover{border-color:var(--rosa);color:var(--rosa);background:rgba(240,18,122,.06)}
+
+.hero-strip{display:flex;gap:0;border-top:1px solid var(--border-v);margin-top:48px;padding-top:36px;animation:fadeUp .9s .35s ease-out both}
+.hs{padding-right:40px;border-right:1px solid var(--border-v);margin-right:40px}
+.hs:last-child{border-right:none;margin-right:0;padding-right:0}
+.hs-num{font-family:'Black Ops One',sans-serif;font-size:2.4rem;color:var(--verde);display:block;line-height:1}
+.hs-lbl{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:4px;text-transform:uppercase;color:var(--cinza2);display:block;margin-top:4px}
+
+/* RIGHT — VIDEO FRAME */
+.hero-video-wrap{position:relative;animation:fadeUp .7s .3s ease-out both}
+.hero-video-frame{
+  position:relative;border-radius:4px;overflow:hidden;
+  border:1px solid rgba(168,230,61,.3);
+  box-shadow:0 0 0 1px rgba(168,230,61,.08),0 0 60px rgba(168,230,61,.12),0 40px 80px rgba(0,0,0,.9);
+}
+.hero-video-frame::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;z-index:5;background:linear-gradient(90deg,var(--rosa),var(--verde),var(--dourado),var(--verde),var(--rosa));background-size:300%;animation:gradNeon 4s linear infinite}
+.hero-video-frame video{display:block;width:100%;max-height:520px;object-fit:cover}
+.hero-video-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,10,6,.95) 0%,transparent 50%);z-index:2}
+.hero-video-badge{
+  position:absolute;top:16px;left:16px;z-index:6;
+  display:flex;align-items:center;gap:8px;
+  background:rgba(8,10,6,.85);backdrop-filter:blur(8px);
+  border:1px solid rgba(168,230,61,.3);
+  padding:7px 16px;
+  font-family:'DM Mono',monospace;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--verde);
+}
+.hero-video-label{position:absolute;bottom:20px;left:20px;right:20px;z-index:3;text-align:center}
+.hvl-name{font-family:'Black Ops One',sans-serif;font-size:clamp(1.4rem,3.5vw,2rem);color:var(--branco);text-shadow:0 2px 20px rgba(0,0,0,.8);display:block}
+.hvl-sub{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:5px;text-transform:uppercase;color:var(--verde);display:block;margin-top:4px}
+/* DRIP DECORATION */
+.hero-drip{position:absolute;bottom:-1px;left:0;right:0;z-index:4;height:24px;overflow:hidden}
+.hero-drip svg{position:absolute;bottom:0;width:100%}
+
+/* ── DIVIDER ── */
+.x1-divider{
+  display:flex;align-items:center;gap:24px;padding:0 48px;
+  max-width:1480px;margin:0 auto;
+}
+.xd-line{flex:1;height:1px;background:linear-gradient(to right,transparent,var(--border-v),transparent)}
+.xd-icon{font-size:20px;filter:drop-shadow(0 0 8px var(--verde))}
+.xd-txt{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:6px;text-transform:uppercase;color:var(--cinza2);white-space:nowrap}
+
+/* ── PACK SECTION ── */
+.pack-section{padding:100px 48px;position:relative;overflow:hidden}
+.pack-section::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 60% 50% at 50% 100%,rgba(240,18,122,.06) 0%,transparent 60%)}
+.pack-inner{max-width:1480px;margin:0 auto}
+.sec-tag{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:6px;text-transform:uppercase;color:var(--rosa);display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.sec-tag::before{content:'';width:22px;height:2px;background:var(--rosa)}
+.sec-h{font-family:'Black Ops One',sans-serif;font-size:clamp(2.5rem,5vw,5.5rem);color:var(--branco);margin-bottom:6px;line-height:.9}
+.sec-h em{font-style:normal;color:var(--verde);text-shadow:0 0 16px rgba(168,230,61,.5)}
+.sec-sub{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--cinza2);margin-bottom:56px}
+
+.pack-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.pack-card{
+  background:var(--preto2);
+  border:1px solid var(--border-v);
+  padding:32px 24px;
+  position:relative;overflow:hidden;
+  cursor:pointer;
+  transition:transform .3s,border-color .3s,box-shadow .3s;
+  text-decoration:none;
+  display:block;
+}
+.pack-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--rosa),var(--verde));transform:scaleX(0);transform-origin:left;transition:transform .35s}
+.pack-card:hover{transform:translateY(-6px);border-color:rgba(168,230,61,.5);box-shadow:0 20px 60px rgba(168,230,61,.1)}
+.pack-card:hover::before{transform:scaleX(1)}
+.pack-card-icon{font-size:40px;margin-bottom:16px;display:block}
+.pack-card-title{font-family:'Black Ops One',sans-serif;font-size:1.4rem;color:var(--branco);margin-bottom:8px}
+.pack-card-desc{font-family:'Barlow',sans-serif;font-size:.85rem;font-weight:300;color:var(--cinza);line-height:1.6}
+.pack-card-arrow{position:absolute;bottom:24px;right:24px;font-family:'DM Mono',monospace;font-size:12px;color:var(--verde);opacity:0;transition:opacity .2s,transform .2s;transform:translateX(-8px)}
+.pack-card:hover .pack-card-arrow{opacity:1;transform:translateX(0)}
+
+/* ── VIDEOS ── */
+.video-section{padding:100px 48px;background:linear-gradient(180deg,var(--preto) 0%,var(--preto2) 100%);border-top:1px solid var(--border-v)}
+.video-inner{max-width:1480px;margin:0 auto}
+.video-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:56px}
+.video-box{position:relative;border-radius:4px;overflow:hidden;border:1px solid var(--border-v);transition:border-color .3s,box-shadow .3s}
+.video-box:hover{border-color:rgba(168,230,61,.4);box-shadow:0 0 40px rgba(168,230,61,.1)}
+.video-box video{display:block;width:100%;height:320px;object-fit:cover}
+.video-box-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,10,6,.95) 0%,transparent 50%)}
+.video-box-top{position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--rosa),var(--verde));background-size:200%;animation:shimmerV 3s linear infinite}
+.video-box-label{position:absolute;bottom:20px;left:20px;right:20px;z-index:2}
+.vbl-tag{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:4px;text-transform:uppercase;color:var(--rosa);display:block;margin-bottom:6px}
+.vbl-title{font-family:'Black Ops One',sans-serif;font-size:1.6rem;color:var(--branco);display:block;line-height:1}
+.vbl-title em{font-style:normal;color:var(--verde)}
+
+/* ── MANIFESTO ── */
+.manifesto{padding:120px 48px;position:relative;overflow:hidden}
+.manifesto::before{content:'CRIAS';position:absolute;right:-60px;top:50%;transform:translateY(-50%) rotate(90deg);font-family:'Black Ops One',sans-serif;font-size:200px;color:transparent;-webkit-text-stroke:1px rgba(168,230,61,.04);pointer-events:none;line-height:1;white-space:nowrap}
+.manifesto-inner{max-width:1480px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:center}
+.manifesto-h{font-family:'Black Ops One',sans-serif;font-size:clamp(3rem,6vw,7rem);line-height:.86;color:var(--branco)}
+.manifesto-h em{font-style:normal;color:var(--verde);display:block;text-shadow:0 0 16px rgba(168,230,61,.5)}
+.manifesto-body{font-size:1rem;font-weight:300;color:var(--cinza);line-height:1.85;margin:22px 0 36px;max-width:460px}
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border-v);border:1px solid var(--border-v);margin-top:48px}
+.stat-box{background:var(--preto2);padding:24px 20px;transition:background .2s;position:relative;overflow:hidden}
+.stat-box::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--verde);transform:scaleY(0);transform-origin:top;transition:transform .3s}
+.stat-box:hover{background:rgba(168,230,61,.04)}
+.stat-box:hover::before{transform:scaleY(1)}
+.stat-num{font-family:'Black Ops One',sans-serif;font-size:2.6rem;color:var(--verde);display:block;line-height:1}
+.stat-lbl{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:4px;text-transform:uppercase;color:var(--cinza2);display:block;margin-top:6px}
+
+/* MANIFESTO RIGHT — TROPHY CARD */
+.trophy-card{
+  background:var(--preto2);
+  border:1px solid var(--border-v);
+  padding:44px 36px;
+  position:relative;overflow:hidden;
+  text-align:center;
+  animation:borderNeon 4s ease-in-out infinite;
+}
+.trophy-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--rosa),var(--verde),var(--dourado),var(--verde),var(--rosa));background-size:300%;animation:gradNeon 4s linear infinite}
+.trophy-card-eyebrow{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:6px;text-transform:uppercase;color:var(--rosa);margin-bottom:20px}
+.trophy-icon{font-size:80px;display:block;filter:drop-shadow(0 0 30px rgba(245,200,66,.4));animation:floatLogo 4s ease-in-out infinite}
+.trophy-title{font-family:'Black Ops One',sans-serif;font-size:2rem;color:var(--branco);margin-top:16px}
+.trophy-desc{font-size:.88rem;font-weight:300;color:var(--cinza);margin:12px 0 24px;line-height:1.7}
+.trophy-stars{color:var(--dourado);font-size:18px;letter-spacing:8px;margin-bottom:28px;text-shadow:0 0 16px rgba(245,200,66,.5)}
+
+/* ── CTA FINAL ── */
+.cta-final{
+  padding:160px 48px;text-align:center;position:relative;overflow:hidden;
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 50%,rgba(168,230,61,.07) 0%,transparent 65%),
+    var(--preto);
+}
+.cta-final::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(-45deg,transparent,transparent 48px,rgba(168,230,61,.014) 48px,rgba(168,230,61,.014) 96px);pointer-events:none}
+.cta-pre{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:7px;text-transform:uppercase;color:var(--rosa);margin-bottom:20px;position:relative;z-index:1}
+.cta-h{
+  font-family:'Black Ops One',sans-serif;
+  font-size:clamp(5.5rem,17vw,19rem);
+  line-height:.78;letter-spacing:2px;
+  color:var(--branco);
+  position:relative;z-index:1;
+  animation:fadeUp .7s ease-out both;
+}
+.cta-h em{
+  font-style:normal;display:block;
+  background:linear-gradient(90deg,var(--rosa) 0%,var(--verde) 45%,var(--dourado) 80%,var(--rosa) 100%);
+  background-size:200%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  animation:shimmerV 4s linear infinite;
+}
+.cta-sub{font-size:1rem;font-weight:300;color:var(--cinza);max-width:420px;margin:20px auto 48px;line-height:1.75;position:relative;z-index:1}
+.cta-btns{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;position:relative;z-index:1}
+
+/* ── FOOTER ── */
+.footer{border-top:1px solid var(--border-v);padding:64px 48px 44px}
+.footer-top{max-width:1480px;margin:0 auto;display:grid;grid-template-columns:1.8fr 1fr 1fr;gap:60px;padding-bottom:48px;border-bottom:1px solid var(--border-v)}
+.footer-brand{font-family:'Black Ops One',sans-serif;font-size:1.8rem;color:var(--branco);display:block;margin-bottom:10px}
+.footer-brand em{font-style:normal;color:var(--verde)}
+.footer-desc{font-size:.85rem;font-weight:300;color:var(--cinza);line-height:1.8}
+.footer-logo-img{height:56px;width:auto;filter:drop-shadow(0 0 12px rgba(168,230,61,.3));margin-bottom:16px;display:block}
+.footer-col-t{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:5px;text-transform:uppercase;color:var(--verde);margin-bottom:20px}
+.footer-lnk{display:block;text-decoration:none;font-size:.85rem;font-weight:300;color:var(--cinza);padding:6px 0;border-bottom:1px solid transparent;transition:color .15s,padding-left .15s,border-color .15s}
+.footer-lnk:hover{color:var(--verde);padding-left:8px;border-bottom-color:var(--border-v)}
+.footer-bottom{max-width:1480px;margin:28px auto 0;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;align-items:center}
+.footer-copy{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:rgba(244,244,240,.18)}
+.footer-tag{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;color:var(--rosa);opacity:.45}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1100px){
+  .hero-content{grid-template-columns:1fr;gap:48px}
+  .hero-video-wrap{max-width:500px}
+  .manifesto-inner{grid-template-columns:1fr;gap:60px}
+  .pack-grid{grid-template-columns:1fr 1fr}
+  .video-grid{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr;gap:40px}
+}
+@media(max-width:768px){
+  .nav,.hero-content,.pack-section,.video-section,.manifesto,.cta-final,.footer{padding-left:20px;padding-right:20px}
+  .nl{display:none}
+  .hero-strip{flex-wrap:wrap;gap:20px}
+  .hs{border-right:none;padding-right:0;margin-right:0;width:45%}
+  .stats-grid{grid-template-columns:1fr 1fr}
+  .pack-grid{grid-template-columns:1fr 1fr}
+  .x1-divider{padding:0 20px}
 }
 </style>
 </head>
 <body>
 
-<canvas id="particles-canvas"></canvas>
+<div class="scan-beam"></div>
 
-<div class="ticker-bar">
+<!-- TICKER -->
+<div class="ticker">
   <div class="ticker-track">
-    <span class="ticker-item gold"><span class="ticker-dot"></span>Álbum Panini Copa 2026</span>
-    <span class="ticker-item white"><span class="ticker-dot"></span>X1 dos Crias MG — Temporada Oficial</span>
-    <span class="ticker-item gold"><span class="ticker-dot"></span>Votação do Craque Aberta</span>
-    <span class="ticker-item white"><span class="ticker-dot"></span>Colecione os Craques da Galera</span>
-    <span class="ticker-item gold"><span class="ticker-dot"></span>Mangueira · A Nossa Copa</span>
-    <span class="ticker-item white"><span class="ticker-dot"></span>Álbum Panini Copa 2026</span>
-    <span class="ticker-item gold"><span class="ticker-dot"></span>X1 dos Crias MG — Temporada Oficial</span>
+    <span class="ti v"><span class="tsep"></span> X1 DOS CRIAS MG </span>
+    <span class="ti w"><span class="tsep"></span> COPA 2026 · MANGUEIRA </span>
+    <span class="ti r"><span class="tsep"></span> ⚡ VOTAÇÃO ABERTA </span>
+    <span class="ti w"><span class="tsep"></span> CRAQUE DA SEMANA </span>
+    <span class="ti v"><span class="tsep"></span> ÁLBUM OFICIAL 2026 </span>
+    <span class="ti w"><span class="tsep"></span> TODA SEGUNDA-FEIRA </span>
+    <span class="ti r"><span class="tsep"></span> A COPA É NOSSA </span>
+    <span class="ti w"><span class="tsep"></span> MANGUEIRA REPRESENTA </span>
+    <span class="ti v"><span class="tsep"></span> X1 DOS CRIAS MG </span>
+    <span class="ti w"><span class="tsep"></span> COPA 2026 · MANGUEIRA </span>
+    <span class="ti r"><span class="tsep"></span> ⚡ VOTAÇÃO ABERTA </span>
+    <span class="ti w"><span class="tsep"></span> CRAQUE DA SEMANA </span>
+    <span class="ti v"><span class="tsep"></span> ÁLBUM OFICIAL 2026 </span>
+    <span class="ti w"><span class="tsep"></span> TODA SEGUNDA-FEIRA </span>
+    <span class="ti r"><span class="tsep"></span> A COPA É NOSSA </span>
+    <span class="ti w"><span class="tsep"></span> MANGUEIRA REPRESENTA </span>
   </div>
 </div>
 
-<header class="site-header">
-  <nav class="navbar">
-    <a href="index.html" class="nav-logo">
-      <img src="x1doscria.jpg" alt="X1" class="nav-logo-img" onerror="this.style.display='none'">
-      <div>
-        <span class="nav-brand-main">X1 dos Crias</span>
-        <span class="nav-brand-sub">Copa 2026 · Mangueira</span>
-      </div>
+<!-- HEADER -->
+<header class="header">
+  <nav class="nav">
+    <a href="index.html" class="logo">
+      <img src="logox1.jpg" alt="X1" class="logo-img" onerror="this.style.display='none'">
+      <span>
+        <span class="logo-txt-main">X1 dos Crias</span>
+        <span class="logo-txt-sub">Copa 2026 · Mangueira · MG</span>
+      </span>
     </a>
-    <a href="index.html" class="nav-link active">Início</a>
-    <a href="atletas.html" class="nav-link">Atletas</a>
+    <a href="index.html" class="nl act">Início</a>
+    <a href="atletas.html" class="nl">Álbum</a>
+    <a href="votacao.html" class="nl">Votação</a>
     <a href="votacao.html" class="nav-cta">🏆 Votar Agora</a>
   </nav>
 </header>
 
+<!-- HERO -->
 <section class="hero">
-  <div class="hero-field">
-    <svg viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-      <rect x="60" y="40" width="1080" height="620" rx="4" fill="none" stroke="white" stroke-width="1.5"/>
-      <line x1="600" y1="40" x2="600" y2="660" stroke="white" stroke-width="1"/>
-      <circle cx="600" cy="350" r="91" fill="none" stroke="white" stroke-width="1"/>
-      <circle cx="600" cy="350" r="4" fill="white"/>
-      <rect x="60" y="215" width="156" height="270" rx="2" fill="none" stroke="white" stroke-width="1"/>
-      <rect x="1140" y="215" width="-156" height="270" rx="2" fill="none" stroke="white" stroke-width="1"/>
-    </svg>
-  </div>
-  <div class="hero-scanline"></div>
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-slash"></div>
+  <div class="hero-watermark">CRIAS</div>
+
   <div class="hero-content">
-    <div class="hero-left">
-      <div class="hero-season-tag">
-        <span class="hero-season-dot"></span>
-        Edição Especial · Álbum Copa 2026
+    <div>
+      <div class="hero-tag">
+        <span class="hero-tag-dot"></span>
+        Temporada ativa · Copa 2026 em andamento
       </div>
-      <h1 class="hero-title">
-        X1 DOS<br>
-        <em>CRIAS</em><br>
-        <span class="mg">MG</span>
+
+      <h1 class="hero-h">
+        <span class="hl-1">X1 DOS</span>
+        <span class="hl-2">CRIAS</span>
+        <span class="hl-3">MG</span>
       </h1>
-      <p class="hero-sub">O álbum oficial de figurinhas da galera da Mangueira. Colecione os craques, vote no melhor da semana e viva a emoção da Copa do Mundo.</p>
-      <div class="hero-actions">
-        <a href="votacao.html" class="btn-primary">🏆 Votar no Craque</a>
-        <a href="atletas.html" class="btn-secondary">Ver Álbum Completo →</a>
+
+      <p class="hero-sub">
+        Toda segunda-feira a Mangueira para.<br>
+        <strong>Os crias mostram o jogo.</strong> A comunidade decide quem<br>
+        mandou mais. <strong>A Copa é nossa.</strong>
+      </p>
+
+      <div class="hero-btns">
+        <a href="votacao.html" class="btn-verde">🗳️ Abrir Urna Oficial</a>
+        <a href="atletas.html" class="btn-outline-rosa">Ver Álbum →</a>
       </div>
-      <div class="hero-stats">
-        <div class="hero-stat"><div class="hero-stat-val" id="hero-votes">--</div><div class="hero-stat-lbl">Votos essa semana</div></div>
-        <div class="hero-stat"><div class="hero-stat-val">12</div><div class="hero-stat-lbl">Figurinhas</div></div>
-        <div class="hero-stat"><div class="hero-stat-val">2026</div><div class="hero-stat-lbl">Temporada</div></div>
+
+      <div class="hero-strip">
+        <div class="hs"><span class="hs-num" id="hero-votes">--</span><span class="hs-lbl">Votos esta semana</span></div>
+        <div class="hs"><span class="hs-num">+50</span><span class="hs-lbl">Atletas</span></div>
+        <div class="hs"><span class="hs-num">2026</span><span class="hs-lbl">Temporada</span></div>
+        <div class="hs"><span class="hs-num">1ª</span><span class="hs-lbl">Copa dos Crias</span></div>
       </div>
     </div>
-    <div class="hero-right">
+
+    <div class="hero-video-wrap">
       <div class="hero-video-frame">
-        <div class="hero-video-badge"><span class="live-dot"></span>ÚLTIMO CRAQUE</div>
-        <video src="craquemarreta.MOV" autoplay loop muted playsinline></video>
+        <div class="hero-video-badge">
+          <span class="hero-tag-dot"></span>
+          Último Craque
+        </div>
+        <video src="craqcheetos.MOV" autoplay loop muted playsinline></video>
+        <div class="hero-video-overlay"></div>
+        <div class="hero-video-label">
+          <span class="hvl-name">⭐ Craque da Semana</span>
+          <span class="hvl-sub">X1 dos Crias MG · Copa 2026</span>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<div class="section-divider"></div>
+<!-- DIVIDER -->
+<div style="padding:48px 0">
+  <div class="x1-divider">
+    <div class="xd-line"></div>
+    <span class="xd-icon">⚽</span>
+    <span class="xd-txt">A Nossa Copa</span>
+    <span class="xd-icon">⚽</span>
+    <div class="xd-line"></div>
+  </div>
+</div>
 
-<section class="sticker-strip">
-  <div class="strip-inner">
-    <div class="section-tag">Álbum da Rodada</div>
-    <h2 class="section-title">Suas <em>Figurinhas</em></h2>
-    <p class="section-sub">Abra os pacotinhos para revelar os jogadores convocados da semana</p>
-    <div class="mini-cards-row">
-      <div class="mini-card" onclick="location.href='atletas.html'"><div class="mini-card-inner"><span class="mini-card-num">01</span><div class="mini-card-icon">⭐</div><div class="mini-card-label">Abrir Pack</div></div></div>
-      <div class="mini-card" onclick="location.href='atletas.html'"><div class="mini-card-inner"><span class="mini-card-num">02</span><div class="mini-card-icon">🔥</div><div class="mini-card-label">Revelar</div></div></div>
-      <div class="mini-card" onclick="location.href='atletas.html'"><div class="mini-card-inner"><span class="mini-card-num">03</span><div class="mini-card-icon">⚡</div><div class="mini-card-label">Revelar</div></div></div>
-      <div class="mini-card" onclick="location.href='atletas.html'" style="border-style:dashed;opacity:.5"><div class="mini-card-inner"><span class="mini-card-num">+</span><div class="mini-card-icon">?</div><div class="mini-card-label">Ver Todos</div></div></div>
+<!-- PACK SECTION -->
+<section class="pack-section">
+  <div class="pack-inner">
+    <div class="sec-tag">O que você encontra aqui</div>
+    <h2 class="sec-h">O Universo <em>X1</em></h2>
+    <p class="sec-sub">Tudo sobre a copa da comunidade</p>
+
+    <div class="pack-grid">
+      <a href="atletas.html" class="pack-card">
+        <span class="pack-card-icon">📘</span>
+        <div class="pack-card-title">Álbum de Figurinhas</div>
+        <p class="pack-card-desc">Toque nas figurinhas para revelar os craques da rodada. Cada atleta tem seu card exclusivo no álbum oficial 2026.</p>
+        <span class="pack-card-arrow">→</span>
+      </a>
+      <a href="votacao.html" class="pack-card">
+        <span class="pack-card-icon">🗳️</span>
+        <div class="pack-card-title">Urna Eletrônica</div>
+        <p class="pack-card-desc">A comunidade decide. Vote no craque que mais se destacou na rodada. Votação aberta toda semana.</p>
+        <span class="pack-card-arrow">→</span>
+      </a>
+      <div class="pack-card" style="cursor:default">
+        <span class="pack-card-icon">📅</span>
+        <div class="pack-card-title">Toda Segunda-Feira</div>
+        <p class="pack-card-desc">A resenha acontece toda segunda. Mangueira para, os crias jogam, a galera vai pra urna depois.</p>
+        <span class="pack-card-arrow"></span>
+      </div>
+      <div class="pack-card" style="cursor:default">
+        <span class="pack-card-icon">🏆</span>
+        <div class="pack-card-title">Craque da Semana</div>
+        <p class="pack-card-desc">Quem ganha entra para a história da Copa 2026 com destaque no álbum e reconhecimento da comunidade.</p>
+        <span class="pack-card-arrow"></span>
+      </div>
     </div>
   </div>
 </section>
 
-<div class="section-divider"></div>
-
+<!-- VIDEOS -->
 <section class="video-section">
-  <div class="video-box-wrap">
-    <div class="section-tag">Apresentação Oficial</div>
-    <h2 class="section-title" style="margin-bottom: 20px; text-align: center;">O <em>Show</em> Começou</h2>
-    <div class="video-container">
-      <video src="apresentacao.mp4" autoplay loop muted playsinline></video>
-      <div class="video-overlay"></div>
-      <div class="video-title">OS <em>MELHORES</em> ATLETAS</div>
-    </div>
-  </div>
-  
-  <div class="video-box-wrap">
-    <div class="section-tag">Clima de Maracanã</div>
-    <h2 class="section-title" style="margin-bottom: 20px; text-align: center;">A <em>Torcida</em> Treme</h2>
-    <div class="video-container">
-      <video src="x1.mp4" autoplay loop muted playsinline></video>
-      <div class="video-overlay"></div>
-      <div class="video-title">AQUI É <em>MANGUEIRA</em></div>
+  <div class="video-inner">
+    <div class="sec-tag">Conteúdo Oficial</div>
+    <h2 class="sec-h">A <em>Resenha</em> em Vídeo</h2>
+    <p class="sec-sub">Veja como é o clima na quadra toda segunda</p>
+
+    <div class="video-grid">
+      <div class="video-box">
+        <div class="video-box-top"></div>
+        <video src="apresentacao.mp4" autoplay loop muted playsinline></video>
+        <div class="video-box-overlay"></div>
+        <div class="video-box-label">
+          <span class="vbl-tag">// apresentação oficial</span>
+          <span class="vbl-title">Os <em>Melhores</em> Atletas</span>
+        </div>
+      </div>
+      <div class="video-box">
+        <div class="video-box-top"></div>
+        <video src="x1.mp4" autoplay loop muted playsinline></video>
+        <div class="video-box-overlay"></div>
+        <div class="video-box-label">
+          <span class="vbl-tag">// clima de maracanã</span>
+          <span class="vbl-title">Aqui é <em>Mangueira</em></span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="manifesto-section">
-  <div class="manifesto-grid">
-    <div class="manifesto-text-col">
-      <div class="section-tag">A Nossa Copa</div>
-      <h2 class="manifesto-quote">O <em>Morro</em> É Nossa Casa</h2>
-      <p class="manifesto-body">Toda segunda-feira, a Mangueira para. Os crias se reúnem, mostram o talento e a comunidade decide quem mandou mais. Uma Copa nossa, com a cara do bairro e a elegância do Álbum Panini.</p>
-      <a href="atletas.html" class="btn-secondary">Ver Álbum Completo →</a>
-      <div class="manifesto-stats">
-        <div class="manifesto-stat"><div class="stat-num">+50</div><div class="stat-lbl">Atletas cadastrados</div></div>
-        <div class="manifesto-stat"><div class="stat-num">2026</div><div class="stat-lbl">Temporada em curso</div></div>
-        <div class="manifesto-stat"><div class="stat-num">100%</div><div class="stat-lbl">Comunidade</div></div>
-        <div class="manifesto-stat"><div class="stat-num">1ª</div><div class="stat-lbl">Copa dos Crias</div></div>
+<!-- MANIFESTO -->
+<section class="manifesto">
+  <div class="manifesto-inner">
+    <div>
+      <div class="sec-tag">A Nossa Copa</div>
+      <h2 class="manifesto-h">
+        O Morro<br>
+        É Nossa<br>
+        <em>Casa.</em>
+      </h2>
+      <p class="manifesto-body">
+        Aqui o talento tem nome, rosto e figurinha. Cada craque que entra no campo carrega o peso e o orgulho da comunidade. A Mangueira não é só bairro — é berço de campeões. Uma Copa nossa, com a cara do bairro.
+      </p>
+      <a href="atletas.html" class="btn-outline-rosa" style="display:inline-flex">📘 Ver Álbum Completo →</a>
+
+      <div class="stats-grid">
+        <div class="stat-box"><span class="stat-num">+50</span><span class="stat-lbl">Atletas cadastrados</span></div>
+        <div class="stat-box"><span class="stat-num">2026</span><span class="stat-lbl">Temporada em curso</span></div>
+        <div class="stat-box"><span class="stat-num">100%</span><span class="stat-lbl">Comunidade decide</span></div>
+        <div class="stat-box"><span class="stat-num">1ª</span><span class="stat-lbl">Copa dos Crias</span></div>
       </div>
     </div>
-    <div class="manifesto-trophy-col">
+
+    <div>
       <div class="trophy-card">
+        <div class="trophy-card-eyebrow">// prêmio semanal</div>
         <span class="trophy-icon">🏆</span>
         <div class="trophy-title">Craque da Semana</div>
-        <div class="trophy-sub">Vote agora e escolha quem merece levar o troféu desta rodada</div>
+        <p class="trophy-desc">O mérito é de quem joga. A voz é da comunidade. Toda segunda, após a resenha, a urna abre e a Mangueira decide.</p>
         <div class="trophy-stars">★ ★ ★ ★ ★</div>
-        <a href="votacao.html" class="btn-primary" style="font-size:12px;padding:14px 30px;">Abrir Urna 🗳️</a>
+        <a href="votacao.html" class="btn-verde" style="font-size:13px;padding:15px 36px">🗳️ Abrir Urna Agora</a>
+        <div style="margin-top:16px">
+          <span style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--cinza2)">Votação oficial · gratuita · transparente</span>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="cta-banner">
-  <div class="cta-eyebrow">A Comunidade Decide</div>
-  <h2 class="cta-title">VOTE NO<br><em>CRAQUE</em></h2>
-  <div class="cta-actions">
-    <a href="votacao.html" class="btn-cta-dark">🏆 Abrir Urna Agora</a>
+<!-- CTA FINAL -->
+<section class="cta-final">
+  <div class="cta-pre">// a copa da mangueira</div>
+  <h2 class="cta-h">
+    VOTE<br>
+    <em>AGORA</em>
+  </h2>
+  <p class="cta-sub">Cada craque que joga vira figurinha. Cada votação é história. A Mangueira não para.</p>
+  <div class="cta-btns">
+    <a href="votacao.html" class="btn-verde" style="font-size:16px;padding:18px 48px">🗳️ Abrir Urna Eletrônica</a>
+    <a href="atletas.html" class="btn-outline-rosa" style="padding:17px 36px">Ver Álbum →</a>
   </div>
 </section>
 
-<footer class="site-footer">
-  <div class="footer-inner">
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-top">
     <div>
-      <div class="footer-logo-wrap">
-        <img src="x1doscria.jpg" alt="X1" class="footer-logo-img" onerror="this.style.display='none'">
-        <span class="footer-brand-name">X1 dos Crias</span>
-      </div>
-      <p class="footer-brand-text">O álbum oficial da galera da Mangueira.<br>Copa 2026 · Temporada em curso.</p>
+      <img src="logox1.jpg" alt="X1" class="footer-logo-img" onerror="this.style.display='none'">
+      <span class="footer-brand">X1 dos <em>Crias</em></span>
+      <p class="footer-desc">O álbum oficial da galera da Mangueira.<br>Copa 2026 · Temporada em curso.<br>Feito com 🔥 para a comunidade.</p>
     </div>
     <div>
-      <div class="footer-nav-title">Páginas</div>
-      <div class="footer-nav-links">
-        <a href="index.html" class="footer-nav-link">Início</a>
-        <a href="atletas.html" class="footer-nav-link">Álbum de Figurinhas</a>
-        <a href="votacao.html" class="footer-nav-link">Votação</a>
-      </div>
+      <div class="footer-col-t">Páginas</div>
+      <a href="index.html" class="footer-lnk">Início</a>
+      <a href="atletas.html" class="footer-lnk">Álbum de Figurinhas</a>
+      <a href="votacao.html" class="footer-lnk">Votação</a>
+    </div>
+    <div>
+      <div class="footer-col-t">Copa 2026</div>
+      <a href="#" class="footer-lnk">Craque da Semana</a>
+      <a href="#" class="footer-lnk">Toda Segunda-Feira</a>
+      <a href="#" class="footer-lnk">Mangueira · MG</a>
     </div>
   </div>
   <div class="footer-bottom">
-    <span class="footer-bottom-txt">© 2026 Michael Sacramento · X1 dos Crias MG · Todos os direitos reservados</span>
+    <span class="footer-copy">© 2026 Michael Sacramento · X1 dos Crias MG · Todos os direitos reservados</span>
+    <span class="footer-tag">Feito com 🔥 para a Mangueira</span>
   </div>
 </footer>
 
 <script>
-/* PARTICLES */
-(function(){
-  const canvas=document.getElementById('particles-canvas');
-  const ctx=canvas.getContext('2d');
-  let W,H,pts=[];
-  function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight;}
-  resize();window.addEventListener('resize',resize);
-  function mkPt(){return{x:Math.random()*W,y:Math.random()*H+H,size:Math.random()*2+.5,speed:Math.random()*.4+.15,dx:(Math.random()-.5)*0.4,opacity:Math.random()*.5+.2,color:Math.random()>.5?'rgba(212,175,55,':'rgba(255,255,255,'};}
-  for(let i=0;i<60;i++){const p=mkPt();p.y=Math.random()*H;pts.push(p);}
-  function draw(){ctx.clearRect(0,0,W,H);pts.forEach((p,i)=>{p.y-=p.speed;p.x+=p.dx;if(p.y<-10){pts[i]=mkPt();}ctx.beginPath();ctx.arc(p.x,p.y,p.size,0,Math.PI*2);ctx.fillStyle=p.color+p.opacity+')';ctx.fill();});requestAnimationFrame(draw);}
-  draw();
-})();
-
-/* VOTE COUNT DA ÚLTIMA SEMANA: 305 VOTOS */
+/* VOTE COUNTER */
 (function(){
   const el=document.getElementById('hero-votes');
-  if(el){
-    const c = 511; 
-    const dur=1500; const startTime=performance.now();
-    function countUp(ts){
-      const p=Math.min((ts-startTime)/dur,1);
-      el.textContent=Math.floor(p*c);
-      if(p<1)requestAnimationFrame(countUp);
-      else el.textContent=c;
-    }
-    requestAnimationFrame(countUp);
-  }
+  if(!el)return;
+  const c=511;const dur=1800;const t0=performance.now();
+  function tick(ts){const p=Math.min((ts-t0)/dur,1);const e=1-Math.pow(1-p,3);el.textContent=Math.floor(e*c);if(p<1)requestAnimationFrame(tick);else el.textContent=c;}
+  requestAnimationFrame(tick);
 })();
+
+/* SCROLL REVEAL */
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)'}});
+},{threshold:.07});
+document.querySelectorAll('.pack-card,.stat-box,.video-box,.trophy-card').forEach((el,i)=>{
+  el.style.opacity='0';el.style.transform='translateY(28px)';
+  el.style.transition=`opacity .55s ${i*.06}s ease,transform .55s ${i*.06}s ease`;
+  obs.observe(el);
+});
+
+/* SW */
+if('serviceWorker' in navigator){
+  window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));
+}
 </script>
-
-
 </body>
 </html>
